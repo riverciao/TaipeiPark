@@ -12,14 +12,27 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        readParks()
     }
+    
+    func readParks() {
+        
+        guard let request = Router.readParks.urlRequest else { return }
+        let datatask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("error: \(error)")
+                return
+            }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+            guard let data = data else { return }
+
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let jsonObject = json as? [String: Any] {
+                print("json:\(jsonObject)")
+            }
+        }
+        
+        datatask.resume()
     }
-
-
 }
 
