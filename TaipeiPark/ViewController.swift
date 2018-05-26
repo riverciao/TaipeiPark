@@ -31,18 +31,12 @@ class ViewController: UIViewController {
             guard let data = data else { return }
             
             do {
-                let jsonObject = try JSONSerialization.jsonObject(with: data)
-                let parkDatas = try Park.parseFromJsonToDecodableParks(jsonObject)
-                for parkData in parkDatas {
-                    let park = try JSONDecoder().decode(Park.self, from: parkData)
-                    print("OO: \(park)")
-                }
+                let parksData = try Park.parseToDecodableParks(data)
+                let parks = try JSONDecoder().decode([Park].self, from: parksData)
+                print("OO: \(parks)")
             } catch {
                 print("XX: \(error)")
             }
-            
-            
-
         }
         
         datatask.resume()

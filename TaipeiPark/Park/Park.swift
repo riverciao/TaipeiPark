@@ -46,19 +46,16 @@ public struct Park: Codable {
     public let address: String
     public let parkType: String
     
-    public static func parseFromJsonToDecodableParks(_ json: Any) throws -> [Data] {
+    public static func parseToDecodableParks(_ data: Data) throws -> Data {
         typealias Object = [String: Any]
-        var parkDatas = [Data]()
 
+        let json = try JSONSerialization.jsonObject(with: data)
         guard let object = json as? Object else { throw JSONError.notObject }
         guard let result = object[Schema.result] as? Object else { throw JSONError.missingValueForKey(Schema.result) }
         guard let parks = result[Schema.results] as? [Object] else { throw JSONError.missingValueForKey(Schema.results) }
-        for park in parks {
-            let parkData = try JSONSerialization.data(withJSONObject: park)
-            parkDatas.append(parkData)
-        }
+        let data = try JSONSerialization.data(withJSONObject: parks)
         
-        return parkDatas
+        return data
     }
     
     
