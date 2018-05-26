@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     func readParks() throws {
         
-        let request = try Router.readParks.asURLRequest()
+        let request = try Router.readParks(forAmount: 15, fromLastReadIndex: 15).asURLRequest()
         let datatask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print("error: \(error)")
