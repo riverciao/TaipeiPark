@@ -15,6 +15,7 @@
 		5F87D26420B7AC09003F2876 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F87D26220B7AC09003F2876 /* LaunchScreen.storyboard */; };
 		5F87D26D20B7BD87003F2876 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D26C20B7BD87003F2876 /* Router.swift */; };
 		5F87D27020B7C15B003F2876 /* URLRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D26F20B7C15B003F2876 /* URLRequestExtensions.swift */; };
+		5F87D27420B80503003F2876 /* Park.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D27320B80503003F2876 /* Park.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		5F87D26520B7AC09003F2876 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F87D26C20B7BD87003F2876 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		5F87D26F20B7C15B003F2876 /* URLRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensions.swift; sourceTree = "<group>"; };
+		5F87D27320B80503003F2876 /* Park.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Park.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		5F87D25520B7AC09003F2876 /* TaipeiPark */ = {
 			isa = PBXGroup;
 			children = (
+				5F87D27220B804DB003F2876 /* Park */,
 				5F87D26E20B7C0EA003F2876 /* Library */,
 				5F87D26B20B7BD6E003F2876 /* API */,
 				5F87D25620B7AC09003F2876 /* AppDelegate.swift */,
@@ -87,6 +90,14 @@
 				5F87D26F20B7C15B003F2876 /* URLRequestExtensions.swift */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		5F87D27220B804DB003F2876 /* Park */ = {
+			isa = PBXGroup;
+			children = (
+				5F87D27320B80503003F2876 /* Park.swift */,
+			);
+			path = Park;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F87D26D20B7BD87003F2876 /* Router.swift in Sources */,
+				5F87D27420B80503003F2876 /* Park.swift in Sources */,
 				5F87D27020B7C15B003F2876 /* URLRequestExtensions.swift in Sources */,
 				5F87D25920B7AC09003F2876 /* ViewController.swift in Sources */,
 				5F87D25F20B7AC09003F2876 /* TaipeiPark.xcdatamodeld in Sources */,

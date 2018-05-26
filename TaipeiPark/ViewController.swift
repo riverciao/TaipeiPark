@@ -12,12 +12,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        readParks()
+        do {
+            try readParks()
+        } catch {
+            print(error)
+        }
     }
     
-    func readParks() {
+    func readParks() throws {
         
-        guard let request = Router.readParks.urlRequest else { return }
+        let request = try Router.readParks.asURLRequest()
         let datatask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print("error: \(error)")
@@ -25,11 +29,20 @@ class ViewController: UIViewController {
             }
 
             guard let data = data else { return }
-
-            let json = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let jsonObject = json as? [String: Any] {
-                print("json:\(jsonObject)")
+            
+            do {
+                let jsonObject = try JSONSerialization.jsonObject(with: data)
+                let parkDatas = try Park.parseFromJsonToDecodableParks(jsonObject)
+                for parkData in parkDatas {
+                    let park = try JSONDecoder().decode(Park.self, from: parkData)
+                    print("OO: \(park)")
+                }
+            } catch {
+                print("XX: \(error)")
             }
+            
+            
+
         }
         
         datatask.resume()
