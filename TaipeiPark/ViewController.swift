@@ -25,6 +25,11 @@ class ViewController: UIViewController {
             print("error XX \(error)")
         }
         
+//        do {
+//            try readParks()
+//        } catch {
+//            print(error)
+//        }
     }
     
     func readParks() throws {
@@ -50,7 +55,7 @@ class ViewController: UIViewController {
             guard let data = data else { return }
             
             do {
-                let parksData = try Park.parseToDecodableParks(data)
+                let (parksData, numberOfParks) = try Park.parseToDecodableParks(data)
                 let parks = try JSONDecoder().decode([Park].self, from: parksData)
                 print("OO: \(parks.count)")
             } catch {

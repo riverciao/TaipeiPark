@@ -34,6 +34,7 @@ public struct Park: Codable {
     public struct Schema {
         public static let result = "result"
         public static let results = "results"
+        public static let count = "count"
     }
     
     // MARK: Property
@@ -47,16 +48,35 @@ public struct Park: Codable {
     public let address: String
     public let parkType: String
     
-    public static func parseToDecodableParks(_ data: Data) throws -> Data {
+    public typealias ParksData = Data
+    public typealias CountOfParks = Int
+    
+    public static func parseToDecodableParks(_ data: Data) throws -> (ParksData, CountOfParks) {
         typealias Object = [String: Any]
 
         let json = try JSONSerialization.jsonObject(with: data)
         guard let object = json as? Object else { throw JSONError.notObject }
         guard let result = object[Schema.result] as? Object else { throw JSONError.missingValueForKey(Schema.result) }
         guard let parks = result[Schema.results] as? [Object] else { throw JSONError.missingValueForKey(Schema.results) }
-        let data = try JSONSerialization.data(withJSONObject: parks)
+        let parksData = try JSONSerialization.data(withJSONObject: parks)
         
-        return data
+        guard let countOfParks = result[Schema.count] as? Int else {
+            throw JSONError.missingValueForKey(Schema.count)
+        }
+        
+        return (parksData, countOfParks)
+    }
+    
+    public func countOfParks(_ data: Data) throws -> Int {
+        typealias Object = [String: Any]
+        
+        let json = try JSONSerialization.jsonObject(with: data)
+        guard let object = json as? Object else { throw JSONError.notObject }
+        guard let result = object[Schema.result] as? Object else { throw JSONError.missingValueForKey(Schema.result) }
+        guard let count = result[Schema.count] as? Int else {
+            throw JSONError.missingValueForKey(Schema.count)
+        }
+        return count
     }
     
     

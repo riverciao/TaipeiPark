@@ -12,27 +12,11 @@ protocol URLRequestConvertible {
     func asURLRequest() throws -> URLRequest
 }
 
-//extension URLRequestConvertible {
-//    var urlRequest: URLRequest? {
-//        return try? asURLRequest()
-//    }
-//}
-
 extension URLRequest: URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         return self
     }
 }
-
-//extension URLSession {
-//    func request(_ urlRequest: URLRequestConvertible) -> URLRequest {
-//        do {
-//            return try urlRequest.asURLRequest()
-//        } catch {
-//            // throw error to response.result
-//        }
-//    }
-//}
 
 extension URLRequest {
     func responseData(urlSession: URLSession, _ completion: @escaping (DataResponse) -> Void) {

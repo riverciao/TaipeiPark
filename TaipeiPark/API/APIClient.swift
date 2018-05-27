@@ -24,7 +24,7 @@ extension APIClient: ParkAPIClient {
     
     func ReadParks(page: Page, success: @escaping ParkAPIClient.ReadParksSuccess, failure: ParkAPIClient.ReadParksFailure?) {
         
-        var paging: Int?
+        var paging: Int = 0
         
         switch page {
         case .begin:
@@ -33,9 +33,11 @@ extension APIClient: ParkAPIClient {
             paging = lastReadIndex
         case .end:
             failure?(IndexError.reachEndPage)
+            return
         }
         
-        let router = Router.readParks(forAmount: 15, fromLastReadIndex: paging)
+        let numberOfParksInPage = 15
+        let router = Router.readParks(forAmount: numberOfParksInPage, fromLastReadIndex: paging)
         
         do {
             
@@ -45,10 +47,15 @@ extension APIClient: ParkAPIClient {
                     
                 case .sucess(let data):
                     do {
-                        let parksData = try Park.parseToDecodableParks(data)
+                        let (parksData, numberOfParks) = try Park.parseToDecodableParks(data)
                         let parks = try JSONDecoder().decode([Park].self, from: parksData)
-                        print("OO: \(parks.count)")
-                        success(parks, page)
+                        
+                        var next: Page = .end
+                        if paging < numberOfParks {
+                            next = .next(paging + numberOfParksInPage)
+                        }
+                        
+                        success(parks, next)
                     } catch {
                         failure?(error)
                     }
