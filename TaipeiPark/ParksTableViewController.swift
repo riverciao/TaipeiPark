@@ -37,7 +37,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(ParkTableViewCell.self, forCellReuseIdentifier: ParkTableViewCell.identifier)
+        tableView.register(UINib(nibName: ParkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ParkTableViewCell.identifier)
     }
     
     // MARK: Init
@@ -76,26 +76,26 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         case .preparing:
             return numberOfFetchingRows
         case .ready:
-            if provider!.hasMoreParks && isAutoFetching {
-                return provider!.numberOfParks + numberOfFetchingRows
+            if provider.hasMoreParks && isAutoFetching {
+                return provider.numberOfParks + numberOfFetchingRows
             } else {
-                return provider!.numberOfParks
+                return provider.numberOfParks
             }
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: ParkTableViewCell.identifier, for: indexPath) as! ParkTableViewCell
         switch state {
         case .preparing:
             cell.contentView.backgroundColor = .gray
         case .ready:
-            let isFetched = provider!.numberOfParks > indexPath.row
+            let isFetched = provider.numberOfParks > indexPath.row
             if isFetched {
                 cell.contentView.backgroundColor = .clear
-                let park = provider!.park(at: indexPath)
-                cell.textLabel?.text = park.name
-                cell.detailTextLabel?.text = park.address
+                let park = provider.park(at: indexPath)
+                cell.nameLabel.text = park.name
+                cell.addressLabel.text = park.address
             }
         }
         return cell
@@ -118,8 +118,8 @@ extension ParksTableViewController: UITableViewDataSourcePrefetching {
         case .preparing:
             break
         case .ready:
-            if !provider!.hasMoreParks { return }
-            provider?.fetch()
+            if !provider.hasMoreParks { return }
+            provider.fetch()
         }
     }
     

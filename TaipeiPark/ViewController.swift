@@ -17,10 +17,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let page = Page.begin
-        let client = APIClient()
-        let provider = ParkAPIProvider(client: client)
-        provider.fetch()
+//        let page = Page.begin
+//        let client = APIClient()
+//        let provider = ParkAPIProvider(client: client)
+//        provider.fetch()
         
 //        do {
 //            try readParks()

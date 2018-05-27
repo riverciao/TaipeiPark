@@ -29,12 +29,16 @@ class ParkAPIProvider: ParkProvider {
         
         let previousPage = page
         
-        client.ReadParks(page: page, success: { (parks, next) in
+        client.readParks(page: page, success: { (parks, next) in
             
             switch previousPage {
             case .begin:
                 self.parks = parks
-            case .next, .end:
+            case .next(let indexLastRead):
+                if self.numberOfParks == indexLastRead {
+                    self.parks += parks
+                }
+            case .end:
                 self.parks += parks
             }
             

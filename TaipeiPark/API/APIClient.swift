@@ -22,7 +22,7 @@ extension APIClient: ParkAPIClient {
         case reachEndPage
     }
     
-    func ReadParks(page: Page, success: @escaping ParkAPIClient.ReadParksSuccess, failure: ParkAPIClient.ReadParksFailure?) {
+    func readParks(page: Page, success: @escaping ParkAPIClient.ReadParksSuccess, failure: ParkAPIClient.ReadParksFailure?) {
         
         var paging: Int = 0
         
@@ -36,7 +36,7 @@ extension APIClient: ParkAPIClient {
             return
         }
         
-        let numberOfParksInPage = 15
+        let numberOfParksInPage = 200
         let router = Router.readParks(forAmount: numberOfParksInPage, fromLastReadIndex: paging)
         
         do {
