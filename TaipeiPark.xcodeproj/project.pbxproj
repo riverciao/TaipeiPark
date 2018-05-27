@@ -21,6 +21,7 @@
 		5F87D27C20B9AC3A003F2876 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D27B20B9AC3A003F2876 /* Page.swift */; };
 		5F87D27E20BA9424003F2876 /* ParkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D27D20BA9424003F2876 /* ParkProvider.swift */; };
 		5F87D28020BA960B003F2876 /* ParkAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D27F20BA960B003F2876 /* ParkAPIProvider.swift */; };
+		5F87D28220BAA64C003F2876 /* ParksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		5F87D27B20B9AC3A003F2876 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		5F87D27D20BA9424003F2876 /* ParkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkProvider.swift; sourceTree = "<group>"; };
 		5F87D27F20BA960B003F2876 /* ParkAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkAPIProvider.swift; sourceTree = "<group>"; };
+		5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParksTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		5F87D25520B7AC09003F2876 /* TaipeiPark */ = {
 			isa = PBXGroup;
 			children = (
+				5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */,
 				5F87D27220B804DB003F2876 /* Park */,
 				5F87D26E20B7C0EA003F2876 /* Library */,
 				5F87D26B20B7BD6E003F2876 /* API */,
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F87D26D20B7BD87003F2876 /* Router.swift in Sources */,
+				5F87D28220BAA64C003F2876 /* ParksTableViewController.swift in Sources */,
 				5F87D27820B9AA02003F2876 /* APIClient.swift in Sources */,
 				5F87D27420B80503003F2876 /* Park.swift in Sources */,
 				5F87D27020B7C15B003F2876 /* URLRequestExtensions.swift in Sources */,

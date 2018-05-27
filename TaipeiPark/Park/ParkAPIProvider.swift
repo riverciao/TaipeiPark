@@ -14,12 +14,8 @@ class ParkAPIProvider: ParkProvider {
     
     let client: APIClient
     var delegate: ParkProviderDelegate?
-    var hasMoreParks: Bool {
-        return (self.page == Page.end)
-    }
-    var numberOfParks: Int
     private var page: Page = .begin
-    var parks = [Park]()
+    private var parks = [Park]()
     
     // MARK: Init
     
@@ -27,8 +23,8 @@ class ParkAPIProvider: ParkProvider {
         self.client = client
     }
     
-    // MARK: Data
-    
+    // MARK: ParkProvider
+
     func fetch() {
         
         let previousPage = page
@@ -42,6 +38,8 @@ class ParkAPIProvider: ParkProvider {
                 self.parks += parks
             }
             
+            print("OO: count-\(parks.count), page \(next)")
+            
             self.page = next
             self.delegate?.didFetch(by: self)
             
@@ -52,5 +50,13 @@ class ParkAPIProvider: ParkProvider {
     
     func park(at indexPath: IndexPath) -> Park {
         return parks[indexPath.row]
+    }
+    
+    var hasMoreParks: Bool {
+        return !(self.page == .end)
+    }
+    
+    var numberOfParks: Int {
+        return parks.count
     }
 }

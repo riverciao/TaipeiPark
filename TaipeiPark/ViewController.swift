@@ -19,11 +19,8 @@ class ViewController: UIViewController {
         
         let page = Page.begin
         let client = APIClient()
-        client.ReadParks(page: page, success: { (parks, next) in
-            print("continue OO\(parks.count, next)")
-        }) { (error) in
-            print("error XX \(error)")
-        }
+        let provider = ParkAPIProvider(client: client)
+        provider.fetch()
         
 //        do {
 //            try readParks()
