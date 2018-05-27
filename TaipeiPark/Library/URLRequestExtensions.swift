@@ -12,16 +12,74 @@ protocol URLRequestConvertible {
     func asURLRequest() throws -> URLRequest
 }
 
-extension URLRequestConvertible {
-    var urlRequest: URLRequest? {
-        return try? asURLRequest()
-    }
-}
+//extension URLRequestConvertible {
+//    var urlRequest: URLRequest? {
+//        return try? asURLRequest()
+//    }
+//}
 
 extension URLRequest: URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         return self
     }
+}
+
+//extension URLSession {
+//    func request(_ urlRequest: URLRequestConvertible) -> URLRequest {
+//        do {
+//            return try urlRequest.asURLRequest()
+//        } catch {
+//            // throw error to response.result
+//        }
+//    }
+//}
+
+extension URLRequest {
+    func responseData(urlSession: URLSession, _ completion: @escaping (DataResponse) -> Void) {
+        let datatask = urlSession.dataTask(with: self) { (data, response, error) in
+            
+            if let error = error {
+                let result = Result.failure(error)
+                completion(DataResponse(result: result))
+                return
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                let statusCode = httpResponse.statusCode
+                switch statusCode {
+                case 200: break
+                default:
+                    let result = Result.failure(HTTPError.statusCodeNotNormal(statusCode))
+                    completion(DataResponse(result: result))
+                    return
+                }
+            }
+            
+            guard let data = data else {
+                let result = Result.failure(APIError.missingData)
+                completion(DataResponse(result: result))
+                return
+            }
+            
+            let result = Result.sucess(data)
+            completion(DataResponse(result: result))
+        }
+        
+        datatask.resume()
+    }
+}
+
+struct DataResponse {
+    var result: Result
+    
+    init(result: Result) {
+        self.result = result
+    }
+}
+
+enum Result {
+    case sucess(Data)
+    case failure(Error)
 }
 
 extension URL {
