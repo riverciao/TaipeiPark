@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F23F15120BB01E000431F10 /* ParkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */; };
+		5F23F15220BB01E000431F10 /* ParkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */; };
 		5F87D25720B7AC09003F2876 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D25620B7AC09003F2876 /* AppDelegate.swift */; };
 		5F87D25920B7AC09003F2876 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D25820B7AC09003F2876 /* ViewController.swift */; };
 		5F87D25C20B7AC09003F2876 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F87D25A20B7AC09003F2876 /* Main.storyboard */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkTableViewCell.swift; sourceTree = "<group>"; };
+		5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkTableViewCell.xib; sourceTree = "<group>"; };
 		5F87D25320B7AC09003F2876 /* TaipeiPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaipeiPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F87D25620B7AC09003F2876 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F87D25820B7AC09003F2876 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */,
+				5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */,
+				5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */,
 				5F87D27220B804DB003F2876 /* Park */,
 				5F87D26E20B7C0EA003F2876 /* Library */,
 				5F87D26B20B7BD6E003F2876 /* API */,
@@ -180,6 +186,7 @@
 				5F87D26420B7AC09003F2876 /* LaunchScreen.storyboard in Resources */,
 				5F87D26120B7AC09003F2876 /* Assets.xcassets in Resources */,
 				5F87D25C20B7AC09003F2876 /* Main.storyboard in Resources */,
+				5F23F15220BB01E000431F10 /* ParkTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +200,7 @@
 				5F87D26D20B7BD87003F2876 /* Router.swift in Sources */,
 				5F87D28220BAA64C003F2876 /* ParksTableViewController.swift in Sources */,
 				5F87D27820B9AA02003F2876 /* APIClient.swift in Sources */,
+				5F23F15120BB01E000431F10 /* ParkTableViewCell.swift in Sources */,
 				5F87D27420B80503003F2876 /* Park.swift in Sources */,
 				5F87D27020B7C15B003F2876 /* URLRequestExtensions.swift in Sources */,
 				5F87D25920B7AC09003F2876 /* ViewController.swift in Sources */,

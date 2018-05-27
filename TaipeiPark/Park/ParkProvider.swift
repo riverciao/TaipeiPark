@@ -13,7 +13,7 @@ protocol ParkProviderDelegate: class {
 
 import Foundation
 
-protocol ParkProvider {
+protocol ParkProvider: class {
     
     // MARK: Property
     

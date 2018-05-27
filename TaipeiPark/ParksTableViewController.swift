@@ -18,8 +18,10 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     
     // MARK: Property
     
-    var provider: ParkAPIProvider?
-    var state: State = .preparing {
+    var provider: ParkProvider! {
+        didSet { provider.delegate = self }
+    }
+    var state: State {
         didSet {
             tableView.reloadData()
         }
@@ -35,17 +37,26 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initController()
+        tableView.register(ParkTableViewCell.self, forCellReuseIdentifier: ParkTableViewCell.identifier)
     }
     
     // MARK: Init
     
+    init(provider: ParkProvider) {
+        self.provider = provider
+        self.state = provider.hasMoreParks ? .preparing : .ready
+        super.init(style: .plain)
+        
+        self.provider.delegate = self
+        setupTableView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // move to tabbarcontroller init later
-    func initController() {
-        let client = APIClient()
-        self.provider = ParkAPIProvider(client: client)
-        provider?.fetch()
-        provider?.delegate = self
+    func setupTableView() {
         tableView.prefetchDataSource = isAutoFetching ? self : nil
     }
     
@@ -54,6 +65,10 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,7 +86,6 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-        
         switch state {
         case .preparing:
             cell.contentView.backgroundColor = .gray
@@ -104,7 +118,12 @@ extension ParksTableViewController: UITableViewDataSourcePrefetching {
         case .preparing:
             break
         case .ready:
+            if !provider!.hasMoreParks { return }
             provider?.fetch()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        
     }
 }

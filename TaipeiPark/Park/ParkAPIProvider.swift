@@ -39,6 +39,8 @@ class ParkAPIProvider: ParkProvider {
             }
             
             print("OO: count-\(parks.count), page \(next)")
+            print("OO: toalcount\(self.parks.count)")
+
             
             self.page = next
             self.delegate?.didFetch(by: self)
@@ -53,7 +55,8 @@ class ParkAPIProvider: ParkProvider {
     }
     
     var hasMoreParks: Bool {
-        return !(self.page == .end)
+        if page == .end { return false }
+        return true
     }
     
     var numberOfParks: Int {
