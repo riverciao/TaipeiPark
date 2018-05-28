@@ -25,6 +25,6 @@ protocol ParkProvider: class {
     
     typealias IndexPathRow = Int
     
-    func fetch(progress: IndexPathRow)
+    func fetch()
     func park(at indexPath: IndexPath) -> Park
 }

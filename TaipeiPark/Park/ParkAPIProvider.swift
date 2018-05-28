@@ -26,7 +26,7 @@ class ParkAPIProvider: ParkProvider {
     
     // MARK: ParkProvider
 
-    func fetch(progress: IndexPathRow) {
+    func fetch() {
         
         let isRead = pageIsRead[page]
         if isRead == true { return }

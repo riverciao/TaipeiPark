@@ -121,7 +121,7 @@ extension ParksTableViewController: UITableViewDataSourcePrefetching {
             if !provider.hasMoreParks { return }
             guard let indexPath = indexPaths.last else { return }
             if provider.numberOfParks > indexPath.row { return }
-            provider.fetch(progress: indexPath.row)
+            provider.fetch()
         }
     }
     

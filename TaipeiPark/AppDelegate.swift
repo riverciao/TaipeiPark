@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let client = APIClient()
         let provider = ParkAPIProvider(client: client)
         let parksTableViewController = ParksTableViewController(provider: provider)
-        parksTableViewController.provider.fetch(progress: 0)
+        parksTableViewController.provider.fetch()
         
         window?.rootViewController = parksTableViewController
         
