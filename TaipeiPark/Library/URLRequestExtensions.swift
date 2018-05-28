@@ -68,10 +68,15 @@ enum Result {
 
 extension URL {
     func appendingQueryItemsComponent(_ queryItems: [URLQueryItem]) throws -> URL {
-        guard var components = URLComponents(url: self, resolvingAgainstBaseURL: false) else { throw  URLError.invalidURL }
+        guard var components = URLComponents(
+            url: self,
+            resolvingAgainstBaseURL: false)
+            else { throw  URLError.invalidURL }
+
         components.queryItems = queryItems
+        guard let url = components.url else { throw URLError.invalidURL }
         
-        return (components.url)!
+        return url
     }
 }
 

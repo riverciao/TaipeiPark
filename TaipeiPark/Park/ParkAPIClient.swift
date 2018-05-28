@@ -9,8 +9,23 @@
 import Foundation
 
 protocol ParkAPIClient {
+    
+    // MARK: Read Parks
+    
     typealias ReadParksSuccess = (_ parks: [Park], _ next: Page) -> Void
     typealias ReadParksFailure = (_ error: Error) -> Void
     
     func readParks(page: Page, success: @escaping ReadParksSuccess, failure: ReadParksFailure?)
+    
+    
+}
+
+protocol FacilityAPIClient {
+    
+    // MARK: Read Facility
+    
+    typealias ReadFacilitySuccess = (_ facilities: [Facility]) -> Void
+    typealias ReadFacilityFailure = (_ error: Error) -> Void
+    
+    func readFacilities(success: @escaping ReadFacilitySuccess, failure: ReadFacilityFailure?)
 }
