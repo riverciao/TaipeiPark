@@ -11,7 +11,7 @@ enum Page {
     case next(Int)
     case end
     
-    static let numberOfParksInPage = 200
+    static let numberOfParksInPage = 15
 }
 
 extension Page: Equatable {

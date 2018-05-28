@@ -11,6 +11,7 @@ import Foundation
 enum Router {
     
     case readParks(forAmount: Int, fromLastReadIndex: Int?)
+    case readFacility(byParkName: String)
     
     static let baseURL = URL(string: "https://beta.data.taipei/opendata/datalist/apiAccess")!
     
@@ -27,13 +28,17 @@ enum Router {
             }
             queryParameters["offset"] =  String(offset)
             return queryParameters.map { URLQueryItem(name: $0, value: $1)}
+        case .readFacility(let parkName):
+                let queryParameters: [String : String] = [
+                "scope": "resourceAquire",
+                "rid": "bf073841-c734-49bf-a97f-3757a6013812",
+                "q": parkName
+            ]
+            return queryParameters.map { URLQueryItem(name: $0, value: $1)}
         }
     }
     var httpMethod: HTTPMethod {
-        switch self {
-        case .readParks:
-            return .get
-        }
+        return .get
     }
 }
 

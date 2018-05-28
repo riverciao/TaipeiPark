@@ -16,15 +16,13 @@ import Foundation
 protocol ParkProvider: class {
     
     // MARK: Property
-    
+
     weak var delegate: ParkProviderDelegate? { get set }
     var hasMoreParks: Bool { get }
     var numberOfParks: Int { get }
     
     // MARK: Data
-    
-    typealias IndexPathRow = Int
-    
+
     func fetch()
     func park(at indexPath: IndexPath) -> Park
 }
