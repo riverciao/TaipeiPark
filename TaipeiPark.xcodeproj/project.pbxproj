@@ -119,10 +119,10 @@
 			isa = PBXGroup;
 			children = (
 				5F87D27320B80503003F2876 /* Park.swift */,
-				5F23F15320BC034D00431F10 /* Facility.swift */,
 				5F87D27920B9AB5C003F2876 /* ParkAPIClient.swift */,
 				5F87D27D20BA9424003F2876 /* ParkProvider.swift */,
 				5F87D27F20BA960B003F2876 /* ParkAPIProvider.swift */,
+				5F23F15320BC034D00431F10 /* Facility.swift */,
 			);
 			path = Park;
 			sourceTree = "<group>";

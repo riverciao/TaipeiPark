@@ -11,9 +11,17 @@ protocol ParkProviderDelegate: class {
     func didFail(with error: Error, by provider: ParkProvider)
 }
 
-protocol FacilityProviderDelagate: class {
-    func didFetchFacility(by provider: ParkProvider)
-    func didFailFacility(with error: Error, by provider: ParkProvider)
+protocol ParkDetailProviderDelagate: class {
+    
+    // MARK: Facility
+    
+    func didFetchFacility(by provider: ParkDetailProvider)
+    func didFailToFacility(with error: Error, by provider: ParkDetailProvider)
+    
+    // MARK: Spot
+    
+    func didFetchSpot(by provider: ParkDetailProvider)
+    func didFailToSpot(with error: Error, by provider: ParkDetailProvider)
 }
 
 import Foundation
@@ -32,11 +40,15 @@ protocol ParkProvider: class {
     func park(at indexPath: IndexPath) -> Park
 }
 
-protocol FacilityProvider: class {
+protocol ParkDetailProvider: class {
     
     // MARK: Property
     
-    weak var delegate: FacilityProviderDelagate? { get set }
-    var description: String { get }
+    weak var parkDetailDelegate: ParkDetailProviderDelagate? { get set }
+    var facilitiesDescription: String { get }
     
+    // MARK: Data
+    
+    func fetchFacility(by parkName: String)
+    func fetchSpot(by parkName: String)
 }

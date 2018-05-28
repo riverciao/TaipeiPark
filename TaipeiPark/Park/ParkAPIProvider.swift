@@ -63,3 +63,46 @@ class ParkAPIProvider: ParkProvider {
         return parks.count
     }
 }
+
+class ParkDetailAPIProvider: ParkDetailProvider {
+    
+    // MARK: Propert
+    
+    let client: APIClient
+    var parkDetailDelegate: ParkDetailProviderDelagate?
+    private var facilities = [Facility]()
+    
+    
+    // MARK: Init
+    
+    init(client: APIClient) {
+        self.client = client
+    }
+    
+    // MARK: ParkDtailProvider
+    
+    func fetchFacility(by parkName: String) {
+        
+        client.readFacilities(by: parkName, success: { (facilities) in
+            self.facilities = facilities
+            self.parkDetailDelegate?.didFetchFacility(by: self)
+        }) { (error) in
+            self.parkDetailDelegate?.didFailToFacility(with: error, by: self)
+        }
+    }
+    
+    func fetchSpot(by parkName: String) {
+        
+    }
+    
+    var facilitiesDescription: String {
+        var description = String()
+        for i in 0..<facilities.count-1 {
+            description += "\(facilities[i].name)" + "、"
+        }
+        guard let lastFacility = facilities.last else { return description }
+        description += lastFacility.name
+        return description
+    }
+    
+}
