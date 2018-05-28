@@ -119,7 +119,10 @@ extension ParksTableViewController: UITableViewDataSourcePrefetching {
             break
         case .ready:
             if !provider.hasMoreParks { return }
-            provider.fetch()
+            guard let indexPath = indexPaths.last else { return }
+            if provider.numberOfParks > indexPath.row { return }
+            print("indexPath\(indexPaths)")
+            provider.fetch(progress: indexPath.row)
         }
     }
     

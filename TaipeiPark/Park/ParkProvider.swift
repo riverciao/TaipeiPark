@@ -23,6 +23,8 @@ protocol ParkProvider: class {
     
     // MARK: Data
     
-    func fetch()
+    typealias IndexPathRow = Int
+    
+    func fetch(progress: IndexPathRow)
     func park(at indexPath: IndexPath) -> Park
 }
