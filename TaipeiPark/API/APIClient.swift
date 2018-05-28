@@ -36,11 +36,10 @@ extension APIClient: ParkAPIClient {
             return
         }
         
-        let numberOfParksInPage = 200
+        let numberOfParksInPage = Page.numberOfParksInPage
         let router = Router.readParks(forAmount: numberOfParksInPage, fromLastReadIndex: paging)
         
         do {
-            
             let request = try router.asURLRequest()
             request.responseData(urlSession: urlSession, { (dataResponse) in
                 switch dataResponse.result {
@@ -51,7 +50,8 @@ extension APIClient: ParkAPIClient {
                         let parks = try JSONDecoder().decode([Park].self, from: parksData)
                         
                         var next: Page = .end
-                        if paging < numberOfParks {
+                        let nextPageEndIndex = paging + numberOfParksInPage
+                        if nextPageEndIndex < numberOfParks {
                             next = .next(paging + numberOfParksInPage)
                         }
                         
@@ -64,11 +64,9 @@ extension APIClient: ParkAPIClient {
                     failure?(error)
                 }
             })
-            
         } catch {
             failure?(error)
         }
-        
     }
 }
 

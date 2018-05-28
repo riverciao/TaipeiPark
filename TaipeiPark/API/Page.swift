@@ -28,3 +28,10 @@ extension Page: Equatable {
         }
     }
 }
+
+extension Page: Hashable {
+    var hashValue: Int {
+        return "\(self)".hashValue
+    }
+}
+

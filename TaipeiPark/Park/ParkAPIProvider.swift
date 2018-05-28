@@ -16,7 +16,7 @@ class ParkAPIProvider: ParkProvider {
     var delegate: ParkProviderDelegate?
     private var page: Page = .begin
     private var parks = [Park]()
-    private var indexLastRead = 0
+    private var pageIsRead = [Page: Bool]()
     
     // MARK: Init
     
@@ -28,8 +28,9 @@ class ParkAPIProvider: ParkProvider {
 
     func fetch(progress: IndexPathRow) {
         
-        let reachedNextPage = (progress == numberOfParks)
-        if !reachedNextPage { return }
+        let isRead = pageIsRead[page]
+        if isRead == true { return }
+        pageIsRead[page] = true
         
         let previousPage = page
         
@@ -39,13 +40,10 @@ class ParkAPIProvider: ParkProvider {
             case .begin:
                 self.parks = parks
             case .next, .end:
-                if self.indexLastRead == self.numberOfParks {
-                    self.parks += parks
-                }
+                self.parks += parks
             }
             
             self.page = next
-            self.indexLastRead = self.numberOfParks
             self.delegate?.didFetch(by: self)
         }) { (error) in
             self.delegate?.didFail(with: error, by: self)
