@@ -27,5 +27,5 @@ protocol FacilityAPIClient {
     typealias ReadFacilitySuccess = (_ facilities: [Facility]) -> Void
     typealias ReadFacilityFailure = (_ error: Error) -> Void
     
-    func readFacilities(success: @escaping ReadFacilitySuccess, failure: ReadFacilityFailure?)
+    func readFacilities(by parkName: String, success: @escaping ReadFacilitySuccess, failure: ReadFacilityFailure?)
 }

@@ -70,3 +70,31 @@ extension APIClient: ParkAPIClient {
     }
 }
 
+extension APIClient: FacilityAPIClient {
+    func readFacilities(by parkName: String, success: @escaping FacilityAPIClient.ReadFacilitySuccess, failure: FacilityAPIClient.ReadFacilityFailure?) {
+        
+        let router = Router.readFacility(byParkName: parkName)
+        
+        do {
+            let request = try router.asURLRequest()
+            request.responseData(urlSession: urlSession, { (dataResponse) in
+                switch dataResponse.result {
+                case .sucess(let data):
+                    
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data)
+                        print("OO: \(json)")
+                    } catch {
+                        print("XX: \(error)")
+                    }
+                    
+                case .failure(let error):
+                    print("XX: \(error)")
+                }
+            })
+        } catch {
+            print("XX: \(error)")
+        }
+    }
+}
+

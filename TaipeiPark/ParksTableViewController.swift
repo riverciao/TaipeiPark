@@ -37,6 +37,15 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // MARK: Test
+        
+        let apiClient = APIClient()
+        apiClient.readFacilities(by: "二二八和平公園", success: { (facility) in
+            
+        }) { (error) in
+            
+        }
+        
         tableView.register(UINib(nibName: ParkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ParkTableViewCell.identifier)
     }
     
