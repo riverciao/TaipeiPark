@@ -41,9 +41,9 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         
         let apiClient = APIClient()
         apiClient.readFacilities(by: "二二八和平公園", success: { (facility) in
-            
+            print("further OO: \(facility)")
         }) { (error) in
-            
+            print("XX: \(error)")
         }
         
         tableView.register(UINib(nibName: ParkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ParkTableViewCell.identifier)

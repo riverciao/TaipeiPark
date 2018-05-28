@@ -78,22 +78,24 @@ extension APIClient: FacilityAPIClient {
         do {
             let request = try router.asURLRequest()
             request.responseData(urlSession: urlSession, { (dataResponse) in
+                
                 switch dataResponse.result {
                 case .sucess(let data):
                     
                     do {
-                        let json = try JSONSerialization.jsonObject(with: data)
-                        print("OO: \(json)")
+                        let (facilitiesData, _) = try Park.parseToDecodableParks(data)
+                        let facilities = try JSONDecoder().decode([Facility].self, from: facilitiesData)
+                        success(facilities)
                     } catch {
-                        print("XX: \(error)")
+                        failure?(error)
                     }
                     
                 case .failure(let error):
-                    print("XX: \(error)")
+                    failure?(error)
                 }
             })
         } catch {
-            print("XX: \(error)")
+            failure?(error)
         }
     }
 }

@@ -6,6 +6,17 @@
 //  Copyright © 2018年 riverciao. All rights reserved.
 //
 
-struct Facility {
+public struct Facility: Codable {
     
+    // MARK: CodingKeys
+    
+    enum CodingKeys: String, CodingKey {
+        case parkName = "parkname"
+        case name = "facility_name"
+    }
+    
+    // MARK: Property
+    
+    public let parkName: String
+    public let name: String
 }
