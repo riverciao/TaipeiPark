@@ -54,7 +54,6 @@ extension APIClient: ParkAPIClient {
                         if nextPageEndIndex < numberOfParks {
                             next = .next(paging + numberOfParksInPage)
                         }
-                        
                         success(parks, next)
                     } catch {
                         failure?(error)

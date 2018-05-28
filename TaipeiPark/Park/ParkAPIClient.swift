@@ -16,8 +16,6 @@ protocol ParkAPIClient {
     typealias ReadParksFailure = (_ error: Error) -> Void
     
     func readParks(page: Page, success: @escaping ReadParksSuccess, failure: ReadParksFailure?)
-    
-    
 }
 
 protocol FacilityAPIClient {
