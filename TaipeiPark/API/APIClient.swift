@@ -109,16 +109,14 @@ extension APIClient: ParkDetailAPIClient {
         
         do {
             let request = try router.asURLRequest()
-            
             request.responseData(urlSession: urlSession, { (dataResponse) in
                 
                 switch dataResponse.result {
                 case .success(let data):
                     do {
                         let (decodableSpots, _) = try Park.parseToDecodableResults(data)
-//                        let json = try JSONSerialization.jsonObject(with: decodableSpots)
                         let spots = try JSONDecoder().decode([Spot].self, from: decodableSpots)
-                        print("OO: \(spots)")
+                        success(spots)
                     } catch {
                         failure?(error)
                     }

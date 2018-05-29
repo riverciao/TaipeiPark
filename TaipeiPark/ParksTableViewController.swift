@@ -40,11 +40,8 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         // MARK: Test
         
         let client = APIClient()
-        client.readSpots(by: "二二八和平公園", success: { (spots) in
-            
-        }) { (error) in
-            
-        }
+        let provider = ParkDetailAPIProvider(client: client)
+        provider.fetchSpot(by: "二二八和平公園")
         
         tableView.register(UINib(nibName: ParkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ParkTableViewCell.identifier)
     }

@@ -46,9 +46,11 @@ protocol ParkDetailProvider: class {
     
     weak var parkDetailDelegate: ParkDetailProviderDelagate? { get set }
     var facilitiesDescription: String { get }
+    var numberOfSpots: Int { get }
     
     // MARK: Data
     
     func fetchFacility(by parkName: String)
     func fetchSpot(by parkName: String)
+    func spot(at index: IndexPath) -> Spot
 }

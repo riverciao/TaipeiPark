@@ -66,12 +66,12 @@ class ParkAPIProvider: ParkProvider {
 
 class ParkDetailAPIProvider: ParkDetailProvider {
     
-    // MARK: Propert
+    // MARK: Property
     
     let client: APIClient
     var parkDetailDelegate: ParkDetailProviderDelagate?
     private var facilities = [Facility]()
-    
+    private var spots = [Spot]()
     
     // MARK: Init
     
@@ -93,7 +93,15 @@ class ParkDetailAPIProvider: ParkDetailProvider {
     
     func fetchSpot(by parkName: String) {
         
+        client.readSpots(by: parkName, success: { (spots) in
+            self.spots = spots
+            self.parkDetailDelegate?.didFetchSpot(by: self)
+        }) { (error) in
+            self.parkDetailDelegate?.didFailToSpot(with: error, by: self)
+        }
     }
+    
+    // MARK: Provide facility
     
     var facilitiesDescription: String {
         var description = String()
@@ -105,4 +113,12 @@ class ParkDetailAPIProvider: ParkDetailProvider {
         return description
     }
     
+    // MARK: Provide spot
+    
+    func spot(at index: IndexPath) -> Spot {
+        return spots[index.row]
+    }
+    var numberOfSpots: Int {
+        return spots.count
+    }
 }
