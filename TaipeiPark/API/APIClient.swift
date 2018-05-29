@@ -22,7 +22,7 @@ extension APIClient: ParkAPIClient {
         case reachEndPage
     }
     
-    func readParks(page: Page, success: @escaping ParkAPIClient.ReadParksSuccess, failure: ParkAPIClient.ReadParksFailure?) {
+    func readParks(page: Page, success: @escaping ReadParksSuccess, failure: ReadParksFailure?) {
         
         var paging: Int = 0
         
@@ -44,7 +44,7 @@ extension APIClient: ParkAPIClient {
             request.responseData(urlSession: urlSession, { (dataResponse) in
                 switch dataResponse.result {
                     
-                case .sucess(let data):
+                case .success(let data):
                     do {
                         let (parksData, numberOfParks) = try Park.parseToDecodableResults(data)
                         let parks = try JSONDecoder().decode([Park].self, from: parksData)
@@ -70,7 +70,10 @@ extension APIClient: ParkAPIClient {
 }
 
 extension APIClient: ParkDetailAPIClient {
-    func readFacilities(by parkName: String, success: @escaping ParkDetailAPIClient.ReadFacilitySuccess, failure: ParkDetailAPIClient.ReadFacilityFailure?) {
+    
+    // MARK: Read Facility
+    
+    func readFacilities(by parkName: String, success: @escaping ReadFacilitySuccess, failure: ReadFacilityFailure?) {
         
         let router = Router.readFacility(byParkName: parkName)
         
@@ -79,7 +82,7 @@ extension APIClient: ParkDetailAPIClient {
             request.responseData(urlSession: urlSession, { (dataResponse) in
                 
                 switch dataResponse.result {
-                case .sucess(let data):
+                case .success(let data):
                     
                     do {
                         let (facilitiesData, _) = try Park.parseToDecodableResults(data)
@@ -93,6 +96,37 @@ extension APIClient: ParkDetailAPIClient {
                     failure?(error)
                 }
             })
+        } catch {
+            failure?(error)
+        }
+    }
+    
+    // MARK: Read Spot
+    
+    func readSpots(by parkName: String, success: @escaping ReadSpotSuccess, failure: ReadSpotFailure?) {
+        
+        let router = Router.readSpot(byParkName: parkName)
+        
+        do {
+            let request = try router.asURLRequest()
+            
+            request.responseData(urlSession: urlSession, { (dataResponse) in
+                
+                switch dataResponse.result {
+                case .success(let data):
+                    do {
+                        let (decodableSpots, _) = try Park.parseToDecodableResults(data)
+                        let json = try JSONSerialization.jsonObject(with: decodableSpots)
+                        print("OO: \(json)")
+                    } catch {
+                        failure?(error)
+                    }
+                    
+                case .failure(let error):
+                    failure?(error)
+                }
+            })
+            
         } catch {
             failure?(error)
         }

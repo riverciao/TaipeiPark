@@ -45,7 +45,7 @@ extension URLRequest {
                 return
             }
             
-            let result = Result.sucess(data)
+            let result = Result.success(data)
             completion(DataResponse(result: result))
         }
         
@@ -62,7 +62,7 @@ struct DataResponse {
 }
 
 enum Result {
-    case sucess(Data)
+    case success(Data)
     case failure(Error)
 }
 
