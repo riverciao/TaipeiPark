@@ -29,8 +29,9 @@ extension TabBarItemType {
 
 // MARK: Image
 
-extension TabBarItemType {
-    var image: UIImage {
-        
-    }
-}
+//extension TabBarItemType {
+//    var image: UIImage {
+//        
+//    }
+//}
+

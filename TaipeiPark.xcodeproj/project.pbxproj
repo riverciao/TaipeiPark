@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5F17C64620BCFFDA0090A98C /* ParkDetailAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C64520BCFFDA0090A98C /* ParkDetailAPIProvider.swift */; };
 		5F17C64920BD0D480090A98C /* TabBarItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C64820BD0D480090A98C /* TabBarItemType.swift */; };
+		5F17C64B20BD29740090A98C /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C64A20BD29740090A98C /* TabBarItem.swift */; };
 		5F23F15120BB01E000431F10 /* ParkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */; };
 		5F23F15220BB01E000431F10 /* ParkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */; };
 		5F23F15420BC034D00431F10 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23F15320BC034D00431F10 /* Facility.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		5F17C64520BCFFDA0090A98C /* ParkDetailAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDetailAPIProvider.swift; sourceTree = "<group>"; };
 		5F17C64820BD0D480090A98C /* TabBarItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemType.swift; sourceTree = "<group>"; };
+		5F17C64A20BD29740090A98C /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkTableViewCell.swift; sourceTree = "<group>"; };
 		5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkTableViewCell.xib; sourceTree = "<group>"; };
 		5F23F15320BC034D00431F10 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 		5F17C64720BD0D1D0090A98C /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				5F17C64A20BD29740090A98C /* TabBarItem.swift */,
 				5F17C64820BD0D480090A98C /* TabBarItemType.swift */,
 			);
 			path = TabBar;
@@ -229,6 +232,7 @@
 				5F87D27C20B9AC3A003F2876 /* Page.swift in Sources */,
 				5F87D27A20B9AB5C003F2876 /* ParkAPIClient.swift in Sources */,
 				5F87D25F20B7AC09003F2876 /* TaipeiPark.xcdatamodeld in Sources */,
+				5F17C64B20BD29740090A98C /* TabBarItem.swift in Sources */,
 				5F87D28020BA960B003F2876 /* ParkAPIProvider.swift in Sources */,
 				5F17C64620BCFFDA0090A98C /* ParkDetailAPIProvider.swift in Sources */,
 				5F87D27E20BA9424003F2876 /* ParkProvider.swift in Sources */,
