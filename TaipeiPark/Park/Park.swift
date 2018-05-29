@@ -51,7 +51,7 @@ public struct Park: Codable {
     public typealias ParksData = Data
     public typealias CountOfParks = Int
     
-    public static func parseToDecodableParks(_ data: Data) throws -> (ParksData, CountOfParks) {
+    public static func parseToDecodableResults(_ data: Data) throws -> (ParksData, CountOfParks) {
         typealias Object = [String: Any]
 
         let json = try JSONSerialization.jsonObject(with: data)

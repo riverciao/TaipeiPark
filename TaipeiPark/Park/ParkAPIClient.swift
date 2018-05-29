@@ -18,7 +18,7 @@ protocol ParkAPIClient {
     func readParks(page: Page, success: @escaping ReadParksSuccess, failure: ReadParksFailure?)
 }
 
-protocol FacilityAPIClient {
+protocol ParkDetailAPIClient {
     
     // MARK: Read Facility
     
@@ -26,4 +26,11 @@ protocol FacilityAPIClient {
     typealias ReadFacilityFailure = (_ error: Error) -> Void
     
     func readFacilities(by parkName: String, success: @escaping ReadFacilitySuccess, failure: ReadFacilityFailure?)
+    
+    // MARK: Read Spot
+    
+    typealias ReadSpotSuccess = (_ spots: [Spot]) -> Void
+    typealias ReadSpotFailure = (_ error: Error) -> Void
+    
+    func readSpots(by parkName: String, success: @escaping ReadSpotSuccess, failure: ReadSpotFailure?)
 }

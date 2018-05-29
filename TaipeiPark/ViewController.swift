@@ -52,7 +52,7 @@ class ViewController: UIViewController {
             guard let data = data else { return }
             
             do {
-                let (parksData, numberOfParks) = try Park.parseToDecodableParks(data)
+                let (parksData, numberOfParks) = try Park.parseToDecodableResults(data)
                 let parks = try JSONDecoder().decode([Park].self, from: parksData)
                 print("OO: \(parks.count)")
             } catch {

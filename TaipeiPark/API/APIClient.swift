@@ -46,7 +46,7 @@ extension APIClient: ParkAPIClient {
                     
                 case .sucess(let data):
                     do {
-                        let (parksData, numberOfParks) = try Park.parseToDecodableParks(data)
+                        let (parksData, numberOfParks) = try Park.parseToDecodableResults(data)
                         let parks = try JSONDecoder().decode([Park].self, from: parksData)
                         
                         var next: Page = .end
@@ -69,8 +69,8 @@ extension APIClient: ParkAPIClient {
     }
 }
 
-extension APIClient: FacilityAPIClient {
-    func readFacilities(by parkName: String, success: @escaping FacilityAPIClient.ReadFacilitySuccess, failure: FacilityAPIClient.ReadFacilityFailure?) {
+extension APIClient: ParkDetailAPIClient {
+    func readFacilities(by parkName: String, success: @escaping ParkDetailAPIClient.ReadFacilitySuccess, failure: ParkDetailAPIClient.ReadFacilityFailure?) {
         
         let router = Router.readFacility(byParkName: parkName)
         
@@ -82,7 +82,7 @@ extension APIClient: FacilityAPIClient {
                 case .sucess(let data):
                     
                     do {
-                        let (facilitiesData, _) = try Park.parseToDecodableParks(data)
+                        let (facilitiesData, _) = try Park.parseToDecodableResults(data)
                         let facilities = try JSONDecoder().decode([Facility].self, from: facilitiesData)
                         success(facilities)
                     } catch {
