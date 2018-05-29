@@ -19,12 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        let client = APIClient()
-        let provider = ParkAPIProvider(client: client)
-        let parksTableViewController = ParksTableViewController(provider: provider)
-        parksTableViewController.provider.fetch()
-        
-        window?.rootViewController = parksTableViewController
+        let tabBarController = TabBarController(
+            itemTypes: [.list, .map, .favorite]
+        )
+        window?.rootViewController = tabBarController
         
         return true
     }

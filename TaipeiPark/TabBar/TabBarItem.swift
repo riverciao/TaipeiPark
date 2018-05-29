@@ -21,5 +21,4 @@ class TabBarItem: UITabBarItem {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
 }

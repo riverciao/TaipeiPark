@@ -10,6 +10,8 @@
 		5F17C64620BCFFDA0090A98C /* ParkDetailAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C64520BCFFDA0090A98C /* ParkDetailAPIProvider.swift */; };
 		5F17C64920BD0D480090A98C /* TabBarItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C64820BD0D480090A98C /* TabBarItemType.swift */; };
 		5F17C64B20BD29740090A98C /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C64A20BD29740090A98C /* TabBarItem.swift */; };
+		5F17C64D20BD2AFD0090A98C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C64C20BD2AFD0090A98C /* TabBarController.swift */; };
+		5F17C65220BD2F020090A98C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C65120BD2F020090A98C /* MapViewController.swift */; };
 		5F23F15120BB01E000431F10 /* ParkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */; };
 		5F23F15220BB01E000431F10 /* ParkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */; };
 		5F23F15420BC034D00431F10 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23F15320BC034D00431F10 /* Facility.swift */; };
@@ -35,6 +37,8 @@
 		5F17C64520BCFFDA0090A98C /* ParkDetailAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDetailAPIProvider.swift; sourceTree = "<group>"; };
 		5F17C64820BD0D480090A98C /* TabBarItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemType.swift; sourceTree = "<group>"; };
 		5F17C64A20BD29740090A98C /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		5F17C64C20BD2AFD0090A98C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		5F17C65120BD2F020090A98C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkTableViewCell.swift; sourceTree = "<group>"; };
 		5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkTableViewCell.xib; sourceTree = "<group>"; };
 		5F23F15320BC034D00431F10 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
@@ -74,8 +78,36 @@
 			children = (
 				5F17C64A20BD29740090A98C /* TabBarItem.swift */,
 				5F17C64820BD0D480090A98C /* TabBarItemType.swift */,
+				5F17C64C20BD2AFD0090A98C /* TabBarController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		5F17C64E20BD2EC40090A98C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5F17C65020BD2EE40090A98C /* MapViewController */,
+				5F17C64F20BD2ED00090A98C /* ParksTableViewController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5F17C64F20BD2ED00090A98C /* ParksTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */,
+				5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */,
+				5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */,
+			);
+			path = ParksTableViewController;
+			sourceTree = "<group>";
+		};
+		5F17C65020BD2EE40090A98C /* MapViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5F17C65120BD2F020090A98C /* MapViewController.swift */,
+			);
+			path = MapViewController;
 			sourceTree = "<group>";
 		};
 		5F87D24A20B7AC09003F2876 = {
@@ -97,9 +129,7 @@
 		5F87D25520B7AC09003F2876 /* TaipeiPark */ = {
 			isa = PBXGroup;
 			children = (
-				5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */,
-				5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */,
-				5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */,
+				5F17C64E20BD2EC40090A98C /* Controller */,
 				5F87D27220B804DB003F2876 /* Park */,
 				5F87D26E20B7C0EA003F2876 /* Library */,
 				5F87D26B20B7BD6E003F2876 /* API */,
@@ -223,6 +253,7 @@
 				5F87D26D20B7BD87003F2876 /* Router.swift in Sources */,
 				5F87D28220BAA64C003F2876 /* ParksTableViewController.swift in Sources */,
 				5F87D27820B9AA02003F2876 /* APIClient.swift in Sources */,
+				5F17C65220BD2F020090A98C /* MapViewController.swift in Sources */,
 				5F23F15120BB01E000431F10 /* ParkTableViewCell.swift in Sources */,
 				5F87D27420B80503003F2876 /* Park.swift in Sources */,
 				5F87D27020B7C15B003F2876 /* URLRequestExtensions.swift in Sources */,
@@ -230,6 +261,7 @@
 				5F23F15620BCF23E00431F10 /* Spot.swift in Sources */,
 				5F17C64920BD0D480090A98C /* TabBarItemType.swift in Sources */,
 				5F87D27C20B9AC3A003F2876 /* Page.swift in Sources */,
+				5F17C64D20BD2AFD0090A98C /* TabBarController.swift in Sources */,
 				5F87D27A20B9AB5C003F2876 /* ParkAPIClient.swift in Sources */,
 				5F87D25F20B7AC09003F2876 /* TaipeiPark.xcdatamodeld in Sources */,
 				5F17C64B20BD29740090A98C /* TabBarItem.swift in Sources */,
