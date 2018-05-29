@@ -116,8 +116,9 @@ extension APIClient: ParkDetailAPIClient {
                 case .success(let data):
                     do {
                         let (decodableSpots, _) = try Park.parseToDecodableResults(data)
-                        let json = try JSONSerialization.jsonObject(with: decodableSpots)
-                        print("OO: \(json)")
+//                        let json = try JSONSerialization.jsonObject(with: decodableSpots)
+                        let spots = try JSONDecoder().decode([Spot].self, from: decodableSpots)
+                        print("OO: \(spots)")
                     } catch {
                         failure?(error)
                     }
