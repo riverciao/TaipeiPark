@@ -9,7 +9,6 @@
 import UIKit
 
 class ParkDetailViewController: UIViewController {
-
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var introductionLabel: UILabel!
@@ -28,7 +27,29 @@ class ParkDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        provider.parkDetailDelegate = self
     }
+}
 
+extension ParkDetailViewController: ParkDetailProviderDelagate {
+    func didFetchFacility(by provider: ParkDetailProvider) {
+        DispatchQueue.main.async {
+            self.nameLabel.text = self.provider.facilitiesDescription
+        }
+    }
+    
+    func didFailToFacility(with error: Error, by provider: ParkDetailProvider) {
+        
+    }
+    
+    func didFetchSpot(by provider: ParkDetailProvider) {
+        DispatchQueue.main.async {
+            self.introductionLabel.text = self.provider.spot(at: IndexPath(row: 0, section: 1)).introduction
+        }
+    }
+    
+    func didFailToSpot(with error: Error, by provider: ParkDetailProvider) {
+        
+    }
+    
 }

@@ -12,13 +12,17 @@ class ParkTableViewCell: UITableViewCell {
     
     static var identifier: String { return String(describing: self) }
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var administrativeAreaLabel: UILabel!
+    @IBOutlet weak var introductionLabel: UILabel!
+    @IBOutlet weak var parkImageView: UIImageView!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var mapButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        nameLabel.font = UIFont.systemFont(ofSize: 22)
-        addressLabel.font = UIFont.systemFont(ofSize: 16)
+//        nameLabel.font = UIFont.systemFont(ofSize: 22)
+//        administrativeAreaLabel.font = UIFont.systemFont(ofSize: 16)
     }
     
 }

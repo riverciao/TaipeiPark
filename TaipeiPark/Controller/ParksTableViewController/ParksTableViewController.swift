@@ -95,7 +95,8 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 cell.contentView.backgroundColor = .clear
                 let park = provider.park(at: indexPath)
                 cell.nameLabel.text = park.name
-                cell.addressLabel.text = park.address
+                cell.administrativeAreaLabel.text = park.administrativeArea
+                cell.introductionLabel.text = park.introduction
             }
         }
         return cell
@@ -109,6 +110,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         let provider = ParkDetailAPIProvider(client: client)
         let parkDetailViewController = ParkDetailViewController(provider: provider)
         provider.fetchFacility(by: currentParkName)
+        provider.fetchSpot(by: currentParkName)
         
         self.navigationController?.pushViewController(parkDetailViewController, animated: true)
     }
