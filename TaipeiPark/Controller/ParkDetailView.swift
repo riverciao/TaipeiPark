@@ -38,7 +38,15 @@ class ParkDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+    lazy var administrativeAreaLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.text = "Area"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,6 +78,12 @@ class ParkDetailView: UIView {
         parkTypeLabel.topAnchor.constraint(equalTo: parkNameLabel.bottomAnchor, constant: 8).isActive = true
         parkTypeLabel.rightAnchor.constraint(equalTo: parkNameLabel.rightAnchor).isActive = true
         parkTypeLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
+        
+        self.addSubview(administrativeAreaLabel)
+        administrativeAreaLabel.topAnchor.constraint(equalTo: parkTypeLabel.bottomAnchor, constant: 8).isActive = true
+        administrativeAreaLabel.rightAnchor.constraint(equalTo: parkNameLabel.rightAnchor).isActive = true
+        administrativeAreaLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
+        
         
     }
 }
