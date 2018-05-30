@@ -11,7 +11,7 @@ import UIKit
 class ParkDetailViewController: UIViewController {
     
     let provider: ParkDetailProvider
-    weak var parkDetailView: ParkDetailView?
+    var parkDetailView: ParkDetailView?
     
     // MARK: Init
     
@@ -27,13 +27,21 @@ class ParkDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         provider.parkDetailDelegate = self
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setup()
     }
     
     // MARK: Setup
     func setup() {
-        self.parkDetailView = ParkDetailView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-        self.view.addSubview(parkDetailView!)
+        let navigationBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
+        self.parkDetailView = ParkDetailView(frame: CGRect(x: 0, y: navigationBarHeight, width: view.bounds.width, height: view.bounds.height * 0.8))
+        if let parkDetailView = parkDetailView {
+            self.view.addSubview(parkDetailView)
+        }
     }
     
 }
@@ -41,7 +49,7 @@ class ParkDetailViewController: UIViewController {
 extension ParkDetailViewController: ParkDetailProviderDelagate {
     func didFetchFacility(by provider: ParkDetailProvider) {
         DispatchQueue.main.async {
-//            self.parkDetailView?.facilitiesLabel.text = self.provider.facilitiesDescription
+            self.parkDetailView?.parkNameLabel.text = self.provider.facilitiesDescription
         }
     }
     

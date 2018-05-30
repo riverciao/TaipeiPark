@@ -11,39 +11,36 @@ import UIKit
 class ParkDetailView: UIView {
     
     class var identifier: String { return String(describing: self) }
-
     
-//    @IBOutlet var contentView: UIView!
-//    @IBOutlet weak var parkImageView: UIImageView!
-//    @IBOutlet weak var parkNameLabel: UILabel!
-//    @IBOutlet weak var typeLabel: UILabel!
-//    @IBOutlet weak var adminisrativeAreaLabel: UILabel!
-//    @IBOutlet weak var addressLabel: UILabel!
-//    @IBOutlet weak var openTimeLabel: UILabel!
-//    @IBOutlet weak var facilitiesLabel: UILabel!
-//    @IBOutlet weak var descriptionLabel: UILabel!
+    lazy var parkNameLabel: UILabel = {
+       let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 22)
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.text = "Park Name"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        setUp()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInit()
+        setUp()
     }
     
-//    override func awakeFromNib() {
-//        self.backgroundColor = .yellow
-//    }
+    // MARK: Setup
     
-    func commonInit() {
+    func setUp() {
+        self.backgroundColor = .white
         
-        self.backgroundColor = .blue
-//        Bundle.main.loadNibNamed(ParkDetailView.identifier, owner: self)
-//        addSubview(contentView)
-//        contentView.frame = self.bounds
-//        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(parkNameLabel)
+        parkNameLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        parkNameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        parkNameLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
     }
 }
 
