@@ -47,6 +47,15 @@ class ParkDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var addressLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.text = "Address"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -84,7 +93,10 @@ class ParkDetailView: UIView {
         administrativeAreaLabel.rightAnchor.constraint(equalTo: parkNameLabel.rightAnchor).isActive = true
         administrativeAreaLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
         
-        
+        self.addSubview(addressLabel)
+        addressLabel.topAnchor.constraint(equalTo: parkTypeLabel.bottomAnchor, constant: 8).isActive = true
+        addressLabel.rightAnchor.constraint(equalTo: administrativeAreaLabel.rightAnchor, constant: 8).isActive = true
+        addressLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor, constant: -30).isActive = true
     }
 }
 
