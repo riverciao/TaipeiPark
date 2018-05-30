@@ -56,6 +56,15 @@ class ParkDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var openTimeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.text = "Open Time"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -97,6 +106,13 @@ class ParkDetailView: UIView {
         addressLabel.topAnchor.constraint(equalTo: parkTypeLabel.bottomAnchor, constant: 8).isActive = true
         addressLabel.rightAnchor.constraint(equalTo: administrativeAreaLabel.rightAnchor, constant: 8).isActive = true
         addressLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor, constant: -30).isActive = true
+        
+        self.addSubview(openTimeLabel)
+        openTimeLabel.topAnchor.constraint(equalTo: administrativeAreaLabel.bottomAnchor, constant: 8).isActive = true
+        openTimeLabel.rightAnchor.constraint(equalTo: parkNameLabel.rightAnchor).isActive = true
+        openTimeLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
+        
+        
     }
 }
 
