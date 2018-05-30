@@ -65,6 +65,15 @@ class ParkDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var facilityLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.text = "Facility"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -112,6 +121,10 @@ class ParkDetailView: UIView {
         openTimeLabel.rightAnchor.constraint(equalTo: parkNameLabel.rightAnchor).isActive = true
         openTimeLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
         
+        self.addSubview(facilityLabel)
+        facilityLabel.topAnchor.constraint(equalTo: openTimeLabel.bottomAnchor, constant: 8).isActive = true
+        facilityLabel.rightAnchor.constraint(equalTo: parkNameLabel.rightAnchor).isActive = true
+        facilityLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
         
     }
 }
