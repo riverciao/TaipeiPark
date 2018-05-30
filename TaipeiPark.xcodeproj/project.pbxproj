@@ -18,6 +18,7 @@
 		5F23F15220BB01E000431F10 /* ParkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */; };
 		5F23F15420BC034D00431F10 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23F15320BC034D00431F10 /* Facility.swift */; };
 		5F23F15620BCF23E00431F10 /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23F15520BCF23E00431F10 /* Spot.swift */; };
+		5F4CD33520BE59FF006E1A88 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4CD33420BE59FF006E1A88 /* UIImageViewExtension.swift */; };
 		5F87D25720B7AC09003F2876 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D25620B7AC09003F2876 /* AppDelegate.swift */; };
 		5F87D25920B7AC09003F2876 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D25820B7AC09003F2876 /* ViewController.swift */; };
 		5F87D25C20B7AC09003F2876 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F87D25A20B7AC09003F2876 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkTableViewCell.xib; sourceTree = "<group>"; };
 		5F23F15320BC034D00431F10 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
 		5F23F15520BCF23E00431F10 /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
+		5F4CD33420BE59FF006E1A88 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		5F87D25320B7AC09003F2876 /* TaipeiPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaipeiPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F87D25620B7AC09003F2876 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F87D25820B7AC09003F2876 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				5F87D26F20B7C15B003F2876 /* URLRequestExtensions.swift */,
+				5F4CD33420BE59FF006E1A88 /* UIImageViewExtension.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				5F17C65220BD2F020090A98C /* MapViewController.swift in Sources */,
 				5F23F15120BB01E000431F10 /* ParkTableViewCell.swift in Sources */,
 				5F87D27420B80503003F2876 /* Park.swift in Sources */,
+				5F4CD33520BE59FF006E1A88 /* UIImageViewExtension.swift in Sources */,
 				5F87D27020B7C15B003F2876 /* URLRequestExtensions.swift in Sources */,
 				5F87D25920B7AC09003F2876 /* ViewController.swift in Sources */,
 				5F23F15620BCF23E00431F10 /* Spot.swift in Sources */,
