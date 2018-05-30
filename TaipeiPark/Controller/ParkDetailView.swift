@@ -38,21 +38,12 @@ class ParkDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    lazy var administrativeAreaLabel: UILabel = {
+    lazy var areaAddressLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.numberOfLines = 0
         label.textColor = .black
-        label.text = "Area"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    lazy var addressLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.numberOfLines = 0
-        label.textColor = .black
-        label.text = "Address"
+        label.text = "Area Address"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -96,7 +87,7 @@ class ParkDetailView: UIView {
     
     // MARK: Setup
     
-    func setUp() {
+    private func setUp() {
         self.backgroundColor = .white
         
         self.addSubview(parkImageView)
@@ -111,34 +102,24 @@ class ParkDetailView: UIView {
         parkNameLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
         
         self.addSubview(parkTypeLabel)
-        parkTypeLabel.topAnchor.constraint(equalTo: parkNameLabel.bottomAnchor, constant: 8).isActive = true
-        parkTypeLabel.rightAnchor.constraint(equalTo: parkNameLabel.rightAnchor).isActive = true
-        parkTypeLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
-        
-        self.addSubview(administrativeAreaLabel)
-        administrativeAreaLabel.topAnchor.constraint(equalTo: parkTypeLabel.bottomAnchor, constant: 8).isActive = true
-        administrativeAreaLabel.rightAnchor.constraint(equalTo: parkNameLabel.rightAnchor).isActive = true
-        administrativeAreaLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
-        
-        self.addSubview(addressLabel)
-        addressLabel.topAnchor.constraint(equalTo: parkTypeLabel.bottomAnchor, constant: 8).isActive = true
-        addressLabel.rightAnchor.constraint(equalTo: administrativeAreaLabel.rightAnchor, constant: 8).isActive = true
-        addressLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor, constant: -30).isActive = true
-        
+        self.addSubview(areaAddressLabel)
         self.addSubview(openTimeLabel)
-        openTimeLabel.topAnchor.constraint(equalTo: administrativeAreaLabel.bottomAnchor, constant: 8).isActive = true
-        openTimeLabel.rightAnchor.constraint(equalTo: parkNameLabel.rightAnchor).isActive = true
-        openTimeLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
-        
         self.addSubview(facilityLabel)
-        facilityLabel.topAnchor.constraint(equalTo: openTimeLabel.bottomAnchor, constant: 8).isActive = true
-        facilityLabel.rightAnchor.constraint(equalTo: parkNameLabel.rightAnchor).isActive = true
-        facilityLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
-        
         self.addSubview(introductionLabel)
-        introductionLabel.topAnchor.constraint(equalTo: facilityLabel.bottomAnchor, constant: 8).isActive = true
-        introductionLabel.rightAnchor.constraint(equalTo: parkNameLabel.rightAnchor).isActive = true
-        introductionLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
+
+        
+        setupLabelLayout(for: parkTypeLabel, previousLabel: parkNameLabel)
+        setupLabelLayout(for: areaAddressLabel, previousLabel: parkTypeLabel)
+        setupLabelLayout(for: openTimeLabel, previousLabel: areaAddressLabel)
+        setupLabelLayout(for: facilityLabel, previousLabel: openTimeLabel)
+        setupLabelLayout(for: introductionLabel, previousLabel: facilityLabel)
+        
+    }
+    
+    private func setupLabelLayout(for label: UILabel, previousLabel: UILabel) {
+        label.topAnchor.constraint(equalTo: previousLabel.bottomAnchor, constant: 8).isActive = true
+        label.rightAnchor.constraint(equalTo: parkImageView.rightAnchor).isActive = true
+        label.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
     }
 }
 
