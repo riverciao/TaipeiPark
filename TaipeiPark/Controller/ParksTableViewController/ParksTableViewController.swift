@@ -23,7 +23,9 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     }
     var state: State {
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     let numberOfFetchingRows = 15
@@ -97,6 +99,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 cell.nameLabel.text = park.name
                 cell.administrativeAreaLabel.text = park.administrativeArea
                 cell.introductionLabel.text = park.introduction
+                cell.parkImageView.load(url: park.imageURL)
             }
         }
         return cell

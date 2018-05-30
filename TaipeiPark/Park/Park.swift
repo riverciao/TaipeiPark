@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import CoreLocation
 
 enum JSONError: Error {
@@ -21,7 +22,7 @@ public struct Park: Codable {
         case name = "ParkName"
         case openTime = "OpenTime"
         case introduction = "Introduction"
-        case imageURL = "Image"
+        case imageURLString = "Image"
         case latitude = "Longitude"
         case longitude = "Latitude"
         case administrativeArea = "AdministrativeArea"
@@ -42,11 +43,12 @@ public struct Park: Codable {
     public let name: String
     public let openTime: String?
     public let introduction: String
-    public let imageURL: String
+    public let imageURLString: String
     public let coordinate: CLLocationCoordinate2D
     public let administrativeArea: String
     public let address: String
     public let parkType: String
+    public var image: UIImage?
     
     public typealias ParksData = Data
     public typealias CountOfParks = Int
@@ -76,7 +78,7 @@ public struct Park: Codable {
         self.name = try container.decode(String.self, forKey: .name)
         self.openTime = try container.decode(String?.self, forKey: .openTime)
         self.introduction = try container.decode(String.self, forKey: .introduction)
-        self.imageURL = try container.decode(String.self, forKey: .imageURL)
+        self.imageURLString = try container.decode(String.self, forKey: .imageURLString)
         self.administrativeArea = try container.decode(String.self, forKey: .administrativeArea)
         self.address = try container.decode(String.self, forKey: .address)
         self.parkType = try container.decode(String.self, forKey: .parkType)
@@ -96,7 +98,7 @@ public struct Park: Codable {
         try container.encode(name, forKey: .name)
         try container.encode(openTime, forKey: .openTime)
         try container.encode(introduction, forKey: .introduction)
-        try container.encode(imageURL, forKey: .imageURL)
+        try container.encode(imageURLString, forKey: .imageURLString)
         try container.encode(String(coordinate.latitude), forKey: .latitude)
         try container.encode(String(coordinate.longitude), forKey: .longitude)
         try container.encode(administrativeArea, forKey: .administrativeArea)
@@ -104,5 +106,14 @@ public struct Park: Codable {
         try container.encode(parkType, forKey: .parkType)
     }
 }
+
+// MARK: Image URL
+
+public extension Park {
+    public var imageURL: URL {
+        return URL(string: imageURLString)!
+    }
+}
+
 
 

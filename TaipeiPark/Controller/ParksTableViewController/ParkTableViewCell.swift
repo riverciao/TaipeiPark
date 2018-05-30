@@ -20,9 +20,6 @@ class ParkTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-//        nameLabel.font = UIFont.systemFont(ofSize: 22)
-//        administrativeAreaLabel.font = UIFont.systemFont(ofSize: 16)
     }
     
 }

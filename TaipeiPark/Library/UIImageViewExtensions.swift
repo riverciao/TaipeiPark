@@ -1,5 +1,5 @@
 //
-//  UIImageViewExtension.swift
+//  UIImageViewExtensions.swift
 //  TaipeiPark
 //
 //  Created by riverciao on 2018/5/30.
