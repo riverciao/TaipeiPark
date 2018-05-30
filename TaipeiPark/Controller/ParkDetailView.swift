@@ -29,6 +29,15 @@ class ParkDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var parkTypeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.text = "Park Type"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     
     override init(frame: CGRect) {
@@ -53,9 +62,15 @@ class ParkDetailView: UIView {
         parkImageView.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.8).isActive = true
         
         self.addSubview(parkNameLabel)
-        parkNameLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        parkNameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        parkNameLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        parkNameLabel.topAnchor.constraint(equalTo: parkImageView.bottomAnchor, constant: 8).isActive = true
+        parkNameLabel.rightAnchor.constraint(equalTo: parkImageView.rightAnchor).isActive = true
+        parkNameLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
+        
+        self.addSubview(parkTypeLabel)
+        parkTypeLabel.topAnchor.constraint(equalTo: parkNameLabel.bottomAnchor, constant: 8).isActive = true
+        parkTypeLabel.rightAnchor.constraint(equalTo: parkNameLabel.rightAnchor).isActive = true
+        parkTypeLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
+        
     }
 }
 
