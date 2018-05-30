@@ -10,9 +10,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
+            <connections>
+                <outlet property="addressLabel" destination="twU-xL-L9M" id="SjU-Ki-MnS"/>
+                <outlet property="adminisrativeAreaLabel" destination="FcX-ue-x89" id="PLW-YZ-N5q"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="sZ7-GF-HUk"/>
+                <outlet property="descriptionLabel" destination="oYY-TX-MLd" id="rq5-JG-ody"/>
+                <outlet property="facilitiesLabel" destination="NeN-Xa-4Tt" id="bSS-Mi-yOJ"/>
+                <outlet property="openTimeLabel" destination="MhL-We-dOy" id="l9x-Ip-YpY"/>
+                <outlet property="parkImageView" destination="tQR-K5-Tlw" id="ery-EI-w0y"/>
+                <outlet property="parkNameLabel" destination="lah-8m-6oL" id="r4c-b3-Yvf"/>
+                <outlet property="typeLabel" destination="w4w-b8-keL" id="b8E-E4-5b6"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" restorationIdentifier="ParkDetailView" id="iN0-l3-epB" customClass="ParkDetailView" customModule="TaipeiPark" customModuleProvider="target">
+        <view contentMode="scaleToFill" restorationIdentifier="ParkDetailView" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -87,16 +99,7 @@
                 <constraint firstItem="MhL-We-dOy" firstAttribute="top" secondItem="FcX-ue-x89" secondAttribute="bottom" constant="8" id="zWN-5u-slI"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <connections>
-                <outlet property="addressLabel" destination="twU-xL-L9M" id="qcC-Tj-0eN"/>
-                <outlet property="administrativeAreaLabel" destination="FcX-ue-x89" id="c0X-3U-pcA"/>
-                <outlet property="descriptionLabel" destination="oYY-TX-MLd" id="2ds-V9-PEr"/>
-                <outlet property="facilitiesLabel" destination="NeN-Xa-4Tt" id="KDd-yU-aBI"/>
-                <outlet property="openTimeLabel" destination="MhL-We-dOy" id="0VN-WV-DWx"/>
-                <outlet property="parkImageView" destination="tQR-K5-Tlw" id="hKD-4b-Stv"/>
-                <outlet property="parkNameLabel" destination="lah-8m-6oL" id="ZV5-xV-Fgy"/>
-                <outlet property="parkTypeLabel" destination="w4w-b8-keL" id="LlI-ok-RQj"/>
-            </connections>
+            <point key="canvasLocation" x="-28" y="60"/>
         </view>
     </objects>
 </document>

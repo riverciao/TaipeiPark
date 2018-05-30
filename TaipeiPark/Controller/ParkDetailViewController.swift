@@ -10,9 +10,8 @@ import UIKit
 
 class ParkDetailViewController: UIViewController {
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var introductionLabel: UILabel!
     let provider: ParkDetailProvider
+    weak var parkDetailView: ParkDetailView?
     
     // MARK: Init
     
@@ -28,13 +27,21 @@ class ParkDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         provider.parkDetailDelegate = self
+        setup()
     }
+    
+    // MARK: Setup
+    func setup() {
+        self.parkDetailView = ParkDetailView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+        self.view.addSubview(parkDetailView!)
+    }
+    
 }
 
 extension ParkDetailViewController: ParkDetailProviderDelagate {
     func didFetchFacility(by provider: ParkDetailProvider) {
         DispatchQueue.main.async {
-            self.nameLabel.text = self.provider.facilitiesDescription
+//            self.parkDetailView?.facilitiesLabel.text = self.provider.facilitiesDescription
         }
     }
     
@@ -44,7 +51,7 @@ extension ParkDetailViewController: ParkDetailProviderDelagate {
     
     func didFetchSpot(by provider: ParkDetailProvider) {
         DispatchQueue.main.async {
-            self.introductionLabel.text = self.provider.spot(at: IndexPath(row: 0, section: 1)).introduction
+//            self.parkDetailView?.descriptionLabel.text = self.provider.spot(at: IndexPath(row: 0, section: 1)).introduction
         }
     }
     
