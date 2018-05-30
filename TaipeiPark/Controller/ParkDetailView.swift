@@ -93,33 +93,28 @@ class ParkDetailView: UIView {
         self.addSubview(parkImageView)
         parkImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
         parkImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        parkImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        parkImageView.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.8).isActive = true
         parkImageView.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.8).isActive = true
-        
-        self.addSubview(parkNameLabel)
-        parkNameLabel.topAnchor.constraint(equalTo: parkImageView.bottomAnchor, constant: 8).isActive = true
-        parkNameLabel.rightAnchor.constraint(equalTo: parkImageView.rightAnchor).isActive = true
-        parkNameLabel.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
-        
-        self.addSubview(parkTypeLabel)
-        self.addSubview(areaAddressLabel)
-        self.addSubview(openTimeLabel)
-        self.addSubview(facilityLabel)
-        self.addSubview(introductionLabel)
 
-        
-        setupLabelLayout(for: parkTypeLabel, previousLabel: parkNameLabel)
-        setupLabelLayout(for: areaAddressLabel, previousLabel: parkTypeLabel)
-        setupLabelLayout(for: openTimeLabel, previousLabel: areaAddressLabel)
-        setupLabelLayout(for: facilityLabel, previousLabel: openTimeLabel)
-        setupLabelLayout(for: introductionLabel, previousLabel: facilityLabel)
-        
+        setupLabelsLayout([parkNameLabel,
+                           parkTypeLabel,
+                           areaAddressLabel,
+                           openTimeLabel,
+                           facilityLabel,
+                           introductionLabel])
     }
     
-    private func setupLabelLayout(for label: UILabel, previousLabel: UILabel) {
-        label.topAnchor.constraint(equalTo: previousLabel.bottomAnchor, constant: 8).isActive = true
-        label.rightAnchor.constraint(equalTo: parkImageView.rightAnchor).isActive = true
-        label.widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
+    private func setupLabelsLayout(_ labels: [UILabel]) {
+        for i in labels.indices {
+            self.addSubview(labels[i])
+            labels[i].rightAnchor.constraint(equalTo: parkImageView.rightAnchor).isActive = true
+            labels[i].widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
+            if i == 0 {
+                labels[i].topAnchor.constraint(equalTo: parkImageView.bottomAnchor, constant: 8).isActive = true
+            } else {
+                labels[i].topAnchor.constraint(equalTo: labels[i-1].bottomAnchor, constant: 8).isActive = true
+            }
+        }
     }
 }
 
