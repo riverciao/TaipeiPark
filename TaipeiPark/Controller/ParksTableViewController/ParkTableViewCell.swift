@@ -20,6 +20,10 @@ class ParkTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupImageView()
     }
     
+    private func setupImageView() {
+        parkImageView.contentMode = .scaleAspectFit
+    }
 }

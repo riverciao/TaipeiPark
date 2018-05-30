@@ -34,6 +34,9 @@
 		5F87D27E20BA9424003F2876 /* ParkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D27D20BA9424003F2876 /* ParkProvider.swift */; };
 		5F87D28020BA960B003F2876 /* ParkAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D27F20BA960B003F2876 /* ParkAPIProvider.swift */; };
 		5F87D28220BAA64C003F2876 /* ParksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */; };
+		5FC1410020BE7CB800495D66 /* ParkDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FC140FF20BE7CB800495D66 /* ParkDetailView.xib */; };
+		5FC1410220BE815300495D66 /* ParkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410120BE815300495D66 /* ParkDetailView.swift */; };
+		5FC1410420BE846200495D66 /* UINibExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410320BE846200495D66 /* UINibExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +69,9 @@
 		5F87D27D20BA9424003F2876 /* ParkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkProvider.swift; sourceTree = "<group>"; };
 		5F87D27F20BA960B003F2876 /* ParkAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkAPIProvider.swift; sourceTree = "<group>"; };
 		5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParksTableViewController.swift; sourceTree = "<group>"; };
+		5FC140FF20BE7CB800495D66 /* ParkDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkDetailView.xib; sourceTree = "<group>"; };
+		5FC1410120BE815300495D66 /* ParkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDetailView.swift; sourceTree = "<group>"; };
+		5FC1410320BE846200495D66 /* UINibExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINibExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,8 @@
 				5F17C65020BD2EE40090A98C /* MapViewController */,
 				5F17C64F20BD2ED00090A98C /* ParksTableViewController */,
 				5F17C65520BD527B0090A98C /* ParkDetailViewController.swift */,
+				5FC140FF20BE7CB800495D66 /* ParkDetailView.xib */,
+				5FC1410120BE815300495D66 /* ParkDetailView.swift */,
 				5F17C65620BD527B0090A98C /* ParkDetailViewController.xib */,
 			);
 			path = Controller;
@@ -166,6 +174,7 @@
 		5F87D26E20B7C0EA003F2876 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				5FC1410320BE846200495D66 /* UINibExtensions.swift */,
 				5F87D26F20B7C15B003F2876 /* URLRequestExtensions.swift */,
 				5F4CD33420BE59FF006E1A88 /* UIImageViewExtensions.swift */,
 			);
@@ -250,6 +259,7 @@
 				5F17C65820BD527B0090A98C /* ParkDetailViewController.xib in Resources */,
 				5F87D25C20B7AC09003F2876 /* Main.storyboard in Resources */,
 				5F23F15220BB01E000431F10 /* ParkTableViewCell.xib in Resources */,
+				5FC1410020BE7CB800495D66 /* ParkDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +285,8 @@
 				5F17C64D20BD2AFD0090A98C /* TabBarController.swift in Sources */,
 				5F87D27A20B9AB5C003F2876 /* ParkAPIClient.swift in Sources */,
 				5F17C65720BD527B0090A98C /* ParkDetailViewController.swift in Sources */,
+				5FC1410420BE846200495D66 /* UINibExtensions.swift in Sources */,
+				5FC1410220BE815300495D66 /* ParkDetailView.swift in Sources */,
 				5F87D25F20B7AC09003F2876 /* TaipeiPark.xcdatamodeld in Sources */,
 				5F17C64B20BD29740090A98C /* TabBarItem.swift in Sources */,
 				5F87D28020BA960B003F2876 /* ParkAPIProvider.swift in Sources */,

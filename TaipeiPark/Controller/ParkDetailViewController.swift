@@ -51,5 +51,4 @@ extension ParkDetailViewController: ParkDetailProviderDelagate {
     func didFailToSpot(with error: Error, by provider: ParkDetailProvider) {
         
     }
-    
 }

@@ -48,7 +48,6 @@ public struct Park: Codable {
     public let administrativeArea: String
     public let address: String
     public let parkType: String
-    public var image: UIImage?
     
     public typealias ParksData = Data
     public typealias CountOfParks = Int
