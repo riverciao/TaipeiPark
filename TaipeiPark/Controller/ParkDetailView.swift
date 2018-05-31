@@ -15,6 +15,7 @@ class ParkDetailView: UIView {
     class var identifier: String { return String(describing: self) }
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()

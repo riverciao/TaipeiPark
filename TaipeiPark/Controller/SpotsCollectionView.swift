@@ -27,18 +27,19 @@ class SpotsCollectionView: UICollectionView {
     
     private func setUp() {
         self.backgroundColor = .lightGray
+        self.showsHorizontalScrollIndicator = false
         self.register(UINib(nibName: SpotCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: SpotCollectionViewCell.identifier)
     }
     
     func itemSize(with viewHight: CGFloat) -> CGSize {
         let aspectRatio: CGFloat = 15/11
-        let height = viewHight * 0.9
+        let height = viewHight * 0.95
         let width = height / aspectRatio
         return CGSize(width: width, height: height)
     }
     
     class func viewHeight(with viewWidth: CGFloat) -> CGFloat {
-        let aspectRatio: CGFloat = 0.53
+        let aspectRatio: CGFloat = 0.4
         let height = viewWidth * aspectRatio
         if height < 220 {
             return height

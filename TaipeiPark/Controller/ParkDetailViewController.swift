@@ -58,9 +58,22 @@ class ParkDetailViewController: UIViewController {
     func setup() {
         self.tabBarController?.tabBar.isHidden = true
         
-        // MARK: ParkDetailView
         let navigationBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
-        let parkDetailViewFrame = CGRect(x: 0, y: navigationBarHeight, width: view.bounds.width, height: view.bounds.height * 0.7)
+        let spotsCollectionViewHeight = SpotsCollectionView.viewHeight(with: view.bounds.width)
+        
+        // MARK: SpotsCollectionView
+        let collectionViewFrame = CGRect(x: 0, y: view.bounds.height - spotsCollectionViewHeight, width: view.bounds.width, height: spotsCollectionViewHeight)
+        let layout = UICollectionViewFlowLayout()
+        self.spotsCollectionView = SpotsCollectionView(frame: collectionViewFrame, collectionViewLayout: layout)
+        if let spotsCollectionView = spotsCollectionView {
+            spotsCollectionView.delegate = self
+            spotsCollectionView.dataSource = self
+            self.view.addSubview(spotsCollectionView)
+        }
+        
+        // MARK: ParkDetailView
+        let parkDetailViewHeight = view.bounds.height - navigationBarHeight - spotsCollectionViewHeight
+        let parkDetailViewFrame = CGRect(x: 0, y: navigationBarHeight, width: view.bounds.width, height: parkDetailViewHeight)
         self.parkDetailView = ParkDetailView(frame: parkDetailViewFrame)
         if let parkDetailView = parkDetailView {
             self.view.addSubview(parkDetailView)
@@ -73,19 +86,7 @@ class ParkDetailViewController: UIViewController {
             self.parkDetailView?.introductionLabel.text = park.introduction
             self.parkDetailView?.parkImageView.load(url: park.imageURL)
         }
-        
-        // MARK: SpotsCollectionView
-        let parkDetailViewHeight = parkDetailView?.bounds.height ?? 0
-        let collectionViewFrame = CGRect(x: 0, y: navigationBarHeight + parkDetailViewHeight, width: view.bounds.width, height: SpotsCollectionView.viewHeight(with: view.bounds.width))
-        let layout = UICollectionViewFlowLayout()
-        self.spotsCollectionView = SpotsCollectionView(frame: collectionViewFrame, collectionViewLayout: layout)
-        if let spotsCollectionView = spotsCollectionView {
-            spotsCollectionView.delegate = self
-            spotsCollectionView.dataSource = self
-            self.view.addSubview(spotsCollectionView)
-        }
     }
-    
 }
 
 extension ParkDetailViewController: ParkDetailProviderDelagate {
@@ -109,7 +110,6 @@ extension ParkDetailViewController: ParkDetailProviderDelagate {
 }
 
 extension ParkDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return provider.numberOfSpots
