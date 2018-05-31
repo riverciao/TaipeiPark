@@ -34,6 +34,8 @@
 		5F87D28020BA960B003F2876 /* ParkAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D27F20BA960B003F2876 /* ParkAPIProvider.swift */; };
 		5F87D28220BAA64C003F2876 /* ParksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */; };
 		5FC1410220BE815300495D66 /* ParkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410120BE815300495D66 /* ParkDetailView.swift */; };
+		5FC1410720BFAFF300495D66 /* SpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410520BFAFF300495D66 /* SpotCollectionViewCell.swift */; };
+		5FC1410820BFAFF300495D66 /* SpotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		5F87D27F20BA960B003F2876 /* ParkAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkAPIProvider.swift; sourceTree = "<group>"; };
 		5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParksTableViewController.swift; sourceTree = "<group>"; };
 		5FC1410120BE815300495D66 /* ParkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDetailView.swift; sourceTree = "<group>"; };
+		5FC1410520BFAFF300495D66 /* SpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotCollectionViewCell.swift; sourceTree = "<group>"; };
+		5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpotCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 				5F17C65020BD2EE40090A98C /* MapViewController */,
 				5F17C64F20BD2ED00090A98C /* ParksTableViewController */,
 				5F17C65520BD527B0090A98C /* ParkDetailViewController.swift */,
+				5FC1410520BFAFF300495D66 /* SpotCollectionViewCell.swift */,
+				5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */,
 				5FC1410120BE815300495D66 /* ParkDetailView.swift */,
 			);
 			path = Controller;
@@ -246,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F87D26420B7AC09003F2876 /* LaunchScreen.storyboard in Resources */,
+				5FC1410820BFAFF300495D66 /* SpotCollectionViewCell.xib in Resources */,
 				5F87D26120B7AC09003F2876 /* Assets.xcassets in Resources */,
 				5F87D25C20B7AC09003F2876 /* Main.storyboard in Resources */,
 				5F23F15220BB01E000431F10 /* ParkTableViewCell.xib in Resources */,
@@ -271,6 +278,7 @@
 				5F23F15620BCF23E00431F10 /* Spot.swift in Sources */,
 				5F17C64920BD0D480090A98C /* TabBarItemType.swift in Sources */,
 				5F87D27C20B9AC3A003F2876 /* Page.swift in Sources */,
+				5FC1410720BFAFF300495D66 /* SpotCollectionViewCell.swift in Sources */,
 				5F17C64D20BD2AFD0090A98C /* TabBarController.swift in Sources */,
 				5F87D27A20B9AB5C003F2876 /* ParkAPIClient.swift in Sources */,
 				5F17C65720BD527B0090A98C /* ParkDetailViewController.swift in Sources */,

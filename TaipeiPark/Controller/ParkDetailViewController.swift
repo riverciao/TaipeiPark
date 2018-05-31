@@ -14,6 +14,8 @@ class ParkDetailViewController: UIViewController {
     var parkDetailView: ParkDetailView?
     var currentPark: Park?
     
+    var spotsCollectionView: UICollectionView?
+    
     // MARK: Init
     
     init(provider: ParkDetailProvider) {
@@ -72,4 +74,20 @@ extension ParkDetailViewController: ParkDetailProviderDelagate {
     func didFailToSpot(with error: Error, by provider: ParkDetailProvider) {
         
     }
+}
+
+extension ParkDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return provider.numberOfSpots
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SpotCollectionViewCell.identifier, for: indexPath) as! SpotCollectionViewCell
+        
+        return cell
+    }
+    
+    
 }
