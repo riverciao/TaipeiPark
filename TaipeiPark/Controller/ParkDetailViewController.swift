@@ -15,10 +15,14 @@ class ParkDetailViewController: UIViewController {
         case preparing, ready
     }
     
+    // MARK: Property
     let provider: ParkDetailProvider
+    
+    // ParkDetailView
     var parkDetailView: ParkDetailView?
     var currentPark: Park?
     
+    // SpotsCollectionView
     var spotsCollectionView: UICollectionView?
     var spotState: State {
         didSet {
@@ -54,7 +58,7 @@ class ParkDetailViewController: UIViewController {
     func setup() {
         self.tabBarController?.tabBar.isHidden = true
         
-        // MARK: ParDetailView
+        // MARK: ParkDetailView
         let navigationBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
         let parkDetailViewFrame = CGRect(x: 0, y: navigationBarHeight, width: view.bounds.width, height: view.bounds.height * 0.7)
         self.parkDetailView = ParkDetailView(frame: parkDetailViewFrame)
@@ -131,7 +135,7 @@ extension ParkDetailViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 150)
+        return CGSize(width: 110, height: 150)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
