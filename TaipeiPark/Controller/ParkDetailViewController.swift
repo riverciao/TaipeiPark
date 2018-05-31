@@ -79,7 +79,7 @@ class ParkDetailViewController: UIViewController {
         collectionViewLayout.minimumLineSpacing = 0.0
         self.spotsCollectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: collectionViewLayout)
         if let spotsCollectionView = spotsCollectionView {
-            spotsCollectionView.backgroundColor = .yellow
+            spotsCollectionView.backgroundColor = .lightGray
             spotsCollectionView.delegate = self
             spotsCollectionView.dataSource = self
             spotsCollectionView.register(UINib(nibName: SpotCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: SpotCollectionViewCell.identifier)
@@ -131,6 +131,10 @@ extension ParkDetailViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 150)
+        return CGSize(width: 100, height: 150)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }

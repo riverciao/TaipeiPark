@@ -101,10 +101,10 @@ class ParkDetailView: UIView {
         scrollView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         
         scrollView.addSubview(parkImageView)
-        parkImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30).isActive = true
+        parkImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
         parkImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        parkImageView.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.8).isActive = true
-        parkImageView.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.8).isActive = true
+        parkImageView.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.6).isActive = true
+        parkImageView.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.6).isActive = true
 
         setupLabelsLayout([parkNameLabel,
                            parkTypeLabel,
@@ -117,8 +117,8 @@ class ParkDetailView: UIView {
     private func setupLabelsLayout(_ labels: [UILabel]) {
         for i in labels.indices {
             scrollView.addSubview(labels[i])
-            labels[i].rightAnchor.constraint(equalTo: parkImageView.rightAnchor).isActive = true
-            labels[i].widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
+            labels[i].centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            labels[i].widthAnchor.constraint(equalToConstant: self.bounds.width * 0.9).isActive = true
             if i == 0 {
                 labels[i].topAnchor.constraint(equalTo: parkImageView.bottomAnchor, constant: 8).isActive = true
             } else {
