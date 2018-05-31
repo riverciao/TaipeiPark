@@ -34,7 +34,6 @@
 		5F87D28020BA960B003F2876 /* ParkAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D27F20BA960B003F2876 /* ParkAPIProvider.swift */; };
 		5F87D28220BAA64C003F2876 /* ParksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */; };
 		5FC1410220BE815300495D66 /* ParkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410120BE815300495D66 /* ParkDetailView.swift */; };
-		5FC1410420BE846200495D66 /* UINibExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410320BE846200495D66 /* UINibExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +66,6 @@
 		5F87D27F20BA960B003F2876 /* ParkAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkAPIProvider.swift; sourceTree = "<group>"; };
 		5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParksTableViewController.swift; sourceTree = "<group>"; };
 		5FC1410120BE815300495D66 /* ParkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDetailView.swift; sourceTree = "<group>"; };
-		5FC1410320BE846200495D66 /* UINibExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINibExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,7 +166,6 @@
 		5F87D26E20B7C0EA003F2876 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				5FC1410320BE846200495D66 /* UINibExtensions.swift */,
 				5F87D26F20B7C15B003F2876 /* URLRequestExtensions.swift */,
 				5F4CD33420BE59FF006E1A88 /* UIImageViewExtensions.swift */,
 			);
@@ -277,7 +274,6 @@
 				5F17C64D20BD2AFD0090A98C /* TabBarController.swift in Sources */,
 				5F87D27A20B9AB5C003F2876 /* ParkAPIClient.swift in Sources */,
 				5F17C65720BD527B0090A98C /* ParkDetailViewController.swift in Sources */,
-				5FC1410420BE846200495D66 /* UINibExtensions.swift in Sources */,
 				5FC1410220BE815300495D66 /* ParkDetailView.swift in Sources */,
 				5F87D25F20B7AC09003F2876 /* TaipeiPark.xcdatamodeld in Sources */,
 				5F17C64B20BD29740090A98C /* TabBarItem.swift in Sources */,

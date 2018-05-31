@@ -108,13 +108,14 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let currentParkName = self.provider.park(at: indexPath).name
+        let currentPark = self.provider.park(at: indexPath)
         
         let client = APIClient()
         let provider = ParkDetailAPIProvider(client: client)
         let parkDetailViewController = ParkDetailViewController(provider: provider)
-        provider.fetchFacility(by: currentParkName)
-        provider.fetchSpot(by: currentParkName)
+        provider.fetchFacility(by: currentPark.name)
+        provider.fetchSpot(by: currentPark.name)
+        parkDetailViewController.currentPark = currentPark
         
         self.navigationController?.pushViewController(parkDetailViewController, animated: true)
     }

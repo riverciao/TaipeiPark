@@ -12,6 +12,7 @@ class ParkDetailViewController: UIViewController {
     
     let provider: ParkDetailProvider
     var parkDetailView: ParkDetailView?
+    var currentPark: Park?
     
     // MARK: Init
     
@@ -42,6 +43,14 @@ class ParkDetailViewController: UIViewController {
         if let parkDetailView = parkDetailView {
             self.view.addSubview(parkDetailView)
         }
+        if let park = currentPark {
+            self.parkDetailView?.parkNameLabel.text = park.name
+            self.parkDetailView?.parkTypeLabel.text = park.parkType
+            self.parkDetailView?.areaAddressLabel.text = park.administrativeArea + park.address
+            self.parkDetailView?.openTimeLabel.text = park.openTime
+            self.parkDetailView?.introductionLabel.text = park.introduction
+            self.parkDetailView?.parkImageView.load(url: park.imageURL)
+        }
     }
     
 }
@@ -49,7 +58,7 @@ class ParkDetailViewController: UIViewController {
 extension ParkDetailViewController: ParkDetailProviderDelagate {
     func didFetchFacility(by provider: ParkDetailProvider) {
         DispatchQueue.main.async {
-            self.parkDetailView?.parkNameLabel.text = self.provider.facilitiesDescription
+            self.parkDetailView?.facilityLabel.text = self.provider.facilitiesDescription
         }
     }
     
@@ -58,9 +67,6 @@ extension ParkDetailViewController: ParkDetailProviderDelagate {
     }
     
     func didFetchSpot(by provider: ParkDetailProvider) {
-        DispatchQueue.main.async {
-//            self.parkDetailView?.descriptionLabel.text = self.provider.spot(at: IndexPath(row: 0, section: 1)).introduction
-        }
     }
     
     func didFailToSpot(with error: Error, by provider: ParkDetailProvider) {

@@ -15,14 +15,12 @@ class ParkDetailView: UIView {
     class var identifier: String { return String(describing: self) }
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .cyan
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     lazy var parkImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .yellow
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -37,7 +35,7 @@ class ParkDetailView: UIView {
     }()
     lazy var parkTypeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         label.textColor = .black
         label.text = "Park Type"
@@ -46,7 +44,7 @@ class ParkDetailView: UIView {
     }()
     lazy var areaAddressLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         label.textColor = .black
         label.text = "Area Address"
@@ -55,7 +53,7 @@ class ParkDetailView: UIView {
     }()
     lazy var openTimeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         label.textColor = .black
         label.text = "Open Time"
@@ -64,7 +62,7 @@ class ParkDetailView: UIView {
     }()
     lazy var facilityLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         label.textColor = .black
         label.text = "Facility"
@@ -124,18 +122,12 @@ class ParkDetailView: UIView {
             if i == 0 {
                 labels[i].topAnchor.constraint(equalTo: parkImageView.bottomAnchor, constant: 8).isActive = true
             } else {
-                labels[i].topAnchor.constraint(equalTo: labels[i-1].bottomAnchor, constant: 8).isActive = true
+                labels[i].topAnchor.constraint(equalTo: labels[i-1].bottomAnchor, constant: 4).isActive = true
             }
             if i == labels.indices.last {
                 labels[i].bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -8).isActive = true
             }
         }
-    }
-}
-
-extension ParkDetailView {
-    class func creat() -> ParkDetailView {
-        return UIView.load(nibName: ParkDetailView.identifier) as! ParkDetailView
     }
 }
 
