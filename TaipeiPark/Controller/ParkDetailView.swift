@@ -13,6 +13,12 @@ class ParkDetailView: UIView {
     // MARK: Property
     
     class var identifier: String { return String(describing: self) }
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .cyan
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
     lazy var parkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -90,9 +96,15 @@ class ParkDetailView: UIView {
     private func setUp() {
         self.backgroundColor = .white
         
-        self.addSubview(parkImageView)
-        parkImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
-        parkImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.addSubview(scrollView)
+        scrollView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        
+        scrollView.addSubview(parkImageView)
+        parkImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30).isActive = true
+        parkImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         parkImageView.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.8).isActive = true
         parkImageView.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.8).isActive = true
 
@@ -106,13 +118,16 @@ class ParkDetailView: UIView {
     
     private func setupLabelsLayout(_ labels: [UILabel]) {
         for i in labels.indices {
-            self.addSubview(labels[i])
+            scrollView.addSubview(labels[i])
             labels[i].rightAnchor.constraint(equalTo: parkImageView.rightAnchor).isActive = true
             labels[i].widthAnchor.constraint(equalTo: parkImageView.widthAnchor).isActive = true
             if i == 0 {
                 labels[i].topAnchor.constraint(equalTo: parkImageView.bottomAnchor, constant: 8).isActive = true
             } else {
                 labels[i].topAnchor.constraint(equalTo: labels[i-1].bottomAnchor, constant: 8).isActive = true
+            }
+            if i == labels.indices.last {
+                labels[i].bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -8).isActive = true
             }
         }
     }
