@@ -43,9 +43,10 @@ class SpotsCollectionView: UICollectionView {
     class func viewHeight(with viewWidth: CGFloat) -> CGFloat {
         let aspectRatio: CGFloat = 0.4
         let height = viewWidth * aspectRatio
-        if height < 220 {
+        let maxHeight: CGFloat = 150
+        if height < maxHeight {
             return height
         }
-        return 220
+        return maxHeight
     }
 }

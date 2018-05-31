@@ -54,6 +54,11 @@ class ParkDetailViewController: UIViewController {
         setup()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     // MARK: Setup
     func setup() {
         self.tabBarController?.tabBar.isHidden = true
