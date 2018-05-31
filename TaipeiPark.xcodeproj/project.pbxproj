@@ -36,6 +36,7 @@
 		5FC1410220BE815300495D66 /* ParkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410120BE815300495D66 /* ParkDetailView.swift */; };
 		5FC1410720BFAFF300495D66 /* SpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410520BFAFF300495D66 /* SpotCollectionViewCell.swift */; };
 		5FC1410820BFAFF300495D66 /* SpotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */; };
+		5FC1410A20BFDEB300495D66 /* SpotsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		5FC1410120BE815300495D66 /* ParkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDetailView.swift; sourceTree = "<group>"; };
 		5FC1410520BFAFF300495D66 /* SpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotCollectionViewCell.swift; sourceTree = "<group>"; };
 		5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpotCollectionViewCell.xib; sourceTree = "<group>"; };
+		5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotsCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				5FC1410520BFAFF300495D66 /* SpotCollectionViewCell.swift */,
 				5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */,
 				5FC1410120BE815300495D66 /* ParkDetailView.swift */,
+				5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				5F23F15620BCF23E00431F10 /* Spot.swift in Sources */,
 				5F17C64920BD0D480090A98C /* TabBarItemType.swift in Sources */,
 				5F87D27C20B9AC3A003F2876 /* Page.swift in Sources */,
+				5FC1410A20BFDEB300495D66 /* SpotsCollectionView.swift in Sources */,
 				5FC1410720BFAFF300495D66 /* SpotCollectionViewCell.swift in Sources */,
 				5F17C64D20BD2AFD0090A98C /* TabBarController.swift in Sources */,
 				5F87D27A20B9AB5C003F2876 /* ParkAPIClient.swift in Sources */,

@@ -23,7 +23,7 @@ class ParkDetailViewController: UIViewController {
     var currentPark: Park?
     
     // SpotsCollectionView
-    var spotsCollectionView: UICollectionView?
+    var spotsCollectionView: SpotsCollectionView?
     var spotState: State {
         didSet {
             DispatchQueue.main.async {
@@ -76,17 +76,12 @@ class ParkDetailViewController: UIViewController {
         
         // MARK: SpotsCollectionView
         let parkDetailViewHeight = parkDetailView?.bounds.height ?? 0
-        let collectionViewFrame = CGRect(x: 0, y: navigationBarHeight + parkDetailViewHeight, width: view.bounds.width, height: view.bounds.height * 0.3)
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        collectionViewLayout.scrollDirection = .horizontal
-        collectionViewLayout.minimumLineSpacing = 0.0
-        self.spotsCollectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: collectionViewLayout)
+        let collectionViewFrame = CGRect(x: 0, y: navigationBarHeight + parkDetailViewHeight, width: view.bounds.width, height: SpotsCollectionView.viewHeight(with: view.bounds.width))
+        let layout = UICollectionViewFlowLayout()
+        self.spotsCollectionView = SpotsCollectionView(frame: collectionViewFrame, collectionViewLayout: layout)
         if let spotsCollectionView = spotsCollectionView {
-            spotsCollectionView.backgroundColor = .lightGray
             spotsCollectionView.delegate = self
             spotsCollectionView.dataSource = self
-            spotsCollectionView.register(UINib(nibName: SpotCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: SpotCollectionViewCell.identifier)
             self.view.addSubview(spotsCollectionView)
         }
     }
@@ -132,13 +127,5 @@ extension ParkDetailViewController: UICollectionViewDataSource, UICollectionView
             cell.spotName.text = spot.name
         }
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 110, height: 150)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
