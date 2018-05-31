@@ -14,6 +14,7 @@ class ParkDetailAPIProvider: ParkDetailProvider {
     
     let client: APIClient
     var parkDetailDelegate: ParkDetailProviderDelagate?
+    var isSpotsFetched: Bool = false
     private var facilities = [Facility]()
     private var spots = [Spot]()
     
@@ -39,6 +40,7 @@ class ParkDetailAPIProvider: ParkDetailProvider {
         
         client.readSpots(by: parkName, success: { (spots) in
             self.spots = spots
+            self.isSpotsFetched = true
             self.parkDetailDelegate?.didFetchSpot(by: self)
         }) { (error) in
             self.parkDetailDelegate?.didFailToSpot(with: error, by: self)

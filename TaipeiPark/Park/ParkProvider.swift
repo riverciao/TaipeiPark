@@ -47,6 +47,7 @@ protocol ParkDetailProvider: class {
     weak var parkDetailDelegate: ParkDetailProviderDelagate? { get set }
     var facilitiesDescription: String { get }
     var numberOfSpots: Int { get }
+    var isSpotsFetched: Bool { get }
     
     // MARK: Data
     

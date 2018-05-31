@@ -9,7 +9,7 @@
 import UIKit
 
 class SpotCollectionViewCell: UICollectionViewCell {
-
+    
     class var identifier: String { return String(describing: self) }
     
     @IBOutlet weak var spotImageView: UIImageView!
