@@ -18,9 +18,4 @@ class SpotCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    private func setup() {
-        self.contentView.backgroundColor = .yellow
-    }
-
 }
