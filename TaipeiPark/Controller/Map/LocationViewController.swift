@@ -22,6 +22,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     init(provider: ParkProvider) {
         self.provider = provider
         super.init(nibName: nil, bundle: nil)
+        provider.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -77,5 +78,15 @@ extension LocationViewController: CLLocationManagerDelegate {
             let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 600, 600)
             locationView?.mapView.setRegion(viewRegion, animated: false)
         }
+    }
+}
+
+extension LocationViewController: ParkProviderDelegate {
+    func didFetch(by provider: ParkProvider) {
+        
+    }
+    
+    func didFail(with error: Error, by provider: ParkProvider) {
+        print(error)
     }
 }

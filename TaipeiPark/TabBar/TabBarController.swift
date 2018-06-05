@@ -45,10 +45,10 @@ class TabBarController: UITabBarController {
         case .map:
             let client = APIClient()
             let provider = ParkAPIProvider(client: client)
-            let mapViewController = LocationViewController(provider: provider)
-            mapViewController.provider.fetch()
+            let locationViewController = LocationViewController(provider: provider)
+            locationViewController.provider.fetch()
             
-            let navigationController = UINavigationController(rootViewController: mapViewController)
+            let navigationController = UINavigationController(rootViewController: locationViewController)
             return navigationController
             
         case .favorite:
