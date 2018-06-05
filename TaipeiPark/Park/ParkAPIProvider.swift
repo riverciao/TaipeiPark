@@ -15,8 +15,8 @@ class ParkAPIProvider: ParkProvider {
     
     let client: APIClient
     var delegate: ParkProviderDelegate?
+    var parks = [Park]()
     private var page: Page = .begin
-    private var parks = [Park]()
     private var pageIsRead = [Page: Bool]()
     
     // MARK: Init

@@ -36,6 +36,7 @@ protocol ParkProvider: class {
     
     // MARK: Data
 
+    var parks: [Park] { get }
     func fetch()
     func park(at indexPath: IndexPath) -> Park
 }

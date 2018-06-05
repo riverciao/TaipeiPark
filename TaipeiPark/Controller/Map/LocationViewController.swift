@@ -15,7 +15,11 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     
     let provider: ParkProvider
     var locationManager = CLLocationManager()
-    var locationView: LocationView?
+    var locationView: LocationView? {
+        didSet {
+            print("locationViewDidSet")
+        }
+    }
     
     // MARK: Init
     
@@ -83,7 +87,7 @@ extension LocationViewController: CLLocationManagerDelegate {
 
 extension LocationViewController: ParkProviderDelegate {
     func didFetch(by provider: ParkProvider) {
-        
+        print("didFetch")
     }
     
     func didFail(with error: Error, by provider: ParkProvider) {
