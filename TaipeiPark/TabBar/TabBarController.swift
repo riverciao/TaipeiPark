@@ -10,7 +10,6 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    
     // MARK: Init
     
     init(itemTypes: [TabBarItemType]) {

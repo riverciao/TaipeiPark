@@ -20,11 +20,15 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         setUp()
         setupLocationManager()
+        addPins()
     }
     
     // MARK: Setup
     
     private func setUp() {
+        
+        // MARK: LocationView
+        
         let navigationBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
         let tabBarHeight = self.tabBarController?.tabBar.frame.height ?? 0
         locationView = LocationView(frame: CGRect(x: 0, y: navigationBarHeight, width: view.frame.width, height: view.frame.height - tabBarHeight - navigationBarHeight))
@@ -41,6 +45,12 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
             locationManager.startUpdatingLocation()
         }
     }
+    
+    private func addPins() {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 25.042622, longitude: 121.565149)
+        locationView?.mapView.addAnnotation(annotation)
+    }
 }
 
 extension LocationViewController: CLLocationManagerDelegate {
@@ -51,7 +61,7 @@ extension LocationViewController: CLLocationManagerDelegate {
         // Zoom to user location
         if let userLocation = locations.last {
             let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 600, 600)
-            locationView?.mapView.setRegion(viewRegion, animated: true)
+            locationView?.mapView.setRegion(viewRegion, animated: false)
         }
     }
 }
