@@ -37,6 +37,7 @@
 		5FC1410720BFAFF300495D66 /* SpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410520BFAFF300495D66 /* SpotCollectionViewCell.swift */; };
 		5FC1410820BFAFF300495D66 /* SpotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */; };
 		5FC1410A20BFDEB300495D66 /* SpotsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */; };
+		5FF5AF3220C63B4F005188BE /* SpotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		5FC1410520BFAFF300495D66 /* SpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotCollectionViewCell.swift; sourceTree = "<group>"; };
 		5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpotCollectionViewCell.xib; sourceTree = "<group>"; };
 		5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotsCollectionView.swift; sourceTree = "<group>"; };
+		5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,33 +100,30 @@
 		5F17C64E20BD2EC40090A98C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5F17C65020BD2EE40090A98C /* MapViewController */,
-				5F17C64F20BD2ED00090A98C /* ParksTableViewController */,
-				5F17C65520BD527B0090A98C /* ParkDetailViewController.swift */,
-				5FC1410520BFAFF300495D66 /* SpotCollectionViewCell.swift */,
-				5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */,
-				5FC1410120BE815300495D66 /* ParkDetailView.swift */,
-				5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */,
+				5FF5AF3020C63A98005188BE /* ParkDetail */,
+				5F17C65020BD2EE40090A98C /* Map */,
+				5F17C64F20BD2ED00090A98C /* ParkList */,
+				5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		5F17C64F20BD2ED00090A98C /* ParksTableViewController */ = {
+		5F17C64F20BD2ED00090A98C /* ParkList */ = {
 			isa = PBXGroup;
 			children = (
 				5F87D28120BAA64B003F2876 /* ParksTableViewController.swift */,
 				5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */,
 				5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */,
 			);
-			path = ParksTableViewController;
+			path = ParkList;
 			sourceTree = "<group>";
 		};
-		5F17C65020BD2EE40090A98C /* MapViewController */ = {
+		5F17C65020BD2EE40090A98C /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				5F17C65120BD2F020090A98C /* MapViewController.swift */,
 			);
-			path = MapViewController;
+			path = Map;
 			sourceTree = "<group>";
 		};
 		5F87D24A20B7AC09003F2876 = {
@@ -193,6 +192,18 @@
 				5F17C64520BCFFDA0090A98C /* ParkDetailAPIProvider.swift */,
 			);
 			path = Park;
+			sourceTree = "<group>";
+		};
+		5FF5AF3020C63A98005188BE /* ParkDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5F17C65520BD527B0090A98C /* ParkDetailViewController.swift */,
+				5FC1410520BFAFF300495D66 /* SpotCollectionViewCell.swift */,
+				5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */,
+				5FC1410120BE815300495D66 /* ParkDetailView.swift */,
+				5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */,
+			);
+			path = ParkDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +291,7 @@
 				5F87D25920B7AC09003F2876 /* ViewController.swift in Sources */,
 				5F23F15620BCF23E00431F10 /* Spot.swift in Sources */,
 				5F17C64920BD0D480090A98C /* TabBarItemType.swift in Sources */,
+				5FF5AF3220C63B4F005188BE /* SpotDetailViewController.swift in Sources */,
 				5F87D27C20B9AC3A003F2876 /* Page.swift in Sources */,
 				5FC1410A20BFDEB300495D66 /* SpotsCollectionView.swift in Sources */,
 				5FC1410720BFAFF300495D66 /* SpotCollectionViewCell.swift in Sources */,
