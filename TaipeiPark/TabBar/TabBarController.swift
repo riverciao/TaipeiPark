@@ -44,7 +44,7 @@ class TabBarController: UITabBarController {
             return navigationController
             
         case .map:
-            let mapViewController = MapViewController()
+            let mapViewController = LocationViewController()
             let navigationController = UINavigationController(rootViewController: mapViewController)
             return navigationController
             

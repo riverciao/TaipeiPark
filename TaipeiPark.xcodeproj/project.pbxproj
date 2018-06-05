@@ -11,7 +11,7 @@
 		5F17C64920BD0D480090A98C /* TabBarItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C64820BD0D480090A98C /* TabBarItemType.swift */; };
 		5F17C64B20BD29740090A98C /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C64A20BD29740090A98C /* TabBarItem.swift */; };
 		5F17C64D20BD2AFD0090A98C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C64C20BD2AFD0090A98C /* TabBarController.swift */; };
-		5F17C65220BD2F020090A98C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C65120BD2F020090A98C /* MapViewController.swift */; };
+		5F17C65220BD2F020090A98C /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C65120BD2F020090A98C /* LocationViewController.swift */; };
 		5F17C65720BD527B0090A98C /* ParkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C65520BD527B0090A98C /* ParkDetailViewController.swift */; };
 		5F23F15120BB01E000431F10 /* ParkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */; };
 		5F23F15220BB01E000431F10 /* ParkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */; };
@@ -39,6 +39,8 @@
 		5FC1410A20BFDEB300495D66 /* SpotsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */; };
 		5FF5AF3220C63B4F005188BE /* SpotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */; };
 		5FF5AF3420C63D67005188BE /* SpotDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3320C63D67005188BE /* SpotDetailView.swift */; };
+		5FF5AF3620C65FDE005188BE /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3520C65FDE005188BE /* LocationView.swift */; };
+		5FF5AF3820C6612B005188BE /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3720C6612B005188BE /* UIViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +48,7 @@
 		5F17C64820BD0D480090A98C /* TabBarItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemType.swift; sourceTree = "<group>"; };
 		5F17C64A20BD29740090A98C /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		5F17C64C20BD2AFD0090A98C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		5F17C65120BD2F020090A98C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		5F17C65120BD2F020090A98C /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		5F17C65520BD527B0090A98C /* ParkDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDetailViewController.swift; sourceTree = "<group>"; };
 		5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkTableViewCell.swift; sourceTree = "<group>"; };
 		5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkTableViewCell.xib; sourceTree = "<group>"; };
@@ -76,6 +78,8 @@
 		5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotsCollectionView.swift; sourceTree = "<group>"; };
 		5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailViewController.swift; sourceTree = "<group>"; };
 		5FF5AF3320C63D67005188BE /* SpotDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailView.swift; sourceTree = "<group>"; };
+		5FF5AF3520C65FDE005188BE /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		5FF5AF3720C6612B005188BE /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +128,8 @@
 		5F17C65020BD2EE40090A98C /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				5F17C65120BD2F020090A98C /* MapViewController.swift */,
+				5F17C65120BD2F020090A98C /* LocationViewController.swift */,
+				5FF5AF3520C65FDE005188BE /* LocationView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 			children = (
 				5F87D26F20B7C15B003F2876 /* URLRequestExtensions.swift */,
 				5F4CD33420BE59FF006E1A88 /* UIImageViewExtensions.swift */,
+				5FF5AF3720C6612B005188BE /* UIViewExtensions.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -287,7 +293,7 @@
 				5F87D28220BAA64C003F2876 /* ParksTableViewController.swift in Sources */,
 				5F87D27820B9AA02003F2876 /* APIClient.swift in Sources */,
 				5FF5AF3420C63D67005188BE /* SpotDetailView.swift in Sources */,
-				5F17C65220BD2F020090A98C /* MapViewController.swift in Sources */,
+				5F17C65220BD2F020090A98C /* LocationViewController.swift in Sources */,
 				5F23F15120BB01E000431F10 /* ParkTableViewCell.swift in Sources */,
 				5F87D27420B80503003F2876 /* Park.swift in Sources */,
 				5F4CD33520BE59FF006E1A88 /* UIImageViewExtensions.swift in Sources */,
@@ -304,6 +310,8 @@
 				5F17C65720BD527B0090A98C /* ParkDetailViewController.swift in Sources */,
 				5FC1410220BE815300495D66 /* ParkDetailView.swift in Sources */,
 				5F87D25F20B7AC09003F2876 /* TaipeiPark.xcdatamodeld in Sources */,
+				5FF5AF3620C65FDE005188BE /* LocationView.swift in Sources */,
+				5FF5AF3820C6612B005188BE /* UIViewExtensions.swift in Sources */,
 				5F17C64B20BD29740090A98C /* TabBarItem.swift in Sources */,
 				5F87D28020BA960B003F2876 /* ParkAPIProvider.swift in Sources */,
 				5F17C64620BCFFDA0090A98C /* ParkDetailAPIProvider.swift in Sources */,
