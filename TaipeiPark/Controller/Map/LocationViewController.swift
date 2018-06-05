@@ -11,8 +11,22 @@ import MapKit
 
 class LocationViewController: UIViewController, MKMapViewDelegate {
     
+    // MARK: Property
+    
+    let provider: ParkProvider
     var locationManager = CLLocationManager()
     var locationView: LocationView?
+    
+    // MARK: Init
+    
+    init(provider: ParkProvider) {
+        self.provider = provider
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: View life cycle
     

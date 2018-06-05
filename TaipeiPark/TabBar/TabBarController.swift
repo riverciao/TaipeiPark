@@ -43,7 +43,11 @@ class TabBarController: UITabBarController {
             return navigationController
             
         case .map:
-            let mapViewController = LocationViewController()
+            let client = APIClient()
+            let provider = ParkAPIProvider(client: client)
+            let mapViewController = LocationViewController(provider: provider)
+            mapViewController.provider.fetch()
+            
             let navigationController = UINavigationController(rootViewController: mapViewController)
             return navigationController
             
