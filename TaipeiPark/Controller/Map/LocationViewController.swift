@@ -54,6 +54,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         if let locationView = locationView {
             view.addSubview(locationView)
         }
+        provider.fetch()
     }
     
     private func setupLocationManager() {
@@ -88,6 +89,7 @@ extension LocationViewController: CLLocationManagerDelegate {
 extension LocationViewController: ParkProviderDelegate {
     func didFetch(by provider: ParkProvider) {
         print("didFetch")
+        
     }
     
     func didFail(with error: Error, by provider: ParkProvider) {

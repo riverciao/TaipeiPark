@@ -46,8 +46,6 @@ class TabBarController: UITabBarController {
             let client = APIClient()
             let provider = ParkAPIProvider(client: client)
             let locationViewController = LocationViewController(provider: provider)
-            locationViewController.provider.fetch()
-            
             let navigationController = UINavigationController(rootViewController: locationViewController)
             return navigationController
             
