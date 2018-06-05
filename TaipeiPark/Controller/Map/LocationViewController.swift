@@ -11,9 +11,20 @@ import MapKit
 
 class LocationViewController: UIViewController, MKMapViewDelegate {
     
+    // MARK: State
+    
+    enum State {
+        case preparing
+        case ready
+    }
+    
     // MARK: Property
     
     let provider: ParkProvider
+    var state: State = .preparing {
+        didSet {
+        }
+    }
     var locationManager = CLLocationManager()
     var locationView: LocationView? {
         didSet {
@@ -39,7 +50,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         setUp()
         setupLocationManager()
-        addPins()
+//        addPins()
     }
     
     // MARK: Setup
@@ -68,7 +79,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     
     private func addPins() {
         let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 25.042622, longitude: 121.565149)
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 25.04044, longitude: 121.51416999999999)
         locationView?.mapView.addAnnotation(annotation)
     }
 }
@@ -88,8 +99,28 @@ extension LocationViewController: CLLocationManagerDelegate {
 
 extension LocationViewController: ParkProviderDelegate {
     func didFetch(by provider: ParkProvider) {
-        print("didFetch")
         
+        state = .ready
+        
+        DispatchQueue.main.async {
+            let annotation = MKPointAnnotation()
+            let coordinate = self.provider.parks[0].coordinate
+            annotation.coordinate = coordinate
+            annotation.coordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            //                annotation.coordinate = CLLocationCoordinate2D(latitude: 25.04044, longitude: 121.51416999999999)
+            annotation.title = "Show up!!!!"
+            self.locationView?.mapView.addAnnotation(annotation)
+        }
+        
+//        for park in provider.parks {
+//
+//            let annotation = MKPointAnnotation()
+//            annotation.coordinate = park.coordinate
+//            DispatchQueue.main.async {
+//                self.locationView?.mapView.addAnnotation(annotation)
+//                self.addPins()
+//            }
+//        }
     }
     
     func didFail(with error: Error, by provider: ParkProvider) {
