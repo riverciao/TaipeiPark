@@ -34,10 +34,6 @@ class LocationView: UIView {
     
     private func setUp() {
         self.addSubview(mapView)
-        mapView.allConstraintsEqual(to: self)
-//        mapView.topAnchor.constraint(equalTo: self.topAnchor)
-//        mapView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-//        mapView.topAnchor.constraint(equalTo: self.topAnchor)
-//        mapView.topAnchor.constraint(equalTo: self.topAnchor)
+        mapView.allConstraints(equalTo: self)
     }
 }

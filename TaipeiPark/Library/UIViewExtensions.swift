@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UIView {
-    public func allConstraintsEqual(to superView: UIView) {
+    public func allConstraints(equalTo superView: UIView) {
         self.topAnchor.constraint(equalTo: superView.topAnchor).isActive = true
         self.bottomAnchor.constraint(equalTo: superView.bottomAnchor).isActive = true
         self.rightAnchor.constraint(equalTo: superView.rightAnchor).isActive = true

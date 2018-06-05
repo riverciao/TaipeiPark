@@ -97,10 +97,7 @@ class ParkDetailView: UIView {
         self.backgroundColor = .white
         
         self.addSubview(scrollView)
-        scrollView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        scrollView.allConstraints(equalTo: self)
         
         scrollView.addSubview(parkImageView)
         parkImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true

@@ -48,8 +48,10 @@ extension LocationViewController: CLLocationManagerDelegate {
     // MARK: CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // Zoom to user location
         if let userLocation = locations.last {
             let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 600, 600)
+            locationView?.mapView.setRegion(viewRegion, animated: true)
         }
     }
 }
