@@ -36,5 +36,7 @@ class SpotDetailViewController: UIViewController {
     
     private func setup() {
         view.backgroundColor = .white
+        
+       
     }
 }

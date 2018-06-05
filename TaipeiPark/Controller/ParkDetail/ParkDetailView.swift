@@ -12,7 +12,6 @@ class ParkDetailView: UIView {
     
     // MARK: Property
     
-    class var identifier: String { return String(describing: self) }
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
@@ -79,6 +78,8 @@ class ParkDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    // MARK: Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
