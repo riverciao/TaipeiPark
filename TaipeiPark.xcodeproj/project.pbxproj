@@ -38,6 +38,7 @@
 		5FC1410820BFAFF300495D66 /* SpotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */; };
 		5FC1410A20BFDEB300495D66 /* SpotsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */; };
 		5FF5AF3220C63B4F005188BE /* SpotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */; };
+		5FF5AF3420C63D67005188BE /* SpotDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3320C63D67005188BE /* SpotDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpotCollectionViewCell.xib; sourceTree = "<group>"; };
 		5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotsCollectionView.swift; sourceTree = "<group>"; };
 		5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailViewController.swift; sourceTree = "<group>"; };
+		5FF5AF3320C63D67005188BE /* SpotDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				5F17C65020BD2EE40090A98C /* Map */,
 				5F17C64F20BD2ED00090A98C /* ParkList */,
 				5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */,
+				5FF5AF3320C63D67005188BE /* SpotDetailView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				5F87D26D20B7BD87003F2876 /* Router.swift in Sources */,
 				5F87D28220BAA64C003F2876 /* ParksTableViewController.swift in Sources */,
 				5F87D27820B9AA02003F2876 /* APIClient.swift in Sources */,
+				5FF5AF3420C63D67005188BE /* SpotDetailView.swift in Sources */,
 				5F17C65220BD2F020090A98C /* MapViewController.swift in Sources */,
 				5F23F15120BB01E000431F10 /* ParkTableViewCell.swift in Sources */,
 				5F87D27420B80503003F2876 /* Park.swift in Sources */,

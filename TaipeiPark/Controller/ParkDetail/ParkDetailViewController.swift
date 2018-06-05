@@ -135,7 +135,8 @@ extension ParkDetailViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let spotDetailViewController = SpotDetailViewController()
+        let spot = provider.spot(at: indexPath)
+        let spotDetailViewController = SpotDetailViewController(spot: spot)
         self.navigationController?.pushViewController(spotDetailViewController, animated: true)
     }
 }
