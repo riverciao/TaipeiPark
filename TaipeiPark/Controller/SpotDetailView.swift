@@ -26,7 +26,7 @@ class SpotDetailView: UIView {
     }()
     lazy var parkNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 22)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         label.textColor = .black
         label.text = "Park Name"
@@ -44,7 +44,7 @@ class SpotDetailView: UIView {
     }()
     lazy var openTimeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 22)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         label.textColor = .black
         label.text = "Open Time"
@@ -53,7 +53,7 @@ class SpotDetailView: UIView {
     }()
     lazy var introductionLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
         label.textColor = .black
         label.text = "Introduction"
@@ -89,11 +89,12 @@ class SpotDetailView: UIView {
         spotImageView.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.6).isActive = true
         
         setupLabelsLayout([
-            parkNameLabel,
             spotNameLabel,
+            parkNameLabel,
             openTimeLabel,
             introductionLabel
             ])
+        
     }
     
     private func setupLabelsLayout(_ labels: [UILabel]) {

@@ -6,6 +6,9 @@
 //  Copyright © 2018年 riverciao. All rights reserved.
 //
 
+import Foundation
+import UIKit
+
 public struct Spot: Codable {
     
     // MARK: CodingKeys
@@ -14,7 +17,7 @@ public struct Spot: Codable {
         case name = "Name"
         case openTime = "OpenTime"
         case introduction = "Introduction"
-        case imageURL = "Image"
+        case imageURLString = "Image"
     }
     
     // MARK: Property
@@ -23,5 +26,12 @@ public struct Spot: Codable {
     public let name: String
     public let openTime: String
     public let introduction: String
-    public let imageURL: String
+    public let imageURLString: String
+    public var image: UIImage?
+}
+
+extension Spot {
+    var imageURL: URL? {
+        return URL(string: imageURLString)
+    }
 }
