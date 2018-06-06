@@ -49,6 +49,7 @@
 		5FF5AF4920C7E292005188BE /* PersistenceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4820C7E292005188BE /* PersistenceDelegate.swift */; };
 		5FF5AF4B20C7E378005188BE /* PersistenceQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4A20C7E378005188BE /* PersistenceQueue.swift */; };
 		5FF5AF4D20C7E4F4005188BE /* PersistenceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4C20C7E4F4005188BE /* PersistenceError.swift */; };
+		5FF5AF5320C7ED46005188BE /* LikedPark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF5220C7ED46005188BE /* LikedPark.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		5FF5AF4820C7E292005188BE /* PersistenceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceDelegate.swift; sourceTree = "<group>"; };
 		5FF5AF4A20C7E378005188BE /* PersistenceQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceQueue.swift; sourceTree = "<group>"; };
 		5FF5AF4C20C7E4F4005188BE /* PersistenceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceError.swift; sourceTree = "<group>"; };
+		5FF5AF5220C7ED46005188BE /* LikedPark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedPark.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +259,7 @@
 			children = (
 				5FF5AF4020C7CD41005188BE /* LikedParkProvider.swift */,
 				5FF5AF4420C7D3FC005188BE /* LikedProductLocalProvider.swift */,
+				5FF5AF5220C7ED46005188BE /* LikedPark.swift */,
 			);
 			path = Like;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				5F17C65220BD2F020090A98C /* LocationViewController.swift in Sources */,
 				5F23F15120BB01E000431F10 /* ParkTableViewCell.swift in Sources */,
 				5F87D27420B80503003F2876 /* Park.swift in Sources */,
+				5FF5AF5320C7ED46005188BE /* LikedPark.swift in Sources */,
 				5F4CD33520BE59FF006E1A88 /* UIImageViewExtensions.swift in Sources */,
 				5F87D27020B7C15B003F2876 /* URLRequestExtensions.swift in Sources */,
 				5F87D25920B7AC09003F2876 /* ViewController.swift in Sources */,
