@@ -17,6 +17,12 @@ class ParkTableViewCell: UITableViewCell {
     @IBOutlet weak var parkImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var mapButton: UIButton!
+    var isLiked = true {
+        didSet {
+            likeButton.tintColor = isLiked ?
+                UIColor.likedColor : UIColor.unlikedColor
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +35,7 @@ class ParkTableViewCell: UITableViewCell {
         mapButton.backgroundColor = .mapButtonColor
         mapButton.setTitleColor(.white, for: .normal)
         
-        likeButton.tintColor = .lightGray
+        likeButton.tintColor = .unlikedColor
         likeButton.setImage(
             #imageLiteral(resourceName: "icon-star").withRenderingMode(.alwaysTemplate),
             for: .normal

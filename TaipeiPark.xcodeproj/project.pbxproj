@@ -156,11 +156,11 @@
 		5F87D25520B7AC09003F2876 /* TaipeiPark */ = {
 			isa = PBXGroup;
 			children = (
-				5FF5AF3B20C7A7EA005188BE /* View */,
 				5F17C64E20BD2EC40090A98C /* Controller */,
 				5F87D27220B804DB003F2876 /* Park */,
 				5F87D26E20B7C0EA003F2876 /* Library */,
 				5F87D26B20B7BD6E003F2876 /* API */,
+				5FF5AF3B20C7A7EA005188BE /* Navigation */,
 				5F17C64720BD0D1D0090A98C /* TabBar */,
 				5F87D25620B7AC09003F2876 /* AppDelegate.swift */,
 				5F87D25820B7AC09003F2876 /* ViewController.swift */,
@@ -220,12 +220,12 @@
 			path = ParkDetail;
 			sourceTree = "<group>";
 		};
-		5FF5AF3B20C7A7EA005188BE /* View */ = {
+		5FF5AF3B20C7A7EA005188BE /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
 				5FF5AF3C20C7A810005188BE /* NavigationController.swift */,
 			);
-			path = View;
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		5FF5AF3E20C7C201005188BE /* SpotDetail */ = {
