@@ -25,5 +25,14 @@ class ParkTableViewCell: UITableViewCell {
     
     private func setupImageView() {
         parkImageView.contentMode = .scaleAspectFit
+        
+        mapButton.backgroundColor = .mapButtonColor
+        mapButton.setTitleColor(.white, for: .normal)
+        
+        likeButton.tintColor = .lightGray
+        likeButton.setImage(
+            #imageLiteral(resourceName: "icon-star").withRenderingMode(.alwaysTemplate),
+            for: .normal
+        )
     }
 }

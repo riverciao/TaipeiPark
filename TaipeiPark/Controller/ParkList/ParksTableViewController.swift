@@ -36,12 +36,6 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.register(UINib(nibName: ParkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ParkTableViewCell.identifier)
-    }
-    
     // MARK: Init
     
     init(provider: ParkProvider) {
@@ -57,7 +51,22 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // move to tabbarcontroller init later
+    // MARK: View life cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.register(UINib(nibName: ParkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ParkTableViewCell.identifier)
+        setUp()
+    }
+    
+    // MARK : SetUp
+    
+    private func setUp() {
+        
+    }
+    
+    // TODO: move to tabbarcontroller init later
     func setupTableView() {
         tableView.prefetchDataSource = isAutoFetching ? self : nil
     }

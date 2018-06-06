@@ -50,6 +50,12 @@ class TabBarController: UITabBarController {
             
             let navigationController = UINavigationController(rootViewController: parksTableViewController)
             navigationController.tabBarItem = TabBarItem(itemType: .list)
+            
+            // TODO: Custom navigaton controller
+            navigationController.navigationBar.barTintColor = .barColor
+            navigationController.navigationItem.title = "Taipei Park"
+            navigationController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+            
             return navigationController
             
         case .map:
