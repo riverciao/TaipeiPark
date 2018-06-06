@@ -139,6 +139,7 @@ extension ParkDetailViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let spot = provider.spot(at: indexPath)
         let spotDetailViewController = SpotDetailViewController(spot: spot)
+        navigationItem.title = ""
         self.navigationController?.pushViewController(spotDetailViewController, animated: true)
     }
 }

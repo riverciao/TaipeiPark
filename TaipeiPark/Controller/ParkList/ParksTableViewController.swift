@@ -126,6 +126,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         provider.fetchSpot(by: currentPark.name)
         parkDetailViewController.currentPark = currentPark
         
+        navigationItem.title = ""
         self.navigationController?.pushViewController(parkDetailViewController, animated: true)
     }
     

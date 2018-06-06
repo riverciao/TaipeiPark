@@ -16,7 +16,7 @@ class NavigationController: UINavigationController {
         let label = UILabel()
         let title = NSLocalizedString("Taipei Park", comment: "")
         label.text = title
-        label.textColor = .barTextColor
+        label.textColor = .barTintColor
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -37,7 +37,8 @@ class NavigationController: UINavigationController {
     // MARK: Setup
     
     private func setUp() {
-        self.navigationBar.barTintColor = .barColor
+        navigationBar.barTintColor = .barColor
+        navigationBar.tintColor = .barTintColor
         
         // MARK: titleLabel
         navigationBar.addSubview(titleLabel)
