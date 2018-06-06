@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol LikedParkProvider {
+public protocol LikedParkProvider: class {
     func isLikedPark(id: String) -> Bool
     func likePark(id: String) throws
     func removeLikedPark(id: String) throws
