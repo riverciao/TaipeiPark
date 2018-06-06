@@ -96,7 +96,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                     try likedParkProvider.removeLikedPark(id: park.id)
                     try context.save()
                 } else {
-                    try likedParkProvider.likePark(id: park.id)
+                    try likedParkProvider.likePark(_ park: park.id)
                     try context.save()
                 }
                 

@@ -27,9 +27,10 @@ public struct LikedPark {
     
     // MARK: Init
     
-    public init(park: Park) {
+    public init(_ park: Park) throws {
         self.parkId = park.id
-        let parkData = try JSONEncoder.encode(park)
+        let parkData = try JSONEncoder().encode(park)
+        self.parkData = parkData
     }
 }
 
@@ -43,13 +44,17 @@ extension LikedPark {
         guard let parkIdValue = likedParkObject.parkId else {
             throw ModelError.missingValueForKey(Schema.parkId)
         }
+        guard let parkData = likedParkObject.parkData else {
+            throw ModelError.missingValueForKey(Schema.parkData)
+        }
         self.parkId = ParkId(rawValue: parkIdValue)
+        self.parkData = parkData
     }
     
     public func makeManagedObject(in context: NSManagedObjectContext) throws -> NSManagedObject {
         let likedPark = LikedParkEntity(context: context)
         likedPark.parkId = parkId.rawValue
-//        likedPark.parkData = //ParkData
+        likedPark.parkData = parkData
         return likedPark
     }
 }

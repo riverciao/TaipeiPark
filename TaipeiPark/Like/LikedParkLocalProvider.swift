@@ -59,10 +59,10 @@ extension LikedParkLocalProvider: LikedParkProvider {
     }
     
     /// Should save context manually after execute this method.
-    public func likePark(id: ParkId) throws {
+    public func likePark(_ park: Park) throws {
         let persistenceDelegate = try validatePersistence()
         try persistenceDelegate.performTask(in: .main) { (context) in
-            let likedPark = LikedPark(parkId: id)
+            let likedPark = try LikedPark(park)
             let _ = try likedPark.makeManagedObject(in: context)
         }
     }
