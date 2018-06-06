@@ -12,10 +12,11 @@ class TabBarItem: UITabBarItem {
     
     var tabBarItemType: TabBarItemType?
     
-    init(tabBarItemType: TabBarItemType) {
+    init(itemType: TabBarItemType) {
         super.init()
-        self.tabBarItemType = tabBarItemType
-        self.title = tabBarItemType.title
+        self.tabBarItemType = itemType
+        self.title = itemType.title
+        self.image = itemType.image
     }
     
     required init?(coder aDecoder: NSCoder) {

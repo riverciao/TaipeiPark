@@ -15,7 +15,7 @@ class TabBarController: UITabBarController {
     init(itemTypes: [TabBarItemType]) {
         super.init(nibName: nil, bundle: nil)
         
-        let viewControllers = itemTypes.map(TabBarController.prepare)
+        let viewControllers: [UIViewController] = itemTypes.map(TabBarController.prepare)
         setViewControllers(viewControllers, animated: false)
     }
     
@@ -27,6 +27,15 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTabBar()
+    }
+    
+    // MARK: SetUp
+    
+    private func setUpTabBar() {
+        tabBar.barStyle = .default
+        tabBar.isTranslucent = false
+        tabBar.tintColor = UIColor.blue
     }
     
     // MARK: Prepare item type
@@ -40,6 +49,7 @@ class TabBarController: UITabBarController {
             parksTableViewController.provider.fetch()
             
             let navigationController = UINavigationController(rootViewController: parksTableViewController)
+            navigationController.tabBarItem = TabBarItem(itemType: .list)
             return navigationController
             
         case .map:
@@ -47,6 +57,7 @@ class TabBarController: UITabBarController {
             let provider = ParkAPIProvider(client: client)
             let locationViewController = LocationViewController(provider: provider)
             let navigationController = UINavigationController(rootViewController: locationViewController)
+            navigationController.tabBarItem = TabBarItem(itemType: .map)
             return navigationController
             
         case .favorite:
@@ -58,6 +69,7 @@ class TabBarController: UITabBarController {
             parksTableViewController.provider.fetch()
             
             let navigationController = UINavigationController(rootViewController: parksTableViewController)
+            navigationController.tabBarItem = TabBarItem(itemType: .favorite)
             return navigationController
         }
     }

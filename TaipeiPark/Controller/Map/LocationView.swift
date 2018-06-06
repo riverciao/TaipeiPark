@@ -12,6 +12,7 @@ import MapKit
 class LocationView: UIView {
 
     // MARK: Property
+    
     lazy var mapView: MKMapView = {
         let view = MKMapView()
         view.translatesAutoresizingMaskIntoConstraints = false

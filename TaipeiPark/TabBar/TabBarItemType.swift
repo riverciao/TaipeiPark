@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum TabBarItemType {
     case list, map, favorite
@@ -29,9 +30,16 @@ extension TabBarItemType {
 
 // MARK: Image
 
-//extension TabBarItemType {
-//    var image: UIImage {
-//        
-//    }
-//}
+extension TabBarItemType {
+    var image: UIImage {
+        switch self {
+        case .list:
+            return #imageLiteral(resourceName: "icon-list").withRenderingMode(.alwaysTemplate)
+        case .map:
+            return #imageLiteral(resourceName: "icon-location").withRenderingMode(.alwaysTemplate)
+        case.favorite:
+            return #imageLiteral(resourceName: "icon-star").withRenderingMode(.alwaysTemplate)
+        }
+    }
+}
 

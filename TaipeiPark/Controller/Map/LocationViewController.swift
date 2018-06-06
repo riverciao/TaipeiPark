@@ -10,27 +10,12 @@ import UIKit
 import MapKit
 
 class LocationViewController: UIViewController, MKMapViewDelegate {
-    
-    // MARK: State
-    
-    enum State {
-        case preparing
-        case ready
-    }
-    
+
     // MARK: Property
     
     let provider: ParkProvider
-    var state: State = .preparing {
-        didSet {
-        }
-    }
     var locationManager = CLLocationManager()
-    var locationView: LocationView? {
-        didSet {
-            print("locationViewDidSet")
-        }
-    }
+    var locationView: LocationView?
     
     // MARK: Init
     
@@ -50,7 +35,6 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         setUp()
         setupLocationManager()
-//        addPins()
     }
     
     // MARK: Setup
@@ -76,12 +60,6 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
             locationManager.startUpdatingLocation()
         }
     }
-    
-    private func addPins() {
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 25.04044, longitude: 121.51416999999999)
-        locationView?.mapView.addAnnotation(annotation)
-    }
 }
 
 extension LocationViewController: CLLocationManagerDelegate {
@@ -91,7 +69,7 @@ extension LocationViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Zoom to user location
         if let userLocation = locations.last {
-            let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 600, 600)
+            let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 5000, 5000)
             locationView?.mapView.setRegion(viewRegion, animated: false)
         }
     }
@@ -99,28 +77,17 @@ extension LocationViewController: CLLocationManagerDelegate {
 
 extension LocationViewController: ParkProviderDelegate {
     func didFetch(by provider: ParkProvider) {
-        
-        state = .ready
-        
-        DispatchQueue.main.async {
+        for park in provider.parks {
             let annotation = MKPointAnnotation()
-            let coordinate = self.provider.parks[0].coordinate
-            annotation.coordinate = coordinate
-            annotation.coordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            //                annotation.coordinate = CLLocationCoordinate2D(latitude: 25.04044, longitude: 121.51416999999999)
-            annotation.title = "Show up!!!!"
-            self.locationView?.mapView.addAnnotation(annotation)
+            annotation.coordinate = park.coordinate
+            let mapContainsPoint = MKMapRectContainsPoint((locationView?.mapView.visibleMapRect)!, MKMapPointForCoordinate(park.coordinate))
+            let annotations = locationView?.mapView.annotations(in: (locationView?.mapView.visibleMapRect)!)
+            
+            DispatchQueue.main.async {
+                self.locationView?.mapView.addAnnotation(annotation)
+                print("mapContainsPoint: \(mapContainsPoint), OO:\(annotations?.count)")
+            }
         }
-        
-//        for park in provider.parks {
-//
-//            let annotation = MKPointAnnotation()
-//            annotation.coordinate = park.coordinate
-//            DispatchQueue.main.async {
-//                self.locationView?.mapView.addAnnotation(annotation)
-//                self.addPins()
-//            }
-//        }
     }
     
     func didFail(with error: Error, by provider: ParkProvider) {
