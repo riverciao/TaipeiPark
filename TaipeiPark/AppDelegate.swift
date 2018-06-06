@@ -13,8 +13,16 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var persistenceManager: PersistenceManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        let persistenceManager = PersistenceManager(container: NSPersistentContainer(name: "TaipeiPark"))
+        persistenceManager.container.loadPersistentStores { (_, error) in
+            // TODO: Error Handle
+            print(error)
+        }
+        self.persistenceManager = persistenceManager
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
