@@ -100,11 +100,11 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                     try context.save()
                 }
                 
-                DispatchQueue.main.sync {
-                    tableView.reloadRows(at: [indexPath], with: .none)
-                }
+                tableView.reloadRows(at: [indexPath], with: .none)
             }
         } catch {
+            
+            // TODO: ErrorHandle
             print("error: \(error)")
         }
     }
