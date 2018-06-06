@@ -19,6 +19,8 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     // MARK: Property
     
     var provider: ParkProvider
+    var likedParkProvider: LikedParkProvider?
+    var persistenceDelegate: PersistenceDelegate?
     var state: State {
         didSet {
             DispatchQueue.main.async {
@@ -69,6 +71,44 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         tableView.prefetchDataSource = isAutoFetching ? self : nil
     }
     
+    // MARK: Action
+    
+    @objc func likePark(_ sender: Any) {
+        guard
+            let tableView = tableView,
+            let button = sender as? UIButton,
+            let cell = button.superview?.superview?.superview as? ParkTableViewCell,
+            let indexPath = tableView.indexPath(for: cell)
+        else { fatalError("cell not found") }
+        
+        guard
+            let persistenceDelegate = persistenceDelegate,
+            let likedParkProvider = likedParkProvider
+        else { fatalError("make sure persistenceDelegate and likedParkProvider are assigned") }
+        
+        let park = provider.park(at: indexPath)
+        
+        do {
+            try persistenceDelegate.performTask(in: .main) { (context) in
+                
+                let isLiked = likedParkProvider.isLikedPark(id: park.id)
+                if isLiked {
+                    try likedParkProvider.removeLikedPark(id: park.id)
+                    try context.save()
+                } else {
+                    try likedParkProvider.likePark(id: park.id)
+                    try context.save()
+                }
+                
+                DispatchQueue.main.sync {
+                    tableView.reloadRows(at: [indexPath], with: .none)
+                }
+            }
+        } catch {
+            
+        }
+    }
+    
 
     // MARK: - Table view data source
 
@@ -108,6 +148,10 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 cell.introductionLabel.text = park.introduction
                 cell.parkImageView.image = nil
                 cell.parkImageView.load(url: park.imageURL)
+                
+                // LikePark
+                cell.isLiked = likedParkProvider?.isLikedPark(id: park.id) ?? false
+                cell.likeButton.addTarget(self, action: #selector(likePark), for: .touchUpInside)
             }
         }
         return cell

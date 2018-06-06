@@ -45,7 +45,7 @@
 		5FF5AF3D20C7A810005188BE /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3C20C7A810005188BE /* NavigationController.swift */; };
 		5FF5AF4120C7CD41005188BE /* LikedParkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4020C7CD41005188BE /* LikedParkProvider.swift */; };
 		5FF5AF4320C7D073005188BE /* ParkId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4220C7D073005188BE /* ParkId.swift */; };
-		5FF5AF4520C7D3FC005188BE /* LikedProductLocalProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4420C7D3FC005188BE /* LikedProductLocalProvider.swift */; };
+		5FF5AF4520C7D3FC005188BE /* LikedParkLocalProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4420C7D3FC005188BE /* LikedParkLocalProvider.swift */; };
 		5FF5AF4920C7E292005188BE /* PersistenceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4820C7E292005188BE /* PersistenceDelegate.swift */; };
 		5FF5AF4B20C7E378005188BE /* PersistenceQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4A20C7E378005188BE /* PersistenceQueue.swift */; };
 		5FF5AF4D20C7E4F4005188BE /* PersistenceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4C20C7E4F4005188BE /* PersistenceError.swift */; };
@@ -93,7 +93,7 @@
 		5FF5AF3C20C7A810005188BE /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		5FF5AF4020C7CD41005188BE /* LikedParkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedParkProvider.swift; sourceTree = "<group>"; };
 		5FF5AF4220C7D073005188BE /* ParkId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkId.swift; sourceTree = "<group>"; };
-		5FF5AF4420C7D3FC005188BE /* LikedProductLocalProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedProductLocalProvider.swift; sourceTree = "<group>"; };
+		5FF5AF4420C7D3FC005188BE /* LikedParkLocalProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedParkLocalProvider.swift; sourceTree = "<group>"; };
 		5FF5AF4820C7E292005188BE /* PersistenceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceDelegate.swift; sourceTree = "<group>"; };
 		5FF5AF4A20C7E378005188BE /* PersistenceQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceQueue.swift; sourceTree = "<group>"; };
 		5FF5AF4C20C7E4F4005188BE /* PersistenceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceError.swift; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				5FF5AF4020C7CD41005188BE /* LikedParkProvider.swift */,
-				5FF5AF4420C7D3FC005188BE /* LikedProductLocalProvider.swift */,
+				5FF5AF4420C7D3FC005188BE /* LikedParkLocalProvider.swift */,
 				5FF5AF5220C7ED46005188BE /* LikedPark.swift */,
 			);
 			path = Like;
@@ -350,7 +350,7 @@
 			files = (
 				5F87D26D20B7BD87003F2876 /* Router.swift in Sources */,
 				5F87D28220BAA64C003F2876 /* ParksTableViewController.swift in Sources */,
-				5FF5AF4520C7D3FC005188BE /* LikedProductLocalProvider.swift in Sources */,
+				5FF5AF4520C7D3FC005188BE /* LikedParkLocalProvider.swift in Sources */,
 				5FF5AF4D20C7E4F4005188BE /* PersistenceError.swift in Sources */,
 				5F87D27820B9AA02003F2876 /* APIClient.swift in Sources */,
 				5FF5AF3420C63D67005188BE /* SpotDetailView.swift in Sources */,
