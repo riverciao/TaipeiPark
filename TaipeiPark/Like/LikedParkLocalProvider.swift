@@ -9,7 +9,8 @@
 // MARK: LikedParkLocalProviderDelegate
 
 public protocol LikedParkLocalProviderDelegate: class {
-    func didFail(with error: Error, by controller: LikedParkProvider)
+    func didChange(by provider: LikedParkProvider)
+    func didFail(with error: Error, by provider: LikedParkProvider)
 }
 
 // MARK: LikedParkLocalProvider
@@ -29,6 +30,7 @@ class LikedParkLocalProvider: ParkProvider {
     
     func fetch() {
         do {
+            parks = []
             let persistenceDelegate = try validatePersistence()
             let request: NSFetchRequest<LikedParkEntity> = LikedParkEntity.fetchRequest()
             try persistenceDelegate.performTask(in: .background, execution: { context in
@@ -76,6 +78,7 @@ extension LikedParkLocalProvider: LikedParkProvider {
             let likedPark = try LikedPark(park)
             let _ = try likedPark.makeManagedObject(in: context)
         }
+        likedParkdelegate?.didChange(by: self)
     }
     
     /// Should save context manually after execute this method.
@@ -90,6 +93,7 @@ extension LikedParkLocalProvider: LikedParkProvider {
                 context.delete(likedParkObject)
             })
         }
+        likedParkdelegate?.didChange(by: self)
     }
     
     /// Should save context manually after execute this method.
