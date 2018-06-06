@@ -43,6 +43,7 @@
 		5FF5AF3820C6612B005188BE /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3720C6612B005188BE /* UIViewExtensions.swift */; };
 		5FF5AF3A20C78BC2005188BE /* ColorTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3920C78BC2005188BE /* ColorTool.swift */; };
 		5FF5AF3D20C7A810005188BE /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3C20C7A810005188BE /* NavigationController.swift */; };
+		5FF5AF4120C7CD41005188BE /* LikedParkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4020C7CD41005188BE /* LikedParkProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		5FF5AF3720C6612B005188BE /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		5FF5AF3920C78BC2005188BE /* ColorTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTool.swift; sourceTree = "<group>"; };
 		5FF5AF3C20C7A810005188BE /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		5FF5AF4020C7CD41005188BE /* LikedParkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedParkProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			children = (
 				5F17C64E20BD2EC40090A98C /* Controller */,
 				5F87D27220B804DB003F2876 /* Park */,
+				5FF5AF3F20C7C73E005188BE /* Like */,
 				5F87D26E20B7C0EA003F2876 /* Library */,
 				5F87D26B20B7BD6E003F2876 /* API */,
 				5FF5AF3B20C7A7EA005188BE /* Navigation */,
@@ -235,6 +238,14 @@
 				5FF5AF3320C63D67005188BE /* SpotDetailView.swift */,
 			);
 			path = SpotDetail;
+			sourceTree = "<group>";
+		};
+		5FF5AF3F20C7C73E005188BE /* Like */ = {
+			isa = PBXGroup;
+			children = (
+				5FF5AF4020C7CD41005188BE /* LikedParkProvider.swift */,
+			);
+			path = Like;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +342,7 @@
 				5F87D27A20B9AB5C003F2876 /* ParkAPIClient.swift in Sources */,
 				5F17C65720BD527B0090A98C /* ParkDetailViewController.swift in Sources */,
 				5FC1410220BE815300495D66 /* ParkDetailView.swift in Sources */,
+				5FF5AF4120C7CD41005188BE /* LikedParkProvider.swift in Sources */,
 				5F87D25F20B7AC09003F2876 /* TaipeiPark.xcdatamodeld in Sources */,
 				5FF5AF3620C65FDE005188BE /* LocationView.swift in Sources */,
 				5FF5AF3820C6612B005188BE /* UIViewExtensions.swift in Sources */,
