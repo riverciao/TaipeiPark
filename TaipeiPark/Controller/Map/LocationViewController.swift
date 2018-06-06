@@ -41,6 +41,11 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     
     private func setUp() {
         
+        // TODO: Custom navigaton controller
+        navigationController?.navigationBar.barTintColor = .barColor
+        self.title = "Taipei Park"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        
         // MARK: LocationView
         
         let navigationBarHeight = self.navigationController?.navigationBar.frame.height ?? 0

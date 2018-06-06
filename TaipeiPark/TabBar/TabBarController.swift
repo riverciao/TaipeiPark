@@ -35,7 +35,7 @@ class TabBarController: UITabBarController {
     private func setUpTabBar() {
         tabBar.barStyle = .default
         tabBar.isTranslucent = false
-        tabBar.tintColor = UIColor.blue
+        tabBar.tintColor = .barColor
     }
     
     // MARK: Prepare item type
@@ -58,6 +58,7 @@ class TabBarController: UITabBarController {
             let locationViewController = LocationViewController(provider: provider)
             let navigationController = UINavigationController(rootViewController: locationViewController)
             navigationController.tabBarItem = TabBarItem(itemType: .map)
+
             return navigationController
             
         case .favorite:
@@ -70,6 +71,7 @@ class TabBarController: UITabBarController {
             
             let navigationController = UINavigationController(rootViewController: parksTableViewController)
             navigationController.tabBarItem = TabBarItem(itemType: .favorite)
+            
             return navigationController
         }
     }

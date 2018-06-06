@@ -41,6 +41,7 @@
 		5FF5AF3420C63D67005188BE /* SpotDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3320C63D67005188BE /* SpotDetailView.swift */; };
 		5FF5AF3620C65FDE005188BE /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3520C65FDE005188BE /* LocationView.swift */; };
 		5FF5AF3820C6612B005188BE /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3720C6612B005188BE /* UIViewExtensions.swift */; };
+		5FF5AF3A20C78BC2005188BE /* ColorTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3920C78BC2005188BE /* ColorTool.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		5FF5AF3320C63D67005188BE /* SpotDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailView.swift; sourceTree = "<group>"; };
 		5FF5AF3520C65FDE005188BE /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		5FF5AF3720C6612B005188BE /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		5FF5AF3920C78BC2005188BE /* ColorTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTool.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				5F87D26F20B7C15B003F2876 /* URLRequestExtensions.swift */,
 				5F4CD33420BE59FF006E1A88 /* UIImageViewExtensions.swift */,
 				5FF5AF3720C6612B005188BE /* UIViewExtensions.swift */,
+				5FF5AF3920C78BC2005188BE /* ColorTool.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				5F87D25F20B7AC09003F2876 /* TaipeiPark.xcdatamodeld in Sources */,
 				5FF5AF3620C65FDE005188BE /* LocationView.swift in Sources */,
 				5FF5AF3820C6612B005188BE /* UIViewExtensions.swift in Sources */,
+				5FF5AF3A20C78BC2005188BE /* ColorTool.swift in Sources */,
 				5F17C64B20BD29740090A98C /* TabBarItem.swift in Sources */,
 				5F87D28020BA960B003F2876 /* ParkAPIProvider.swift in Sources */,
 				5F17C64620BCFFDA0090A98C /* ParkDetailAPIProvider.swift in Sources */,
