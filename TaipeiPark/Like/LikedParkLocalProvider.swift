@@ -38,6 +38,9 @@ class LikedParkLocalProvider: ParkProvider {
                     let park = try Park(likedPark)
                     self.parks.append(park)
                 })
+                DispatchQueue.main.async {
+                    self.delegate?.didFetch(by: self)
+                }
             })
         } catch {
             delegate?.didFail(with: error, by: self)

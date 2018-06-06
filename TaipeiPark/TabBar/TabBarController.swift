@@ -48,7 +48,7 @@ class TabBarController: UITabBarController {
             let parksTableViewController = ParksTableViewController(provider: provider)
             parksTableViewController.provider.fetch()
             
-            // MARK: Like Park
+            // MARK: LikedPark
             let likedParkProvider = LikedParkLocalProvider()
             likedParkProvider.persistenceDelegate = AppDelegate.shared.persistenceManager
             parksTableViewController.likedParkProvider = likedParkProvider
@@ -69,9 +69,8 @@ class TabBarController: UITabBarController {
             
         case .favorite:
             
-            // TODO: load core data to ParksTableViewController
-            let client = APIClient()
-            let provider = ParkAPIProvider(client: client)
+            let provider = LikedParkLocalProvider()
+            provider.persistenceDelegate = AppDelegate.shared.persistenceManager
             let parksTableViewController = ParksTableViewController(provider: provider)
             parksTableViewController.provider.fetch()
             

@@ -37,6 +37,7 @@ public struct Park: Codable {
         public static let result = "result"
         public static let results = "results"
         public static let count = "count"
+        public static let id = "id"
     }
     
     // MARK: Property
@@ -108,7 +109,7 @@ public struct Park: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        let id = self.id.rawValue
+        guard let id = Int(self.id.rawValue) else { throw JSONError.invalidValueForKey(Schema.id)}
         try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
         try container.encode(openTime, forKey: .openTime)
