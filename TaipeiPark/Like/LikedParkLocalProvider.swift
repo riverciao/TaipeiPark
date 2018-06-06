@@ -16,13 +16,37 @@ protocol LikedParkLocalProviderDelegate: class {
 
 import CoreData
 
-class LikedParkLocalProvider {
+class LikedParkLocalProvider: ParkProvider {
     
     // MARK: Property
     
     public weak final var persistenceDelegate: PersistenceDelegate?
-    public weak final var delegate: LikedParkLocalProviderDelegate?
-
+    public weak final var likedParkdelegate: LikedParkLocalProviderDelegate?
+    public weak final var delegate: ParkProviderDelegate?
+    var parks: [Park]
+    
+    func fetch() {
+        do {
+            let persistenceDelegate = try validatePersistence()
+            var request: NSFetchRequest<LikedParkEntity> = LikedParkEntity.fetchRequest()
+            try persistenceDelegate.performTask(in: .background, execution: { context -> Result in
+                let likedParkObjects = try context.fetch(request)
+                
+            })
+        } catch {
+            
+        }
+    }
+    
+    func park(at indexPath: IndexPath) -> Park {
+        <#code#>
+    }
+    var hasMoreParks: Bool {
+        
+    }
+    var numberOfParks: Int {
+        
+    }
 }
 
 extension LikedParkLocalProvider: LikedParkProvider {

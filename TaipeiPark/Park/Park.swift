@@ -16,7 +16,7 @@ enum JSONError: Error {
     case invalidValueForKey(String)
 }
 
-public struct Park: Decodable {
+public struct Park: Codable {
     
     private enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -91,6 +91,25 @@ public struct Park: Decodable {
         guard let latitude = Double(latitudeString) else { throw JSONError.invalidValueForKey(CodingKeys.latitude.rawValue) }
         guard let longitude = Double(longitudeString) else { throw JSONError.invalidValueForKey(CodingKeys.longitude.rawValue)}
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
+    // MARK: Encodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        let id = self.id.rawValue
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(openTime, forKey: .openTime)
+        try container.encode(introduction, forKey: .introduction)
+        try container.encode(imageURLString, forKey: .imageURLString)
+        try container.encode(administrativeArea, forKey: .administrativeArea)
+        try container.encode(address, forKey: .address)
+        try container.encode(parkType, forKey: .parkType)
+        let latitude = String(coordinate.latitude)
+        let longitude = String(coordinate.longitude)
+        try container.encode(latitude, forKey: .latitude)
+        try container.encode(longitude, forKey: .longitude)
     }
 }
 

@@ -17,16 +17,19 @@ public struct LikedPark {
     
     public struct Schema {
         public static let parkId = "parkId"
+        public static let parkData = "parkData"
     }
     
     // MARK: Property
     
     public let parkId: ParkId
+    public let parkData: Data
     
     // MARK: Init
     
-    public init(parkId: ParkId) {
-        self.parkId = parkId
+    public init(park: Park) {
+        self.parkId = park.id
+        let parkData = try JSONEncoder.encode(park)
     }
 }
 
@@ -46,6 +49,7 @@ extension LikedPark {
     public func makeManagedObject(in context: NSManagedObjectContext) throws -> NSManagedObject {
         let likedPark = LikedParkEntity(context: context)
         likedPark.parkId = parkId.rawValue
+//        likedPark.parkData = //ParkData
         return likedPark
     }
 }
