@@ -44,6 +44,7 @@
 		5FF5AF3A20C78BC2005188BE /* ColorTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3920C78BC2005188BE /* ColorTool.swift */; };
 		5FF5AF3D20C7A810005188BE /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3C20C7A810005188BE /* NavigationController.swift */; };
 		5FF5AF4120C7CD41005188BE /* LikedParkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4020C7CD41005188BE /* LikedParkProvider.swift */; };
+		5FF5AF4320C7D073005188BE /* ParkId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4220C7D073005188BE /* ParkId.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		5FF5AF3920C78BC2005188BE /* ColorTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTool.swift; sourceTree = "<group>"; };
 		5FF5AF3C20C7A810005188BE /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		5FF5AF4020C7CD41005188BE /* LikedParkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedParkProvider.swift; sourceTree = "<group>"; };
+		5FF5AF4220C7D073005188BE /* ParkId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkId.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				5F87D27320B80503003F2876 /* Park.swift */,
+				5FF5AF4220C7D073005188BE /* ParkId.swift */,
 				5F87D27920B9AB5C003F2876 /* ParkAPIClient.swift */,
 				5F87D27D20BA9424003F2876 /* ParkProvider.swift */,
 				5F87D27F20BA960B003F2876 /* ParkAPIProvider.swift */,
@@ -351,6 +354,7 @@
 				5F87D28020BA960B003F2876 /* ParkAPIProvider.swift in Sources */,
 				5FF5AF3D20C7A810005188BE /* NavigationController.swift in Sources */,
 				5F17C64620BCFFDA0090A98C /* ParkDetailAPIProvider.swift in Sources */,
+				5FF5AF4320C7D073005188BE /* ParkId.swift in Sources */,
 				5F87D27E20BA9424003F2876 /* ParkProvider.swift in Sources */,
 				5F23F15420BC034D00431F10 /* Facility.swift in Sources */,
 				5F87D25720B7AC09003F2876 /* AppDelegate.swift in Sources */,

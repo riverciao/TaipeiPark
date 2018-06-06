@@ -16,7 +16,7 @@ enum JSONError: Error {
     case invalidValueForKey(String)
 }
 
-public struct Park: Codable {
+public struct Park: Decodable {
     
     private enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -76,7 +76,8 @@ public struct Park: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.id = try container.decode(String.self, forKey: .id)
+        let id = try container.decode(Int.self, forKey: .id)
+        self.id = String(id)
         self.name = try container.decode(String.self, forKey: .name)
         self.openTime = try container.decode(String?.self, forKey: .openTime)
         self.introduction = try container.decode(String.self, forKey: .introduction)
@@ -90,23 +91,6 @@ public struct Park: Codable {
         guard let latitude = Double(latitudeString) else { throw JSONError.invalidValueForKey(CodingKeys.latitude.rawValue) }
         guard let longitude = Double(longitudeString) else { throw JSONError.invalidValueForKey(CodingKeys.longitude.rawValue)}
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-    
-    // MARK: Encodable
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(id, forKey: .id)
-        try container.encode(name, forKey: .name)
-        try container.encode(openTime, forKey: .openTime)
-        try container.encode(introduction, forKey: .introduction)
-        try container.encode(imageURLString, forKey: .imageURLString)
-        try container.encode(String(coordinate.latitude), forKey: .latitude)
-        try container.encode(String(coordinate.longitude), forKey: .longitude)
-        try container.encode(administrativeArea, forKey: .administrativeArea)
-        try container.encode(address, forKey: .address)
-        try container.encode(parkType, forKey: .parkType)
     }
 }
 
