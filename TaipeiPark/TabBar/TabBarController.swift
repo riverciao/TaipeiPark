@@ -48,21 +48,15 @@ class TabBarController: UITabBarController {
             let parksTableViewController = ParksTableViewController(provider: provider)
             parksTableViewController.provider.fetch()
             
-            let navigationController = UINavigationController(rootViewController: parksTableViewController)
+            let navigationController = NavigationController(rootViewController: parksTableViewController)
             navigationController.tabBarItem = TabBarItem(itemType: .list)
-            
-            // TODO: Custom navigaton controller
-            navigationController.navigationBar.barTintColor = .barColor
-            navigationController.navigationItem.title = "Taipei Park"
-            navigationController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-            
             return navigationController
             
         case .map:
             let client = APIClient()
             let provider = ParkAPIProvider(client: client)
             let locationViewController = LocationViewController(provider: provider)
-            let navigationController = UINavigationController(rootViewController: locationViewController)
+            let navigationController = NavigationController(rootViewController: locationViewController)
             navigationController.tabBarItem = TabBarItem(itemType: .map)
 
             return navigationController
@@ -75,7 +69,7 @@ class TabBarController: UITabBarController {
             let parksTableViewController = ParksTableViewController(provider: provider)
             parksTableViewController.provider.fetch()
             
-            let navigationController = UINavigationController(rootViewController: parksTableViewController)
+            let navigationController = NavigationController(rootViewController: parksTableViewController)
             navigationController.tabBarItem = TabBarItem(itemType: .favorite)
             
             return navigationController

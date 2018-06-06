@@ -42,6 +42,7 @@
 		5FF5AF3620C65FDE005188BE /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3520C65FDE005188BE /* LocationView.swift */; };
 		5FF5AF3820C6612B005188BE /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3720C6612B005188BE /* UIViewExtensions.swift */; };
 		5FF5AF3A20C78BC2005188BE /* ColorTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3920C78BC2005188BE /* ColorTool.swift */; };
+		5FF5AF3D20C7A810005188BE /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3C20C7A810005188BE /* NavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		5FF5AF3520C65FDE005188BE /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		5FF5AF3720C6612B005188BE /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		5FF5AF3920C78BC2005188BE /* ColorTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTool.swift; sourceTree = "<group>"; };
+		5FF5AF3C20C7A810005188BE /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 		5F87D25520B7AC09003F2876 /* TaipeiPark */ = {
 			isa = PBXGroup;
 			children = (
+				5FF5AF3B20C7A7EA005188BE /* View */,
 				5F17C64E20BD2EC40090A98C /* Controller */,
 				5F87D27220B804DB003F2876 /* Park */,
 				5F87D26E20B7C0EA003F2876 /* Library */,
@@ -216,6 +219,14 @@
 				5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */,
 			);
 			path = ParkDetail;
+			sourceTree = "<group>";
+		};
+		5FF5AF3B20C7A7EA005188BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5FF5AF3C20C7A810005188BE /* NavigationController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +329,7 @@
 				5FF5AF3A20C78BC2005188BE /* ColorTool.swift in Sources */,
 				5F17C64B20BD29740090A98C /* TabBarItem.swift in Sources */,
 				5F87D28020BA960B003F2876 /* ParkAPIProvider.swift in Sources */,
+				5FF5AF3D20C7A810005188BE /* NavigationController.swift in Sources */,
 				5F17C64620BCFFDA0090A98C /* ParkDetailAPIProvider.swift in Sources */,
 				5F87D27E20BA9424003F2876 /* ParkProvider.swift in Sources */,
 				5F23F15420BC034D00431F10 /* Facility.swift in Sources */,
