@@ -16,7 +16,7 @@ protocol LikedParkLocalProviderDelegate: class {
 
 import CoreData
 
-class LikedParkLocalProvider: LikedParkProvider {
+class LikedParkLocalProvider {
     
     // MARK: Property
     
@@ -55,6 +55,20 @@ extension LikedParkLocalProvider: LikedParkProvider {
     
     /// Should save context manually after execute this method.
     public func isLikedPark(id: ParkId) -> Bool {
-        
+        do {
+            let persistenceDelegate = try validatePersistence()
+            let request: NSFetchRequest<LikedParkEntity> = LikedParkEntity.fetchRequest()
+            request.predicate = NSPredicate(format: "parkId == %@", id.rawValue)
+            
+            let isLiked: Bool = try persistenceDelegate.performTask(in: .main, execution: { (context) in
+                let likedParkObjects = try context.fetch(request)
+                return !likedParkObjects.isEmpty
+            })
+            return isLiked
+            
+        } catch {
+            delegate?.didFail(with: error, by: self)
+            return false
+        }
     }
 }
