@@ -18,9 +18,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     
     // MARK: Property
     
-    var provider: ParkProvider! {
-        didSet { provider.delegate = self }
-    }
+    var provider: ParkProvider
     var state: State {
         didSet {
             DispatchQueue.main.async {

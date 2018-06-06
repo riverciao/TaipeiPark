@@ -110,11 +110,10 @@
 		5F17C64E20BD2EC40090A98C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5FF5AF3020C63A98005188BE /* ParkDetail */,
-				5F17C65020BD2EE40090A98C /* Map */,
 				5F17C64F20BD2ED00090A98C /* ParkList */,
-				5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */,
-				5FF5AF3320C63D67005188BE /* SpotDetailView.swift */,
+				5FF5AF3020C63A98005188BE /* ParkDetail */,
+				5FF5AF3E20C7C201005188BE /* SpotDetail */,
+				5F17C65020BD2EE40090A98C /* Map */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -227,6 +226,15 @@
 				5FF5AF3C20C7A810005188BE /* NavigationController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5FF5AF3E20C7C201005188BE /* SpotDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */,
+				5FF5AF3320C63D67005188BE /* SpotDetailView.swift */,
+			);
+			path = SpotDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

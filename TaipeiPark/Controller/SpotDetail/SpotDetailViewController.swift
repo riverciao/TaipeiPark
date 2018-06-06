@@ -37,7 +37,8 @@ class SpotDetailViewController: UIViewController {
     
     private func setup() {
         view.backgroundColor = .white
-        spotDetailView = SpotDetailView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
+        spotDetailView = SpotDetailView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - tabBarHeight))
         if let spotDetailView = spotDetailView {
             view.addSubview(spotDetailView)
         }
