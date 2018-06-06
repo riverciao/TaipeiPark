@@ -149,7 +149,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 cell.parkImageView.image = nil
                 cell.parkImageView.load(url: park.imageURL)
                 
-                // LikePark
+                // LikedPark
                 cell.isLiked = likedParkProvider?.isLikedPark(id: park.id) ?? false
                 cell.likeButton.addTarget(self, action: #selector(likePark), for: .touchUpInside)
             }

@@ -54,13 +54,8 @@ public struct Park: Codable {
     
     // MARK: Init
     public init(_ likedPark: LikedPark) throws {
-//        self.id = likedPark.parkId
         let park = try JSONDecoder().decode(Park.self, from: likedPark.parkData)
         self = park
-//        self.name = park.name
-//        self.openTime = park.openTime
-//        self.introduction = park.introduction
-//        self.imageURLString = park.imageURLString
     }
     
     public typealias ParksData = Data

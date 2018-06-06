@@ -42,13 +42,17 @@ class TabBarController: UITabBarController {
     
     static func prepare(for itemType: TabBarItemType) -> UIViewController {
         switch itemType {
+            
+        // MARK: List
+            
         case .list:
+            // MARK: ParkProvider
             let client = APIClient()
             let provider = ParkAPIProvider(client: client)
             let parksTableViewController = ParksTableViewController(provider: provider)
             parksTableViewController.provider.fetch()
             
-            // MARK: LikedPark
+            // MARK: LikedParkProvider
             let likedParkProvider = LikedParkLocalProvider()
             likedParkProvider.persistenceDelegate = AppDelegate.shared.persistenceManager
             parksTableViewController.likedParkProvider = likedParkProvider
@@ -57,6 +61,8 @@ class TabBarController: UITabBarController {
             let navigationController = NavigationController(rootViewController: parksTableViewController)
             navigationController.tabBarItem = TabBarItem(itemType: .list)
             return navigationController
+            
+        // MARK: Map
             
         case .map:
             let client = APIClient()
@@ -67,12 +73,19 @@ class TabBarController: UITabBarController {
 
             return navigationController
             
+        // MARK: Favorite
+            
         case .favorite:
             
+            // MARK: ParkProvider
             let provider = LikedParkLocalProvider()
             provider.persistenceDelegate = AppDelegate.shared.persistenceManager
             let parksTableViewController = ParksTableViewController(provider: provider)
             parksTableViewController.provider.fetch()
+            
+            // MARK: LikedParkProvider
+            parksTableViewController.likedParkProvider = provider
+            parksTableViewController.persistenceDelegate = AppDelegate.shared.persistenceManager
             
             let navigationController = NavigationController(rootViewController: parksTableViewController)
             navigationController.tabBarItem = TabBarItem(itemType: .favorite)

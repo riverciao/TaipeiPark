@@ -17,7 +17,7 @@ class ParkTableViewCell: UITableViewCell {
     @IBOutlet weak var parkImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var mapButton: UIButton!
-    var isLiked = true {
+    var isLiked = false {
         didSet {
             likeButton.tintColor = isLiked ?
                 UIColor.likedColor : UIColor.unlikedColor
