@@ -8,7 +8,7 @@
 
 // MARK: LikedParkLocalProviderDelegate
 
-protocol LikedParkLocalProviderDelegate: class {
+public protocol LikedParkLocalProviderDelegate: class {
     func didFail(with error: Error, by controller: LikedParkProvider)
 }
 

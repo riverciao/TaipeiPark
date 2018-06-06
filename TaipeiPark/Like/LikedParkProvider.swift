@@ -9,6 +9,7 @@
 import Foundation
 
 public protocol LikedParkProvider: class {
+    var likedParkdelegate: LikedParkLocalProviderDelegate? { get set }
     func isLikedPark(id: ParkId) -> Bool
     func likePark(_ park: Park) throws
     func removeLikedPark(id: ParkId) throws

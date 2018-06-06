@@ -19,7 +19,11 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     // MARK: Property
     
     var provider: ParkProvider
-    var likedParkProvider: LikedParkProvider?
+    var likedParkProvider: LikedParkProvider? {
+        didSet {
+            likedParkProvider?.likedParkdelegate = self
+        }
+    }
     var persistenceDelegate: PersistenceDelegate?
     var state: State {
         didSet {
@@ -179,6 +183,12 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     }
     
     func didFail(with error: Error, by provider: ParkProvider) {
+        print("error: \(error)")
+    }
+}
+
+extension ParksTableViewController: LikedParkLocalProviderDelegate {
+    func didFail(with error: Error, by controller: LikedParkProvider) {
         print("error: \(error)")
     }
 }
