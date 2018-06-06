@@ -23,29 +23,37 @@ class LikedParkLocalProvider: ParkProvider {
     public weak final var persistenceDelegate: PersistenceDelegate?
     public weak final var likedParkdelegate: LikedParkLocalProviderDelegate?
     public weak final var delegate: ParkProviderDelegate?
-    var parks: [Park]
+    var parks = [Park]()
+    
+    // MARK: ParkProvider
     
     func fetch() {
         do {
             let persistenceDelegate = try validatePersistence()
-            var request: NSFetchRequest<LikedParkEntity> = LikedParkEntity.fetchRequest()
-            try persistenceDelegate.performTask(in: .background, execution: { context -> Result in
+            let request: NSFetchRequest<LikedParkEntity> = LikedParkEntity.fetchRequest()
+            try persistenceDelegate.performTask(in: .background, execution: { context in
                 let likedParkObjects = try context.fetch(request)
-                
+                try likedParkObjects.forEach({ (likedParkObject) in
+                    let likedPark = try LikedPark(likedParkObject)
+                    let park = try Park(likedPark)
+                    self.parks.append(park)
+                })
             })
         } catch {
-            
+            delegate?.didFail(with: error, by: self)
         }
     }
     
     func park(at indexPath: IndexPath) -> Park {
-        <#code#>
+        return parks[indexPath.row]
     }
+    
+    ///local park provider always fetch all data at once, so hasMoreParks alway reture false
     var hasMoreParks: Bool {
-        
+        return false
     }
     var numberOfParks: Int {
-        
+        return parks.count
     }
 }
 

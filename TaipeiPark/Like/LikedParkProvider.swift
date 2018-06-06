@@ -10,6 +10,6 @@ import Foundation
 
 public protocol LikedParkProvider: class {
     func isLikedPark(id: ParkId) -> Bool
-    func likePark(_ park: ParkId) throws
+    func likePark(_ park: Park) throws
     func removeLikedPark(id: ParkId) throws
 }
