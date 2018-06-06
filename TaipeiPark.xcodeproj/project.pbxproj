@@ -50,6 +50,7 @@
 		5FF5AF4B20C7E378005188BE /* PersistenceQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4A20C7E378005188BE /* PersistenceQueue.swift */; };
 		5FF5AF4D20C7E4F4005188BE /* PersistenceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF4C20C7E4F4005188BE /* PersistenceError.swift */; };
 		5FF5AF5320C7ED46005188BE /* LikedPark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF5220C7ED46005188BE /* LikedPark.swift */; };
+		5FF5AF5520C7F995005188BE /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF5420C7F995005188BE /* PersistenceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		5FF5AF4A20C7E378005188BE /* PersistenceQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceQueue.swift; sourceTree = "<group>"; };
 		5FF5AF4C20C7E4F4005188BE /* PersistenceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceError.swift; sourceTree = "<group>"; };
 		5FF5AF5220C7ED46005188BE /* LikedPark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedPark.swift; sourceTree = "<group>"; };
+		5FF5AF5420C7F995005188BE /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +272,7 @@
 				5FF5AF4820C7E292005188BE /* PersistenceDelegate.swift */,
 				5FF5AF4A20C7E378005188BE /* PersistenceQueue.swift */,
 				5FF5AF4C20C7E4F4005188BE /* PersistenceError.swift */,
+				5FF5AF5420C7F995005188BE /* PersistenceManager.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				5FF5AF3220C63B4F005188BE /* SpotDetailViewController.swift in Sources */,
 				5F87D27C20B9AC3A003F2876 /* Page.swift in Sources */,
 				5FC1410A20BFDEB300495D66 /* SpotsCollectionView.swift in Sources */,
+				5FF5AF5520C7F995005188BE /* PersistenceManager.swift in Sources */,
 				5FC1410720BFAFF300495D66 /* SpotCollectionViewCell.swift in Sources */,
 				5F17C64D20BD2AFD0090A98C /* TabBarController.swift in Sources */,
 				5F87D27A20B9AB5C003F2876 /* ParkAPIClient.swift in Sources */,

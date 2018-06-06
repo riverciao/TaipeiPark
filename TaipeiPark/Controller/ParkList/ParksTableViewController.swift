@@ -77,7 +77,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         guard
             let tableView = tableView,
             let button = sender as? UIButton,
-            let cell = button.superview?.superview?.superview as? ParkTableViewCell,
+            let cell = button.superview?.superview as? ParkTableViewCell,
             let indexPath = tableView.indexPath(for: cell)
         else { fatalError("cell not found") }
         
@@ -105,7 +105,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 }
             }
         } catch {
-            
+            print("error: \(error)")
         }
     }
     

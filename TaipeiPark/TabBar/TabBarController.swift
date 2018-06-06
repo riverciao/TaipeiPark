@@ -48,6 +48,10 @@ class TabBarController: UITabBarController {
             let parksTableViewController = ParksTableViewController(provider: provider)
             parksTableViewController.provider.fetch()
             
+            // MARK: Like Park
+            let likedParkProvider = LikedParkLocalProvider()
+            parksTableViewController.likedParkProvider = likedParkProvider
+            
             let navigationController = NavigationController(rootViewController: parksTableViewController)
             navigationController.tabBarItem = TabBarItem(itemType: .list)
             return navigationController
