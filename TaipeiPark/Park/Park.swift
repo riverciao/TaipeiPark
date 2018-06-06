@@ -41,7 +41,7 @@ public struct Park: Decodable {
     
     // MARK: Property
     
-    public let id: String
+    public let id: ParkId
     public let name: String
     public let openTime: String?
     public let introduction: String
@@ -77,7 +77,7 @@ public struct Park: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let id = try container.decode(Int.self, forKey: .id)
-        self.id = String(id)
+        self.id = ParkId(rawValue: String(id))
         self.name = try container.decode(String.self, forKey: .name)
         self.openTime = try container.decode(String?.self, forKey: .openTime)
         self.introduction = try container.decode(String.self, forKey: .introduction)
@@ -101,6 +101,3 @@ public extension Park {
         return URL(string: imageURLString)!
     }
 }
-
-
-
