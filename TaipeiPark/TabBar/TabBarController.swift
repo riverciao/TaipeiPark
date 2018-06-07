@@ -93,5 +93,21 @@ class TabBarController: UITabBarController {
             return navigationController
         }
     }
-    
+}
+
+extension UITabBarController {
+    func visibleViewController(of itemType: TabBarItemType) -> UIViewController? {
+        var tabIndex: Int? = nil
+        switch itemType {
+        case .list: tabIndex = 0
+        case .map: tabIndex = 1
+        case .favorite: tabIndex = 2
+        }
+        if let navigationController = self.viewControllers?[tabIndex!] as? NavigationController {
+            if let visibleController = navigationController.visibleViewController {
+                return visibleController
+            }
+        }
+        return nil
+    }
 }

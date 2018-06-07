@@ -191,22 +191,20 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
 
 extension ParksTableViewController: LikedParkLocalProviderDelegate {
     func didChange(by provider: LikedParkProvider) {
+        
         if self.provider is LikedParkProvider {
             self.provider.fetch()
-            if let navCon = tabBarController?.viewControllers?[0] as? NavigationController,
-                let parkListViewController = navCon.visibleViewController as? ParksTableViewController {
-                parkListViewController.tableView.reloadData()
+            guard let listViewController = tabBarController?.visibleViewController(of: .list) as? ParksTableViewController else { return }
+            DispatchQueue.main.async {
+                listViewController.tableView.reloadData()
             }
         } else {
-            tableView.reloadData() // revise to reload row
-            if let navController = tabBarController?.viewControllers?[2] as? NavigationController,
-            let likedParksViewController = navController.visibleViewController as? ParksTableViewController {
-                likedParksViewController.tableView.reloadData()
-                likedParksViewController.provider.fetch()
+            DispatchQueue.main.async {
+                 self.tableView.reloadData() // revise to reload row
             }
+            guard let favoriteViewController = tabBarController?.visibleViewController(of: .favorite) as? ParksTableViewController else { return }
+            favoriteViewController.provider.fetch()
         }
-        
-        
     }
     func didFail(with error: Error, by provider: LikedParkProvider) {
         print("error: \(error)")
