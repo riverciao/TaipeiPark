@@ -79,12 +79,11 @@ extension LocationViewController: ParkProviderDelegate {
         for park in provider.parks {
             let annotation = MKPointAnnotation()
             annotation.coordinate = park.coordinate
-            let mapContainsPoint = MKMapRectContainsPoint((locationView?.mapView.visibleMapRect)!, MKMapPointForCoordinate(park.coordinate))
-            let annotations = locationView?.mapView.annotations(in: (locationView?.mapView.visibleMapRect)!)
+//            let mapContainsPoint = MKMapRectContainsPoint((locationView?.mapView.visibleMapRect)!, MKMapPointForCoordinate(park.coordinate))
+//            let annotations = locationView?.mapView.annotations(in: (locationView?.mapView.visibleMapRect)!)
             
             DispatchQueue.main.async {
                 self.locationView?.mapView.addAnnotation(annotation)
-                print("mapContainsPoint: \(mapContainsPoint), OO:\(annotations?.count)")
             }
         }
     }

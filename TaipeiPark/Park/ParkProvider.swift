@@ -30,7 +30,7 @@ protocol ParkProvider: class {
     
     // MARK: Property
 
-    weak var delegate: ParkProviderDelegate? { get set }
+    var delegate: ParkProviderDelegate? { get set }
     var hasMoreParks: Bool { get }
     var numberOfParks: Int { get }
     
@@ -45,7 +45,7 @@ protocol ParkDetailProvider: class {
     
     // MARK: Property
     
-    weak var parkDetailDelegate: ParkDetailProviderDelagate? { get set }
+    var parkDetailDelegate: ParkDetailProviderDelagate? { get set }
     var facilitiesDescription: String { get }
     var numberOfSpots: Int { get }
     var isSpotsFetched: Bool { get }

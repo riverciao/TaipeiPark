@@ -19,7 +19,6 @@
 		5F23F15620BCF23E00431F10 /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23F15520BCF23E00431F10 /* Spot.swift */; };
 		5F4CD33520BE59FF006E1A88 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4CD33420BE59FF006E1A88 /* UIImageViewExtensions.swift */; };
 		5F87D25720B7AC09003F2876 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D25620B7AC09003F2876 /* AppDelegate.swift */; };
-		5F87D25920B7AC09003F2876 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D25820B7AC09003F2876 /* ViewController.swift */; };
 		5F87D25C20B7AC09003F2876 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F87D25A20B7AC09003F2876 /* Main.storyboard */; };
 		5F87D25F20B7AC09003F2876 /* TaipeiPark.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D25D20B7AC09003F2876 /* TaipeiPark.xcdatamodeld */; };
 		5F87D26120B7AC09003F2876 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F87D26020B7AC09003F2876 /* Assets.xcassets */; };
@@ -68,7 +67,6 @@
 		5F4CD33420BE59FF006E1A88 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		5F87D25320B7AC09003F2876 /* TaipeiPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaipeiPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F87D25620B7AC09003F2876 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5F87D25820B7AC09003F2876 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5F87D25B20B7AC09003F2876 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5F87D25E20B7AC09003F2876 /* TaipeiPark.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaipeiPark.xcdatamodel; sourceTree = "<group>"; };
 		5F87D26020B7AC09003F2876 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 				5F17C64720BD0D1D0090A98C /* TabBar */,
 				5F87D25620B7AC09003F2876 /* AppDelegate.swift */,
 				5FF5AF5620C7FC74005188BE /* AppDelegateExtensions.swift */,
-				5F87D25820B7AC09003F2876 /* ViewController.swift */,
 				5F87D25A20B7AC09003F2876 /* Main.storyboard */,
 				5F87D26020B7AC09003F2876 /* Assets.xcassets */,
 				5F87D26220B7AC09003F2876 /* LaunchScreen.storyboard */,
@@ -307,7 +304,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = riverciao;
 				TargetAttributes = {
 					5F87D25220B7AC09003F2876 = {
@@ -366,7 +363,6 @@
 				5FF5AF5320C7ED46005188BE /* LikedPark.swift in Sources */,
 				5F4CD33520BE59FF006E1A88 /* UIImageViewExtensions.swift in Sources */,
 				5F87D27020B7C15B003F2876 /* URLRequestExtensions.swift in Sources */,
-				5F87D25920B7AC09003F2876 /* ViewController.swift in Sources */,
 				5F23F15620BCF23E00431F10 /* Spot.swift in Sources */,
 				5F17C64920BD0D480090A98C /* TabBarItemType.swift in Sources */,
 				5FF5AF3220C63B4F005188BE /* SpotDetailViewController.swift in Sources */,
@@ -433,6 +429,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -440,6 +437,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -490,6 +488,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -497,6 +496,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

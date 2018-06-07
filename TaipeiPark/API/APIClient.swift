@@ -10,6 +10,7 @@ import Foundation
 
 enum APIError: Error {
     case missingData
+    case statusCodeNotNormal(Int)
 }
 
 struct APIClient {

@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let persistenceManager = PersistenceManager(container: NSPersistentContainer(name: "TaipeiPark"))
         persistenceManager.container.loadPersistentStores { (_, error) in
             // TODO: Error Handle
-            print(error)
         }
         self.persistenceManager = persistenceManager
         

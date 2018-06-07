@@ -33,7 +33,7 @@ extension URLRequest {
                 switch statusCode {
                 case 200: break
                 default:
-                    let result = Result.failure(HTTPError.statusCodeNotNormal(statusCode))
+                    let result = Result.failure(APIError.statusCodeNotNormal(statusCode))
                     completion(DataResponse(result: result))
                     return
                 }
