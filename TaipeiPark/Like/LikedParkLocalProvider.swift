@@ -9,7 +9,6 @@
 // MARK: LikedParkLocalProviderDelegate
 
 public protocol LikedParkLocalProviderDelegate: class {
-    func didChange(by provider: LikedParkProvider)
     func didFail(with error: Error, by provider: LikedParkProvider)
 }
 
@@ -78,7 +77,6 @@ extension LikedParkLocalProvider: LikedParkProvider {
             let likedPark = try LikedPark(park)
             let _ = try likedPark.makeManagedObject(in: context)
         }
-        likedParkdelegate?.didChange(by: self)
     }
     
     /// Should save context manually after execute this method.
@@ -93,7 +91,6 @@ extension LikedParkLocalProvider: LikedParkProvider {
                 context.delete(likedParkObject)
             })
         }
-        likedParkdelegate?.didChange(by: self)
     }
     
     /// Should save context manually after execute this method.

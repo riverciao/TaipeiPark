@@ -204,19 +204,6 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
 // MARK: LikedParkLocalProviderDelegate
 
 extension ParksTableViewController: LikedParkLocalProviderDelegate {
-    func didChange(by provider: LikedParkProvider) {
-        
-        // MARK: Reload data model
-//        switch self.provider {
-//        case is LikedParkLocalProvider:
-//            self.provider.fetch()
-//        case is ParkAPIProvider:
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        default: break
-//        }
-    }
     func didFail(with error: Error, by provider: LikedParkProvider) {
         print("error: \(error)")
     }
