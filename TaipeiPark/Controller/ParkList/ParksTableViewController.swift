@@ -61,13 +61,21 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: ParkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ParkTableViewCell.identifier)
-        setUp()
     }
     
-    // MARK : SetUp
-    
-    private func setUp() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        // MARK: Reload data model
+        switch provider {
+        case is LikedParkLocalProvider:
+            provider.fetch()
+        case is ParkAPIProvider:
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        default: break
+        }
     }
     
     // TODO: move to tabbarcontroller init later
@@ -77,11 +85,10 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     
     // MARK: Action
     
-    @objc func likePark(_ sender: Any) {
+    @objc func likePark(_ sender: UIButton) {
         guard
             let tableView = tableView,
-            let button = sender as? UIButton,
-            let cell = button.superview?.superview as? ParkTableViewCell,
+            let cell = sender.superview?.superview as? ParkTableViewCell,
             let indexPath = tableView.indexPath(for: cell)
         else { fatalError("cell not found") }
         
@@ -104,7 +111,14 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                     try context.save()
                 }
                 
-                tableView.reloadRows(at: [indexPath], with: .none)
+                // MARK: Update UI
+                switch self.provider {
+                case is LikedParkLocalProvider:
+                    self.provider.fetch()
+                case is ParkAPIProvider:
+                    tableView.reloadRows(at: [indexPath], with: .none)
+                default: break
+                }
             }
         } catch {
             
@@ -192,19 +206,16 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
 extension ParksTableViewController: LikedParkLocalProviderDelegate {
     func didChange(by provider: LikedParkProvider) {
         
-        if self.provider is LikedParkProvider {
-            self.provider.fetch()
-            guard let listViewController = tabBarController?.visibleViewController(of: .list) as? ParksTableViewController else { return }
-            DispatchQueue.main.async {
-                listViewController.tableView.reloadData()
-            }
-        } else {
-            DispatchQueue.main.async {
-                 self.tableView.reloadData() // revise to reload row
-            }
-            guard let favoriteViewController = tabBarController?.visibleViewController(of: .favorite) as? ParksTableViewController else { return }
-            favoriteViewController.provider.fetch()
-        }
+        // MARK: Reload data model
+//        switch self.provider {
+//        case is LikedParkLocalProvider:
+//            self.provider.fetch()
+//        case is ParkAPIProvider:
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        default: break
+//        }
     }
     func didFail(with error: Error, by provider: LikedParkProvider) {
         print("error: \(error)")
