@@ -15,6 +15,7 @@ enum PinType {
 
 class CustomPointAnnotation: MKPointAnnotation {
     
+    class var identifier: String { return String(describing: self) }
     let pinType: PinType
     
     init(pinType: PinType) {

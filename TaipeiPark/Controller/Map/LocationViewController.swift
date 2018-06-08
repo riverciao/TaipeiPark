@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class LocationViewController: UIViewController, MKMapViewDelegate {
+class LocationViewController: UIViewController {
 
     // MARK: Property
     
@@ -61,7 +61,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     }
 }
 
-extension LocationViewController: CLLocationManagerDelegate {
+extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     
     // MARK: CLLocationManagerDelegate
     
@@ -71,6 +71,20 @@ extension LocationViewController: CLLocationManagerDelegate {
             let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 1000, 1000)
             locationView?.mapView.setRegion(viewRegion, animated: false)
         }
+    }
+    
+    // MARK: MKMapViewDelegate
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let customPointAnnotation = annotation as? CustomPointAnnotation else { return nil }
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomPointAnnotation.identifier)
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: customPointAnnotation, reuseIdentifier: CustomPointAnnotation.identifier)
+            annotationView?.canShowCallout = true
+        } else {
+            annotationView?.annotation = customPointAnnotation
+        }
+        return annotationView
     }
 }
 
