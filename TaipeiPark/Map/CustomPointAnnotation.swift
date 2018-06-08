@@ -7,10 +7,20 @@
 //
 
 import MapKit
+import UIKit
 
 enum PinType {
     case open
     case close
+}
+
+extension PinType {
+    var image: UIImage {
+        switch self {
+        case .open: return #imageLiteral(resourceName: "icon-openLocation")
+        case .close: return #imageLiteral(resourceName: "icon-closeLocation")
+        }
+    }
 }
 
 class CustomPointAnnotation: MKPointAnnotation {

@@ -39,15 +39,15 @@ class LocationViewController: UIViewController {
     
     // MARK: Setup
     
-    private func setUp() {        
+    private func setUp() {
         // MARK: LocationView
-        
         let navigationBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
         let tabBarHeight = self.tabBarController?.tabBar.frame.height ?? 0
         locationView = LocationView(frame: CGRect(x: 0, y: navigationBarHeight, width: view.frame.width, height: view.frame.height - tabBarHeight - navigationBarHeight))
         if let locationView = locationView {
             view.addSubview(locationView)
         }
+        locationView?.mapView.delegate = self
         provider.fetch()
     }
     
@@ -84,6 +84,9 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         } else {
             annotationView?.annotation = customPointAnnotation
         }
+        
+        annotationView?.image = customPointAnnotation.pinType.image
+        
         return annotationView
     }
 }
@@ -92,13 +95,21 @@ extension LocationViewController: ParkProviderDelegate {
     func didFetch(by provider: ParkProvider) {
         
         for park in provider.parks {
-            let annotation = MKPointAnnotation()
+            
+//            let annotation = MKPointAnnotation()
+            var annotation = CustomPointAnnotation(pinType: .open)
+            if park.name == "二二八和平公園" {
+                annotation = CustomPointAnnotation(pinType: .close)
+            }
             annotation.coordinate = park.coordinate
-//            let mapContainsPoint = MKMapRectContainsPoint((locationView?.mapView.visibleMapRect)!, MKMapPointForCoordinate(park.coordinate))
-//            let annotations = locationView?.mapView.annotations(in: (locationView?.mapView.visibleMapRect)!)
+
             DispatchQueue.main.async {
                 self.locationView?.mapView.addAnnotation(annotation)
             }
+            
+            // Map Loading Scale
+            //            let mapContainsPoint = MKMapRectContainsPoint((locationView?.mapView.visibleMapRect)!, MKMapPointForCoordinate(park.coordinate))
+            //            let annotations = locationView?.mapView.annotations(in: (locationView?.mapView.visibleMapRect)!)
         }
     }
     
