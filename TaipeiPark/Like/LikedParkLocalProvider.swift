@@ -52,7 +52,7 @@ class LikedParkLocalProvider: ParkProvider {
         return parks[indexPath.row]
     }
     
-    ///local park provider always fetch all data at once, so hasMoreParks alway reture false
+    /// Local park provider always fetch all data at once, so hasMoreParks alway reture false
     var hasMoreParks: Bool {
         return false
     }
