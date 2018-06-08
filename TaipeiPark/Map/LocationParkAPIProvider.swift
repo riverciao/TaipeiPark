@@ -28,30 +28,27 @@ class LocationParkAPIProvider: ParkProvider {
     // MARK: ParkProvider
     
     func fetch() {
-        while page != .end {
+        let isRead = pageIsRead[page]
+        if isRead == true { return }
+        pageIsRead[page] = true
+        
+        let previousPage = page
+        
+        client.readParks(page: page, numberOfParksInPage: 800, success: { (parks, next) in
             
-            let isRead = pageIsRead[page]
-            if isRead == true { return }
-            pageIsRead[page] = true
-            
-            let previousPage = page
-            
-            client.readParks(page: page, success: { (parks, next) in
-                
-                switch previousPage {
-                case .begin:
-                    self.parks = parks
-                case .next, .end:
-                    self.parks += parks
-                }
-                
-                self.page = next
-                self.delegate?.didFetch(by: self)
-                
-                print("Count: \(parks.count), page: \(self.page)")
-            }) { (error) in
-                self.delegate?.didFail(with: error, by: self)
+            switch previousPage {
+            case .begin:
+                self.parks = parks
+            case .next, .end:
+                self.parks += parks
             }
+            
+            self.page = next
+            self.delegate?.didFetch(by: self)
+            
+            print("Count: \(parks.count), page: \(self.page)")
+        }) { (error) in
+            self.delegate?.didFail(with: error, by: self)
         }
     }
     

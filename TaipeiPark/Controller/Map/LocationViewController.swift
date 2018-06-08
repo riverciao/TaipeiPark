@@ -68,7 +68,7 @@ extension LocationViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Zoom to user location
         if let userLocation = locations.last {
-            let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 5000, 5000)
+            let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 1000, 1000)
             locationView?.mapView.setRegion(viewRegion, animated: false)
         }
     }
@@ -76,12 +76,12 @@ extension LocationViewController: CLLocationManagerDelegate {
 
 extension LocationViewController: ParkProviderDelegate {
     func didFetch(by provider: ParkProvider) {
+        
         for park in provider.parks {
             let annotation = MKPointAnnotation()
             annotation.coordinate = park.coordinate
 //            let mapContainsPoint = MKMapRectContainsPoint((locationView?.mapView.visibleMapRect)!, MKMapPointForCoordinate(park.coordinate))
 //            let annotations = locationView?.mapView.annotations(in: (locationView?.mapView.visibleMapRect)!)
-            
             DispatchQueue.main.async {
                 self.locationView?.mapView.addAnnotation(annotation)
             }

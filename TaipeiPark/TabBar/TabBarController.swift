@@ -68,7 +68,6 @@ class TabBarController: UITabBarController {
             let client = APIClient()
             let provider = LocationParkAPIProvider(client: client)
             let locationViewController = LocationViewController(provider: provider)
-            locationViewController.provider.fetch()
             let navigationController = NavigationController(rootViewController: locationViewController)
             navigationController.tabBarItem = TabBarItem(itemType: .map)
 
