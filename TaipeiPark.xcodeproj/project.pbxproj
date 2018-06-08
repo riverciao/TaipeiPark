@@ -20,6 +20,7 @@
 		5F4CD33520BE59FF006E1A88 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4CD33420BE59FF006E1A88 /* UIImageViewExtensions.swift */; };
 		5F581A4920CA2C0C00ECB5E9 /* LocationParkAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F581A4820CA2C0C00ECB5E9 /* LocationParkAPIProvider.swift */; };
 		5F581A4B20CA51F100ECB5E9 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F581A4A20CA51F100ECB5E9 /* CustomPointAnnotation.swift */; };
+		5F581A4D20CA9DB100ECB5E9 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F581A4C20CA9DB100ECB5E9 /* DateExtensions.swift */; };
 		5F87D25720B7AC09003F2876 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D25620B7AC09003F2876 /* AppDelegate.swift */; };
 		5F87D25F20B7AC09003F2876 /* TaipeiPark.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F87D25D20B7AC09003F2876 /* TaipeiPark.xcdatamodeld */; };
 		5F87D26120B7AC09003F2876 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F87D26020B7AC09003F2876 /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		5F4CD33420BE59FF006E1A88 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		5F581A4820CA2C0C00ECB5E9 /* LocationParkAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationParkAPIProvider.swift; sourceTree = "<group>"; };
 		5F581A4A20CA51F100ECB5E9 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		5F581A4C20CA9DB100ECB5E9 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		5F87D25320B7AC09003F2876 /* TaipeiPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaipeiPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F87D25620B7AC09003F2876 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F87D25E20B7AC09003F2876 /* TaipeiPark.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaipeiPark.xcdatamodel; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				5F4CD33420BE59FF006E1A88 /* UIImageViewExtensions.swift */,
 				5FF5AF3720C6612B005188BE /* UIViewExtensions.swift */,
 				5FF5AF3920C78BC2005188BE /* ColorTool.swift */,
+				5F581A4C20CA9DB100ECB5E9 /* DateExtensions.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				5F87D28020BA960B003F2876 /* ParkAPIProvider.swift in Sources */,
 				5FF5AF3D20C7A810005188BE /* NavigationController.swift in Sources */,
 				5F17C64620BCFFDA0090A98C /* ParkDetailAPIProvider.swift in Sources */,
+				5F581A4D20CA9DB100ECB5E9 /* DateExtensions.swift in Sources */,
 				5FF5AF4320C7D073005188BE /* ParkId.swift in Sources */,
 				5FF5AF4B20C7E378005188BE /* PersistenceQueue.swift in Sources */,
 				5F87D27E20BA9424003F2876 /* ParkProvider.swift in Sources */,

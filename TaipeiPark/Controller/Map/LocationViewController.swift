@@ -96,7 +96,7 @@ extension LocationViewController: ParkProviderDelegate {
         
         for park in provider.parks {
             
-//            let annotation = MKPointAnnotation()
+            print("OpenTime: \(park.openTime)")
             var annotation = CustomPointAnnotation(pinType: .open)
             if park.name == "二二八和平公園" {
                 annotation = CustomPointAnnotation(pinType: .close)
