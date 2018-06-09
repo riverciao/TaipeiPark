@@ -36,6 +36,8 @@ class LocationViewController: UIViewController {
         super.viewDidLoad()
         setUp()
         setupLocationManager()
+        
+        
     }
     
     // MARK: Setup
@@ -50,6 +52,7 @@ class LocationViewController: UIViewController {
         }
         locationView?.mapView.delegate = self
         provider.fetch()
+        addPin()
     }
     
     private func setupLocationManager() {
@@ -59,6 +62,19 @@ class LocationViewController: UIViewController {
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
+    }
+    
+    // MARK: Action
+    private func setRegion(centerLocation: CLLocation) {
+        let viewRegion = MKCoordinateRegionMakeWithDistance(centerLocation.coordinate, 1000, 1000)
+        locationView?.mapView.setRegion(viewRegion, animated: false)
+    }
+    
+    func addPin() {
+        // Add test pin
+        let annotation = CustomPointAnnotation(pinType: .open)
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 25.044369, longitude: 121.564943)
+        self.locationView?.mapView.addAnnotation(annotation)
     }
 }
 
@@ -71,8 +87,7 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         if centerLocation == nil {
             if let userLocation = locations.last {
                 centerLocation = userLocation
-                let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 1000, 1000)
-                locationView?.mapView.setRegion(viewRegion, animated: false)
+                setRegion(centerLocation: userLocation)
             }
         }
     }
@@ -93,6 +108,10 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         
         return annotationView
     }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("JJJJJJJJJ")
+    }
 }
 
 extension LocationViewController: ParkProviderDelegate {
@@ -110,6 +129,7 @@ extension LocationViewController: ParkProviderDelegate {
                 annotation = CustomPointAnnotation(pinType: .close)
             }
             annotation.coordinate = park.coordinate
+            annotation.title = "OO"
 
             DispatchQueue.main.async {
                 self.locationView?.mapView.addAnnotation(annotation)
