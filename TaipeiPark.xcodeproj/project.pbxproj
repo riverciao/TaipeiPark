@@ -38,6 +38,7 @@
 		5FC1410720BFAFF300495D66 /* SpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410520BFAFF300495D66 /* SpotCollectionViewCell.swift */; };
 		5FC1410820BFAFF300495D66 /* SpotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */; };
 		5FC1410A20BFDEB300495D66 /* SpotsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */; };
+		5FCD297220CBD2FC0043C2E1 /* callOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD297120CBD2FC0043C2E1 /* callOutView.swift */; };
 		5FF5AF3220C63B4F005188BE /* SpotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */; };
 		5FF5AF3420C63D67005188BE /* SpotDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3320C63D67005188BE /* SpotDetailView.swift */; };
 		5FF5AF3620C65FDE005188BE /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3520C65FDE005188BE /* LocationView.swift */; };
@@ -89,6 +90,7 @@
 		5FC1410520BFAFF300495D66 /* SpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotCollectionViewCell.swift; sourceTree = "<group>"; };
 		5FC1410620BFAFF300495D66 /* SpotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpotCollectionViewCell.xib; sourceTree = "<group>"; };
 		5FC1410920BFDEB300495D66 /* SpotsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotsCollectionView.swift; sourceTree = "<group>"; };
+		5FCD297120CBD2FC0043C2E1 /* callOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callOutView.swift; sourceTree = "<group>"; };
 		5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailViewController.swift; sourceTree = "<group>"; };
 		5FF5AF3320C63D67005188BE /* SpotDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailView.swift; sourceTree = "<group>"; };
 		5FF5AF3520C65FDE005188BE /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			children = (
 				5F581A4820CA2C0C00ECB5E9 /* LocationParkAPIProvider.swift */,
 				5F581A4A20CA51F100ECB5E9 /* CustomPointAnnotation.swift */,
+				5FCD297120CBD2FC0043C2E1 /* callOutView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				5F581A4B20CA51F100ECB5E9 /* CustomPointAnnotation.swift in Sources */,
 				5F87D26D20B7BD87003F2876 /* Router.swift in Sources */,
 				5F87D28220BAA64C003F2876 /* ParksTableViewController.swift in Sources */,
+				5FCD297220CBD2FC0043C2E1 /* callOutView.swift in Sources */,
 				5FF5AF4520C7D3FC005188BE /* LikedParkLocalProvider.swift in Sources */,
 				5FF5AF4D20C7E4F4005188BE /* PersistenceError.swift in Sources */,
 				5F87D27820B9AA02003F2876 /* APIClient.swift in Sources */,

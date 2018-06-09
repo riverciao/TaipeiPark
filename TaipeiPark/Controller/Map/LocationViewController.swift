@@ -36,8 +36,7 @@ class LocationViewController: UIViewController {
         super.viewDidLoad()
         setUp()
         setupLocationManager()
-        
-        
+        addPin()
     }
     
     // MARK: Setup
@@ -52,7 +51,6 @@ class LocationViewController: UIViewController {
         }
         locationView?.mapView.delegate = self
         provider.fetch()
-        addPin()
     }
     
     private func setupLocationManager() {
@@ -65,8 +63,8 @@ class LocationViewController: UIViewController {
     }
     
     // MARK: Action
-    private func setRegion(centerLocation: CLLocation) {
-        let viewRegion = MKCoordinateRegionMakeWithDistance(centerLocation.coordinate, 1000, 1000)
+    private func setRegion(centerCoordinate: CLLocationCoordinate2D) {
+        let viewRegion = MKCoordinateRegionMakeWithDistance(centerCoordinate, 1000, 1000)
         locationView?.mapView.setRegion(viewRegion, animated: false)
     }
     
@@ -87,7 +85,7 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         if centerLocation == nil {
             if let userLocation = locations.last {
                 centerLocation = userLocation
-                setRegion(centerLocation: userLocation)
+                setRegion(centerCoordinate: userLocation.coordinate)
             }
         }
     }
@@ -104,13 +102,24 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
             annotationView?.annotation = customPointAnnotation
         }
         
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        button.setImage(#imageLiteral(resourceName: "icon-star").withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = UIColor.unlikedColor
+        annotationView?.rightCalloutAccessoryView = button
+        let view = UIView(frame: CGRect(x: 20, y: 0, width: 100, height: 40))
+        view.backgroundColor = UIColor.barTintColor
+        annotationView?.detailCalloutAccessoryView = view
+        
+        
         annotationView?.image = customPointAnnotation.pinType.image
         
         return annotationView
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("JJJJJJJJJ")
+        if let pinCoordinate = view.annotation?.coordinate {
+            setRegion(centerCoordinate: pinCoordinate)
+        }
     }
 }
 
@@ -129,7 +138,8 @@ extension LocationViewController: ParkProviderDelegate {
                 annotation = CustomPointAnnotation(pinType: .close)
             }
             annotation.coordinate = park.coordinate
-            annotation.title = "OO"
+            annotation.title = park.name
+            annotation.subtitle = park.administrativeArea
 
             DispatchQueue.main.async {
                 self.locationView?.mapView.addAnnotation(annotation)
