@@ -28,8 +28,8 @@ extension Date {
     }
     
     /// pass in time string format like "00:00~24:00" to return 2 time in Date type
-    private func parseTimeRangeToDates(from openTimeString: String) -> [Date]? {
-        let openTimeStringCharacters = Array(openTimeString)
+    private func parseTimeRangeToDates(from timeRangeString: String) -> [Date]? {
+        let openTimeStringCharacters = Array(timeRangeString)
         
         // MARK: Seperate 2 time string
         var startTimeStringArray = [Character]()

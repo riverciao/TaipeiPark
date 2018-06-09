@@ -16,6 +16,7 @@ class LocationViewController: UIViewController {
     let provider: ParkProvider
     var locationManager = CLLocationManager()
     var locationView: LocationView?
+    var centerLocation: CLLocation?
     
     // MARK: Init
     
@@ -67,9 +68,12 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Zoom to user location
-        if let userLocation = locations.last {
-            let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 1000, 1000)
-            locationView?.mapView.setRegion(viewRegion, animated: false)
+        if centerLocation == nil {
+            if let userLocation = locations.last {
+                centerLocation = userLocation
+                let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 1000, 1000)
+                locationView?.mapView.setRegion(viewRegion, animated: false)
+            }
         }
     }
     
