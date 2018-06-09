@@ -96,9 +96,13 @@ extension LocationViewController: ParkProviderDelegate {
         
         for park in provider.parks {
             
-            print("OpenTime: \(park.openTime)")
+            // MARK: Check if now is in park open time
+            let parkOpenTime = park.openTime ?? "00:00~24:00"
+            let now = Date()
+            let isInOpenTime = now.isInOpenTime(parkOpenTime)
+            
             var annotation = CustomPointAnnotation(pinType: .open)
-            if park.name == "二二八和平公園" {
+            if !isInOpenTime {
                 annotation = CustomPointAnnotation(pinType: .close)
             }
             annotation.coordinate = park.coordinate
