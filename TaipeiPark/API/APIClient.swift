@@ -85,7 +85,7 @@ extension APIClient: ParkDetailAPIClient {
                 case .success(let data):
                     
                     do {
-                        let (facilitiesData, _) = try Park.parseToDecodableResults(data)
+                        let facilitiesData = try Park.parseToDecodableData(data)
                         let facilities = try JSONDecoder().decode([Facility].self, from: facilitiesData)
                         success(facilities)
                     } catch {
@@ -114,7 +114,7 @@ extension APIClient: ParkDetailAPIClient {
                 switch dataResponse.result {
                 case .success(let data):
                     do {
-                        let (decodableSpots, _) = try Park.parseToDecodableResults(data)
+                        let decodableSpots = try Park.parseToDecodableData(data)
                         let spots = try JSONDecoder().decode([Spot].self, from: decodableSpots)
                         success(spots)
                     } catch {

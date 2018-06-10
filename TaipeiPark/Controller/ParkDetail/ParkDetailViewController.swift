@@ -64,7 +64,6 @@ class ParkDetailViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         
         let navigationBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
-        let tabBarHeight = self.tabBarController?.tabBar.bounds.height ?? 0
         let spotsCollectionViewHeight = SpotsCollectionView.viewHeight(with: view.bounds.width)
         
         // MARK: SpotsCollectionView

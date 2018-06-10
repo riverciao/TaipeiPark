@@ -51,6 +51,7 @@ class ParkDetailAPIProvider: ParkDetailProvider {
     
     var facilitiesDescription: String {
         var description = String()
+        guard facilities.count-1 > 0 else { return "" }
         for i in 0..<facilities.count-1 {
             description += "\(facilities[i].name)" + "、"
         }

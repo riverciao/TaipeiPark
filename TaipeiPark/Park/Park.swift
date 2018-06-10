@@ -77,6 +77,18 @@ public struct Park: Codable {
         return (parksData, countOfParks)
     }
     
+    public static func parseToDecodableData(_ data: Data) throws -> Data {
+        typealias Object = [String: Any]
+        
+        let json = try JSONSerialization.jsonObject(with: data)
+        guard let object = json as? Object else { throw JSONError.notObject }
+        guard let result = object[Schema.result] as? Object else { throw JSONError.missingValueForKey(Schema.result) }
+        guard let objects = result[Schema.results] as? [Object] else { throw JSONError.missingValueForKey(Schema.results) }
+        let datas = try JSONSerialization.data(withJSONObject: objects)
+        
+        return datas
+    }
+    
     
     // MARK: Decodable
     
