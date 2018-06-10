@@ -46,9 +46,8 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         self.provider = provider
         self.state = provider.hasMoreParks ? .preparing : .ready
         super.init(style: .plain)
-        
         self.provider.delegate = self
-        setupTableView()
+        tableView.prefetchDataSource = isAutoFetching ? self : nil
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -78,11 +77,6 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         }
     }
     
-    // TODO: move to tabbarcontroller init later
-    func setupTableView() {
-        tableView.prefetchDataSource = isAutoFetching ? self : nil
-    }
-    
     // MARK: Action
     
     @objc func likePark(_ sender: UIButton) {
@@ -90,12 +84,12 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
             let tableView = tableView,
             let cell = sender.superview?.superview as? ParkTableViewCell,
             let indexPath = tableView.indexPath(for: cell)
-        else { fatalError("cell not found") }
+        else { return }
         
         guard
             let persistenceDelegate = persistenceDelegate,
             let likedParkProvider = likedParkProvider
-        else { fatalError("make sure persistenceDelegate and likedParkProvider are assigned") }
+        else { return }
         
         let park = provider.park(at: indexPath)
         
@@ -121,9 +115,10 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 }
             }
         } catch {
-            
-            // TODO: ErrorHandle
-            print("error: \(error)")
+            let alert = UIAlertController(title: "\(error)", message: error.localizedDescription, preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -143,12 +138,6 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         tabBarController.selectedIndex = tabBarController.tabBarIndex(of: .map)
         mapViewController.centerCoordinate = park.coordinate
         mapViewController.selectedPark = park
-        
-//        let mapView = mapViewController.locationView.mapView
-//        guard
-//            let annotation = mapViewController.annotation(of: park)
-//        else { return }
-//        mapView.selectAnnotation(annotation, animated: true)
     }
     
 
@@ -222,7 +211,10 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     }
     
     func didFail(with error: Error, by provider: ParkProvider) {
-        print("error: \(error)")
+        let alert = UIAlertController(title: "\(error)", message: error.localizedDescription, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -230,7 +222,10 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
 
 extension ParksTableViewController: LikedParkLocalProviderDelegate {
     func didFail(with error: Error, by provider: LikedParkProvider) {
-        print("error: \(error)")
+        let alert = UIAlertController(title: "\(error)", message: error.localizedDescription, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

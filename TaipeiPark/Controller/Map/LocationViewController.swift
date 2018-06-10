@@ -31,12 +31,11 @@ class LocationViewController: UIViewController {
     var selectedPark: Park?
     var currentAnnotatoin: CustomPointAnnotation? {
         willSet {
-            guard let previousAnnotation = currentAnnotatoin else { return }
-            let annotationView = locationView.mapView.view(for: previousAnnotation)
-            guard let callOutViews = annotationView?.subviews else { return }
-            for view in callOutViews {
-                view.removeFromSuperview()
-            }
+            guard
+                let previousAnnotation = currentAnnotatoin,
+                let annotationView = locationView.mapView.view(for: previousAnnotation)
+            else { return }
+            removeCallOutView(for: annotationView)
         }
     }
     
@@ -98,17 +97,11 @@ class LocationViewController: UIViewController {
         locationView.mapView.setRegion(viewRegion, animated: false)
     }
     
-    private func annotation(of park: Park) -> CustomPointAnnotation? {
-        guard
-            let annotations = locationView.mapView.annotations as? [CustomPointAnnotation]
-        else { return nil }
-        
-        for annotation in annotations {
-            if annotation.park == park {
-                return annotation
-            }
+    private func removeCallOutView(for annotationView: MKAnnotationView) {
+        let callOutViews = annotationView.subviews
+        for view in callOutViews {
+            view.removeFromSuperview()
         }
-        return nil
     }
     
     private func annotationView(of park: Park, in views: [CustomAnnotationView]) -> CustomAnnotationView? {
@@ -173,9 +166,10 @@ class LocationViewController: UIViewController {
                 annotationView.callOutView?.isLiked = likedParkProvider.isLikedPark(id: park.id)
             }
         } catch {
-            
-            // TODO: ErrorHandle
-            print("error: \(error)")
+            let alert = UIAlertController(title: "\(error)", message: error.localizedDescription, preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -265,7 +259,6 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        currentAnnotatoin = nil
         if let pinCoordinate = view.annotation?.coordinate {
             setRegion(centerCoordinate: pinCoordinate)
         }
@@ -274,14 +267,12 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
             let annotation = view.annotation as? CustomPointAnnotation,
             let callOutView = view.callOutView
         else { return }
+        currentAnnotatoin = annotation
         setup(callOutView, with: annotation)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        let callOutViews = view.subviews
-        for view in callOutViews {
-            view.removeFromSuperview()
-        }
+        currentAnnotatoin = nil
     }
 }
 
@@ -291,12 +282,18 @@ extension LocationViewController: ParkProviderDelegate {
     }
     
     func didFail(with error: Error, by provider: ParkProvider) {
-        print(error)
+        let alert = UIAlertController(title: "\(error)", message: error.localizedDescription, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
 extension LocationViewController: LikedParkLocalProviderDelegate {
     func didFail(with error: Error, by provider: LikedParkProvider) {
-        print(error)
+        let alert = UIAlertController(title: "\(error)", message: error.localizedDescription, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
 }

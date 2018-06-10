@@ -14,7 +14,6 @@ class SpotsCollectionView: UICollectionView {
         super.init(frame: frame, collectionViewLayout: layout)
         setUp()
         
-        // TODO: init only with UICollectionViewFlowLayout
         if let layout = layout as? UICollectionViewFlowLayout {
             layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
             layout.scrollDirection = .horizontal
