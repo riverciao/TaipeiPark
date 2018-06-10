@@ -22,7 +22,13 @@ class LocationViewController: UIViewController {
     var persistenceDelegate: PersistenceDelegate?
     var locationManager = CLLocationManager()
     var locationView: LocationView!
-    var centerLocation: CLLocation?
+    var centerCoordinate: CLLocationCoordinate2D? {
+        didSet {
+            guard let coordinate = centerCoordinate else { return }
+            setRegion(centerCoordinate: coordinate)
+        }
+    }
+    var selectedPark: Park?
     
     // MARK: Init
     
@@ -46,7 +52,13 @@ class LocationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        reloadAnnotations()
+        reloadAnnotations {
+            guard
+                let park = self.selectedPark,
+                let annotation = self.annotation(of: park)
+                else { return }
+            self.locationView.mapView.selectAnnotation(annotation, animated: true)
+        }
     }
     
     // MARK: Setup
@@ -59,7 +71,6 @@ class LocationViewController: UIViewController {
         view.addSubview(locationView)
 
         locationView.mapView.delegate = self
-        provider.fetch()
     }
     
     private func setupLocationManager() {
@@ -78,11 +89,24 @@ class LocationViewController: UIViewController {
         locationView.mapView.setRegion(viewRegion, animated: false)
     }
     
-    private func reloadAnnotations() {
+    public func annotation(of park: Park) -> CustomPointAnnotation? {
+        guard
+            let annotations = locationView.mapView.annotations as? [CustomPointAnnotation]
+        else { return nil }
+        
+        for annotation in annotations {
+            if annotation.park == park {
+                return annotation
+            }
+        }
+        return nil
+    }
+    
+    private func reloadAnnotations(completion: (() -> Void)? = nil) {
         let mapView = locationView.mapView
         mapView.removeAnnotations(mapView.annotations)
+        
         for park in provider.parks {
-            
             // Check if now is in park open time
             let parkOpenTime = park.openTime ?? "00:00~24:00"
             let now = Date()
@@ -96,6 +120,9 @@ class LocationViewController: UIViewController {
             DispatchQueue.main.async {
                 mapView.addAnnotation(annotation)
             }
+            DispatchQueue.main.async {
+                completion?()
+            }
         }
     }
     
@@ -103,7 +130,7 @@ class LocationViewController: UIViewController {
         guard
             let persistenceDelegate = persistenceDelegate,
             let likedParkProvider = likedParkProvider
-            else { fatalError("make sure persistenceDelegate and likedParkProvider are assigned") }
+        else { return }
         
         let parkIndex = sender.tag
         let park = provider.park(at: IndexPath(row: parkIndex, section: 0))
@@ -160,9 +187,9 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Zoom to user location
-        if centerLocation == nil {
+        if centerCoordinate == nil {
             if let userLocation = locations.last {
-                centerLocation = userLocation
+                centerCoordinate = userLocation.coordinate
                 setRegion(centerCoordinate: userLocation.coordinate)
             }
         }
@@ -192,7 +219,8 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         guard
             let view = view as? CustomAnnotationView,
             let annotation = view.annotation as? CustomPointAnnotation,
-            let callOutView = view.callOutView else { return }
+            let callOutView = view.callOutView
+        else { return }
         
         // MARK: Park data to callOutView
         let park = annotation.park
@@ -222,7 +250,13 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
 
 extension LocationViewController: ParkProviderDelegate {
     func didFetch(by provider: ParkProvider) {
-        reloadAnnotations()
+        reloadAnnotations {
+            guard
+                let park = self.selectedPark,
+                let annotation = self.annotation(of: park)
+                else { return }
+            self.locationView.mapView.selectAnnotation(annotation, animated: true)
+        }
         
         // Map Loading Scale
         //            let mapContainsPoint = MKMapRectContainsPoint((locationView.mapView.visibleMapRect)!, MKMapPointForCoordinate(park.coordinate))

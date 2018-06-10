@@ -68,6 +68,7 @@ class TabBarController: UITabBarController {
             let client = APIClient()
             let provider = LocationParkAPIProvider(client: client)
             let locationViewController = LocationViewController(provider: provider)
+            locationViewController.provider.fetch()
             let navigationController = NavigationController(rootViewController: locationViewController)
             navigationController.tabBarItem = TabBarItem(itemType: .map)
 
@@ -103,17 +104,19 @@ class TabBarController: UITabBarController {
 
 extension UITabBarController {
     func visibleViewController(of itemType: TabBarItemType) -> UIViewController? {
-        var tabIndex: Int? = nil
-        switch itemType {
-        case .list: tabIndex = 0
-        case .map: tabIndex = 1
-        case .favorite: tabIndex = 2
-        }
-        if let navigationController = self.viewControllers?[tabIndex!] as? NavigationController {
+        let index = tabBarIndex(of: itemType)
+        if let navigationController = self.viewControllers?[index] as? NavigationController {
             if let visibleController = navigationController.visibleViewController {
                 return visibleController
             }
         }
         return nil
+    }
+    func tabBarIndex(of itemType: TabBarItemType) -> Int {
+        switch itemType {
+        case .list: return 0
+        case .map: return 1
+        case .favorite: return 2
+        }
     }
 }

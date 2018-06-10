@@ -128,7 +128,27 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     }
     
     @objc func goToMap(_ sender: UIButton) {
-        print("OOO")
+        guard
+            let tabBarController = tabBarController,
+            let mapViewController = tabBarController.visibleViewController(of: .map) as? LocationViewController
+        else { return }
+        
+        // find index of park
+        guard
+            let cell = sender.superview?.superview as? ParkTableViewCell,
+            let indexPath = tableView?.indexPath(for: cell)
+        else { return }
+        
+        let park = provider.park(at: indexPath)
+        tabBarController.selectedIndex = tabBarController.tabBarIndex(of: .map)
+        mapViewController.centerCoordinate = park.coordinate
+        mapViewController.selectedPark = park
+        
+//        let mapView = mapViewController.locationView.mapView
+//        guard
+//            let annotation = mapViewController.annotation(of: park)
+//        else { return }
+//        mapView.selectAnnotation(annotation, animated: true)
     }
     
 
