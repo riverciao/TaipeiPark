@@ -11,12 +11,7 @@ import MapKit
 public class CustomAnnotationView: MKAnnotationView {
     
     // MARK: Property
-    
-    override public var annotation: MKAnnotation? {
-        willSet {
-            
-        }
-    }
+
     public var callOutView: CallOutView?
     
     // MARK: Init
