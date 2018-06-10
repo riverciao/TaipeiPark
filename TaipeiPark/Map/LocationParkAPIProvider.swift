@@ -45,8 +45,6 @@ class LocationParkAPIProvider: ParkProvider {
             
             self.page = next
             self.delegate?.didFetch(by: self)
-            
-            print("Count: \(parks.count), page: \(self.page)")
         }) { (error) in
             self.delegate?.didFail(with: error, by: self)
         }

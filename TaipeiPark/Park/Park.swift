@@ -127,3 +127,9 @@ public extension Park {
         return URL(string: imageURLString)!
     }
 }
+
+extension Park: Equatable {
+    static public func ==(lhs: Park, rhs: Park) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

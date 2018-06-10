@@ -23,6 +23,7 @@ class LocationViewController: UIViewController {
     var locationManager = CLLocationManager()
     var locationView: LocationView?
     var centerLocation: CLLocation?
+    var callOutView: CallOutView?
     
     // MARK: Init
     
@@ -80,6 +81,46 @@ class LocationViewController: UIViewController {
         annotation.coordinate = CLLocationCoordinate2D(latitude: 25.044369, longitude: 121.564943)
         self.locationView?.mapView.addAnnotation(annotation)
     }
+    
+    @objc func likePark(_ sender: UIButton) {
+        print("OOOOO")
+        let parkIndex = sender.tag
+        
+        guard
+            let persistenceDelegate = persistenceDelegate,
+            let likedParkProvider = likedParkProvider
+            else { fatalError("make sure persistenceDelegate and likedParkProvider are assigned") }
+        
+        let park = provider.park(at: IndexPath(row: parkIndex, section: 0))
+        
+        do {
+            try persistenceDelegate.performTask(in: .main) { (context) in
+                
+                let isLiked = likedParkProvider.isLikedPark(id: park.id)
+                if isLiked {
+                    try likedParkProvider.removeLikedPark(id: park.id)
+                    try context.save()
+                } else {
+                    try likedParkProvider.likePark(park)
+                    try context.save()
+                }
+                
+                // MARK: Update UI
+                switch self.provider {
+                case is LikedParkLocalProvider:
+                    self.provider.fetch()
+                case is ParkAPIProvider:
+//                    tableView.reloadRows(at: [indexPath], with: .none)
+                    break
+                default: break
+                }
+            }
+        } catch {
+            
+            // TODO: ErrorHandle
+            print("error: \(error)")
+        }
+    }
 }
 
 extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
@@ -117,29 +158,33 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         if let pinCoordinate = view.annotation?.coordinate {
             setRegion(centerCoordinate: pinCoordinate)
         }
-        
-        guard let annotation = view.annotation as? CustomPointAnnotation else { return }
-        let callOutView = CallOutView(frame: CGRect(x: 0, y: 0, width: 200, height: 130))
+        self.callOutView = CallOutView(frame: CGRect(x: 0, y: 0, width: 200, height: 130))
+
+        guard
+            let annotation = view.annotation as? CustomPointAnnotation,
+            let callOutView = self.callOutView else { return }
         view.addSubview(callOutView)
         
         // MARK: Setup CallOutView Layout
         callOutView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: view.calloutOffset.x).isActive = true
         callOutView.bottomAnchor.constraint(equalTo: view.topAnchor).isActive = true
         
-        // MARK: Setup park data
+        // MARK: Park data to callOutView
         let park = annotation.park
         callOutView.titleLabel.text = park.name
         callOutView.subtitleLabel.text = park.administrativeArea
+        callOutView.isLiked = likedParkProvider?.isLikedPark(id: park.id) ?? false
         callOutView.isOpened = {
             switch annotation.pinType {
             case .open: return true
             case .close: return false
             }
         }()
+         
+        guard let parkIndex = provider.parks.index(of: park) else { return }
+        callOutView.likeButton.tag = parkIndex
+        callOutView.likeButton.addTarget(self, action: #selector(likePark), for: .touchUpInside)
         
-//        cell.isLiked = likedParkProvider?.isLikedPark(id: park.id) ?? false
-//        cell.likeButton.addTarget(self, action: #selector(likePark), for: .touchUpInside)
-        callOutView.isLiked = likedParkProvider?.isLikedPark(id: park.id) ?? false
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -183,5 +228,27 @@ extension LocationViewController: ParkProviderDelegate {
 extension LocationViewController: LikedParkLocalProviderDelegate {
     func didFail(with error: Error, by provider: LikedParkProvider) {
         print(error)
+    }
+}
+
+extension MKAnnotationView {
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let rect = self.bounds
+        var isInside: Bool = rect.contains(point)
+        if !isInside {
+            for view in self.subviews {
+                isInside = view.frame.contains(point)
+                if isInside { break }
+            }
+        }
+        return isInside
+    }
+    
+    override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let hitView = super.hitTest(point, with: event)
+        if hitView != nil {
+            self.superview?.bringSubview(toFront: self)
+        }
+        return hitView
     }
 }
