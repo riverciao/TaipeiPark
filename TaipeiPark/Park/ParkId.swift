@@ -7,12 +7,8 @@
 //
 
 public struct ParkId {
-    public var rawValue: String {
-        didSet {
-            intRawValue = Int(rawValue)
-        }
-    }
-    public var intRawValue: Int?
+    public var rawValue: String
+    
     public init(rawValue: String) {
         self.rawValue = rawValue
     }

@@ -1,5 +1,5 @@
 //
-//  CustomPointAnnotationView.swift
+//  CustomAnnotationView.swift
 //  TaipeiPark
 //
 //  Created by riverciao on 2018/6/10.
@@ -69,6 +69,9 @@ public class CustomAnnotationView: MKAnnotationView {
     override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if let likeButton = callOutView?.likeButton.hitTest(convert(point, to: callOutView?.likeButton), with: event) {
             return likeButton
+        }
+        if let infoWindowButton = callOutView?.infoWindowButton.hitTest(convert(point, to: callOutView?.infoWindowButton), with: event) {
+            return infoWindowButton
         }
         return nil
     }

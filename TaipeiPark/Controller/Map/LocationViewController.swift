@@ -21,9 +21,8 @@ class LocationViewController: UIViewController {
     }
     var persistenceDelegate: PersistenceDelegate?
     var locationManager = CLLocationManager()
-    var locationView: LocationView?
+    var locationView: LocationView!
     var centerLocation: CLLocation?
-    var callOutView: CallOutView?
     
     // MARK: Init
     
@@ -31,6 +30,7 @@ class LocationViewController: UIViewController {
         self.provider = provider
         super.init(nibName: nil, bundle: nil)
         provider.delegate = self
+        setUp()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,9 +41,12 @@ class LocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUp()
         setupLocationManager()
-        addPin()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadAnnotations()
     }
     
     // MARK: Setup
@@ -53,10 +56,9 @@ class LocationViewController: UIViewController {
         let navigationBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
         let tabBarHeight = self.tabBarController?.tabBar.frame.height ?? 0
         locationView = LocationView(frame: CGRect(x: 0, y: navigationBarHeight, width: view.frame.width, height: view.frame.height - tabBarHeight - navigationBarHeight))
-        if let locationView = locationView {
-            view.addSubview(locationView)
-        }
-        locationView?.mapView.delegate = self
+        view.addSubview(locationView)
+
+        locationView.mapView.delegate = self
         provider.fetch()
     }
     
@@ -70,16 +72,31 @@ class LocationViewController: UIViewController {
     }
     
     // MARK: Action
+    
     private func setRegion(centerCoordinate: CLLocationCoordinate2D) {
         let viewRegion = MKCoordinateRegionMakeWithDistance(centerCoordinate, 1000, 1000)
-        locationView?.mapView.setRegion(viewRegion, animated: false)
+        locationView.mapView.setRegion(viewRegion, animated: false)
     }
     
-    func addPin() {
-        // Add test pin
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 25.044369, longitude: 121.564943)
-        self.locationView?.mapView.addAnnotation(annotation)
+    private func reloadAnnotations() {
+        let mapView = locationView.mapView
+        mapView.removeAnnotations(mapView.annotations)
+        for park in provider.parks {
+            
+            // Check if now is in park open time
+            let parkOpenTime = park.openTime ?? "00:00~24:00"
+            let now = Date()
+            let isInOpenTime = now.isInOpenTime(parkOpenTime)
+            
+            var annotation = CustomPointAnnotation(pinType: .open, park: park)
+            if !isInOpenTime {
+                annotation = CustomPointAnnotation(pinType: .close, park: park)
+            }
+            
+            DispatchQueue.main.async {
+                mapView.addAnnotation(annotation)
+            }
+        }
     }
     
     @objc func likePark(_ sender: UIButton) {
@@ -117,6 +134,23 @@ class LocationViewController: UIViewController {
             // TODO: ErrorHandle
             print("error: \(error)")
         }
+    }
+    
+    @objc func pushToParkDetail(_ sender: UIButton) {
+        guard
+            let annotationView = sender.superview?.superview?.superview as? CustomAnnotationView,
+            let annotation = annotationView.annotation as? CustomPointAnnotation
+            else { return }
+        
+        let currentPark = annotation.park
+        let client = APIClient()
+        let provider = ParkDetailAPIProvider(client: client)
+        let parkDetailViewController = ParkDetailViewController(provider: provider)
+        provider.fetchFacility(by: currentPark.name)
+        provider.fetchSpot(by: currentPark.name)
+        parkDetailViewController.currentPark = currentPark
+        
+        self.navigationController?.pushViewController(parkDetailViewController, animated: true)
     }
 }
 
@@ -175,7 +209,7 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         guard let parkIndex = provider.parks.index(of: park) else { return }
         callOutView.likeButton.tag = parkIndex
         callOutView.likeButton.addTarget(self, action: #selector(likePark), for: .touchUpInside)
-        
+        callOutView.infoWindowButton.addTarget(self, action: #selector(pushToParkDetail), for: .touchUpInside)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -188,27 +222,11 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
 
 extension LocationViewController: ParkProviderDelegate {
     func didFetch(by provider: ParkProvider) {
+        reloadAnnotations()
         
-        for park in provider.parks {
-            
-            // MARK: Check if now is in park open time
-            let parkOpenTime = park.openTime ?? "00:00~24:00"
-            let now = Date()
-            let isInOpenTime = now.isInOpenTime(parkOpenTime)
-            
-            var annotation = CustomPointAnnotation(pinType: .open, park: park)
-            if !isInOpenTime {
-                annotation = CustomPointAnnotation(pinType: .close, park: park)
-            }
-
-            DispatchQueue.main.async {
-                self.locationView?.mapView.addAnnotation(annotation)
-            }
-            
-            // Map Loading Scale
-            //            let mapContainsPoint = MKMapRectContainsPoint((locationView?.mapView.visibleMapRect)!, MKMapPointForCoordinate(park.coordinate))
-            //            let annotations = locationView?.mapView.annotations(in: (locationView?.mapView.visibleMapRect)!)
-        }
+        // Map Loading Scale
+        //            let mapContainsPoint = MKMapRectContainsPoint((locationView.mapView.visibleMapRect)!, MKMapPointForCoordinate(park.coordinate))
+        //            let annotations = locationView.mapView.annotations(in: (locationView.mapView.visibleMapRect)!)
     }
     
     func didFail(with error: Error, by provider: ParkProvider) {
