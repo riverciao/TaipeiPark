@@ -20,4 +20,6 @@ extension UIColor {
     static let barTintColor = UIColor.white
     static let likedColor = UIColor(r: 244, g: 193, b: 49)
     static let unlikedColor = UIColor.lightGray
+    static let openedColor = UIColor(r: 94, g: 166, b: 255)
+    static let closedColor = UIColor(r: 255, g: 12, b: 93)
 }

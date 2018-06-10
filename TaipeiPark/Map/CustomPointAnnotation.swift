@@ -27,9 +27,12 @@ class CustomPointAnnotation: MKPointAnnotation {
     
     class var identifier: String { return String(describing: self) }
     let pinType: PinType
+    let park: Park
     
-    init(pinType: PinType) {
+    init(pinType: PinType, park: Park) {
         self.pinType = pinType
+        self.park = park
         super.init()
+        self.coordinate = park.coordinate
     }
 }

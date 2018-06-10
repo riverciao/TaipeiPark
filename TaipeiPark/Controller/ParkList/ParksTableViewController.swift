@@ -68,9 +68,9 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         
         // MARK: Reload data model
         switch provider {
-        case is LikedParkLocalProvider:
+        case is LikedParkLocalProvider: //is tabBarType .favorite controller
             provider.fetch()
-        case is ParkAPIProvider:
+        case is ParkAPIProvider: //is tabBarType .list controller
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -167,7 +167,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 cell.parkImageView.image = nil
                 cell.parkImageView.load(url: park.imageURL)
                 
-                // LikedPark
+                // MARK: LikedPark
                 cell.isLiked = likedParkProvider?.isLikedPark(id: park.id) ?? false
                 cell.likeButton.addTarget(self, action: #selector(likePark), for: .touchUpInside)
             }

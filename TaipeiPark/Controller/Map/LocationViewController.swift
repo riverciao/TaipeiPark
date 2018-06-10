@@ -14,6 +14,12 @@ class LocationViewController: UIViewController {
     // MARK: Property
     
     let provider: ParkProvider
+    var likedParkProvider: LikedParkProvider? {
+        didSet {
+            likedParkProvider?.likedParkdelegate = self
+        }
+    }
+    var persistenceDelegate: PersistenceDelegate?
     var locationManager = CLLocationManager()
     var locationView: LocationView?
     var centerLocation: CLLocation?
@@ -70,7 +76,7 @@ class LocationViewController: UIViewController {
     
     func addPin() {
         // Add test pin
-        let annotation = CustomPointAnnotation(pinType: .open)
+        let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: 25.044369, longitude: 121.564943)
         self.locationView?.mapView.addAnnotation(annotation)
     }
@@ -97,19 +103,10 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomPointAnnotation.identifier)
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: customPointAnnotation, reuseIdentifier: CustomPointAnnotation.identifier)
-            annotationView?.canShowCallout = true
+            annotationView?.canShowCallout = false
         } else {
             annotationView?.annotation = customPointAnnotation
         }
-        
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        button.setImage(#imageLiteral(resourceName: "icon-star").withRenderingMode(.alwaysTemplate), for: .normal)
-        button.tintColor = UIColor.unlikedColor
-        annotationView?.rightCalloutAccessoryView = button
-        let view = UIView(frame: CGRect(x: 20, y: 0, width: 100, height: 40))
-        view.backgroundColor = UIColor.barTintColor
-        annotationView?.detailCalloutAccessoryView = view
-        
         
         annotationView?.image = customPointAnnotation.pinType.image
         
@@ -119,6 +116,29 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let pinCoordinate = view.annotation?.coordinate {
             setRegion(centerCoordinate: pinCoordinate)
+        }
+        
+        guard let annotation = view.annotation as? CustomPointAnnotation else { return }
+        let callOutView = CallOutView(frame: CGRect(x: 0, y: 0, width: 200, height: 130))
+        view.addSubview(callOutView)
+        
+        callOutView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: view.calloutOffset.x).isActive = true
+        callOutView.bottomAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        callOutView.titleLabel.text = annotation.park.name
+        callOutView.subtitleLabel.text = annotation.park.administrativeArea
+        callOutView.isOpened = {
+            switch annotation.pinType {
+            case .open: return true
+            case .close: return false
+            }
+        }()
+        callOutView.isLiked = false
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        let callOutViews = view.subviews
+        for view in callOutViews {
+            view.removeFromSuperview()
         }
     }
 }
@@ -133,13 +153,10 @@ extension LocationViewController: ParkProviderDelegate {
             let now = Date()
             let isInOpenTime = now.isInOpenTime(parkOpenTime)
             
-            var annotation = CustomPointAnnotation(pinType: .open)
+            var annotation = CustomPointAnnotation(pinType: .open, park: park)
             if !isInOpenTime {
-                annotation = CustomPointAnnotation(pinType: .close)
+                annotation = CustomPointAnnotation(pinType: .close, park: park)
             }
-            annotation.coordinate = park.coordinate
-            annotation.title = park.name
-            annotation.subtitle = park.administrativeArea
 
             DispatchQueue.main.async {
                 self.locationView?.mapView.addAnnotation(annotation)
@@ -154,4 +171,8 @@ extension LocationViewController: ParkProviderDelegate {
     func didFail(with error: Error, by provider: ParkProvider) {
         print(error)
     }
+}
+
+extension LikedParkLocalProviderDelegate: LikedParkLocalProviderDelegate {
+    
 }
