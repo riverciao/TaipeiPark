@@ -127,6 +127,10 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         }
     }
     
+    @objc func goToMap(_ sender: UIButton) {
+        print("OOO")
+    }
+    
 
     // MARK: - Table view data source
 
@@ -166,6 +170,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 cell.introductionLabel.text = park.introduction
                 cell.parkImageView.image = nil
                 cell.parkImageView.load(url: park.imageURL)
+                cell.mapButton.addTarget(self, action: #selector(goToMap), for: .touchUpInside)
                 
                 // MARK: LikedPark
                 cell.isLiked = likedParkProvider?.isLikedPark(id: park.id) ?? false
