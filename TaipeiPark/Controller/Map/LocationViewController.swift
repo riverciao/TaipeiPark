@@ -83,14 +83,12 @@ class LocationViewController: UIViewController {
     }
     
     @objc func likePark(_ sender: UIButton) {
-        print("OOOOO")
-        let parkIndex = sender.tag
-        
         guard
             let persistenceDelegate = persistenceDelegate,
             let likedParkProvider = likedParkProvider
             else { fatalError("make sure persistenceDelegate and likedParkProvider are assigned") }
         
+        let parkIndex = sender.tag
         let park = provider.park(at: IndexPath(row: parkIndex, section: 0))
         
         do {
@@ -106,14 +104,13 @@ class LocationViewController: UIViewController {
                 }
                 
                 // MARK: Update UI
-                switch self.provider {
-                case is LikedParkLocalProvider:
-                    self.provider.fetch()
-                case is ParkAPIProvider:
-//                    tableView.reloadRows(at: [indexPath], with: .none)
-                    break
-                default: break
-                }
+                guard
+                    let annotationView = sender.superview?.superview?.superview?.superview as? CustomAnnotationView,
+                    let annotation = annotationView.annotation
+                    else { return }
+                
+                self.locationView?.mapView.removeAnnotation(annotation)
+                self.locationView?.mapView.addAnnotation(annotation)
             }
         } catch {
             

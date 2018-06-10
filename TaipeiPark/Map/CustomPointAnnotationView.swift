@@ -71,10 +71,5 @@ public class CustomAnnotationView: MKAnnotationView {
             return likeButton
         }
         return nil
-//        let hitView = super.hitTest(point, with: event)
-//        if hitView != nil {
-//            self.superview?.bringSubview(toFront: self)
-//        }
-//        return hitView
     }
 }
