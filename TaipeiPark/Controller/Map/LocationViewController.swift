@@ -106,11 +106,11 @@ class LocationViewController: UIViewController {
                 // MARK: Update UI
                 guard
                     let annotationView = sender.superview?.superview?.superview?.superview as? CustomAnnotationView,
-                    let annotation = annotationView.annotation
+                    let annotation = annotationView.annotation as? CustomPointAnnotation
                     else { return }
                 
-                self.locationView?.mapView.removeAnnotation(annotation)
-                self.locationView?.mapView.addAnnotation(annotation)
+                let park = annotation.park
+                annotationView.callOutView?.isLiked = likedParkProvider.isLikedPark(id: park.id)
             }
         } catch {
             
