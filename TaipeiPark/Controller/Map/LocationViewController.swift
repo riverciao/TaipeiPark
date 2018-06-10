@@ -143,8 +143,7 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         guard let customPointAnnotation = annotation as? CustomPointAnnotation else { return nil }
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomPointAnnotation.identifier)
         if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: customPointAnnotation, reuseIdentifier: CustomPointAnnotation.identifier)
-            annotationView?.canShowCallout = false
+            annotationView = CustomAnnotationView(annotation: customPointAnnotation, reuseIdentifier: CustomPointAnnotation.identifier)
         } else {
             annotationView?.annotation = customPointAnnotation
         }
@@ -158,16 +157,11 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         if let pinCoordinate = view.annotation?.coordinate {
             setRegion(centerCoordinate: pinCoordinate)
         }
-        self.callOutView = CallOutView(frame: CGRect(x: 0, y: 0, width: 200, height: 130))
 
         guard
+            let view = view as? CustomAnnotationView,
             let annotation = view.annotation as? CustomPointAnnotation,
-            let callOutView = self.callOutView else { return }
-        view.addSubview(callOutView)
-        
-        // MARK: Setup CallOutView Layout
-        callOutView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: view.calloutOffset.x).isActive = true
-        callOutView.bottomAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            let callOutView = view.callOutView else { return }
         
         // MARK: Park data to callOutView
         let park = annotation.park
@@ -228,27 +222,5 @@ extension LocationViewController: ParkProviderDelegate {
 extension LocationViewController: LikedParkLocalProviderDelegate {
     func didFail(with error: Error, by provider: LikedParkProvider) {
         print(error)
-    }
-}
-
-extension MKAnnotationView {
-    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        let rect = self.bounds
-        var isInside: Bool = rect.contains(point)
-        if !isInside {
-            for view in self.subviews {
-                isInside = view.frame.contains(point)
-                if isInside { break }
-            }
-        }
-        return isInside
-    }
-    
-    override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let hitView = super.hitTest(point, with: event)
-        if hitView != nil {
-            self.superview?.bringSubview(toFront: self)
-        }
-        return hitView
     }
 }

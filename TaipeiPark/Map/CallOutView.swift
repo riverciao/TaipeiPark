@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CallOutView: UIView {
+public class CallOutView: UIView {
 
     lazy var infoWindowButton: UIButton = {
         let button = UIButton()
@@ -77,7 +77,7 @@ class CallOutView: UIView {
         setUp()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setUp()
     }

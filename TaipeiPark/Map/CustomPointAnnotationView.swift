@@ -8,14 +8,25 @@
 
 import MapKit
 
-class CustomPointAnnotationView: MKAnnotationView {
+public class CustomAnnotationView: MKAnnotationView {
+    
+    // MARK: Property
+    
+    override public var annotation: MKAnnotation? {
+        willSet {
+            
+        }
+    }
+    public var callOutView: CallOutView?
+    
+    // MARK: Init
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         setUp()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setUp()
     }
@@ -23,5 +34,47 @@ class CustomPointAnnotationView: MKAnnotationView {
     // MARK: SetUp
     private func setUp() {
         self.canShowCallout = false
+    }
+    
+    // MARK: SetSelected
+    
+    override public func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        if selected {
+            callOutView = CallOutView(frame: CGRect(x: 0, y: 0, width: 200, height: 130))
+            guard let callOutView = callOutView else { return }
+            self.addSubview(callOutView)
+            
+            // MARK: Setup CallOutView Layout
+            callOutView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: self.calloutOffset.x).isActive = true
+            callOutView.bottomAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        } else {
+            callOutView?.removeFromSuperview()
+        }
+    }
+    
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let rect = self.bounds
+        var isInside: Bool = rect.contains(point)
+        if !isInside {
+            for view in self.subviews {
+                isInside = view.frame.contains(point)
+                if isInside { break }
+            }
+        }
+        return isInside
+    }
+    
+    override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if let likeButton = callOutView?.likeButton.hitTest(convert(point, to: callOutView?.likeButton), with: event) {
+            return likeButton
+        }
+        return nil
+//        let hitView = super.hitTest(point, with: event)
+//        if hitView != nil {
+//            self.superview?.bringSubview(toFront: self)
+//        }
+//        return hitView
     }
 }

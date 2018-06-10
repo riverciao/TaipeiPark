@@ -166,8 +166,8 @@
 			children = (
 				5F581A4820CA2C0C00ECB5E9 /* LocationParkAPIProvider.swift */,
 				5F581A4A20CA51F100ECB5E9 /* CustomPointAnnotation.swift */,
-				5FCD297120CBD2FC0043C2E1 /* CallOutView.swift */,
 				5FCD297320CD28B40043C2E1 /* CustomPointAnnotationView.swift */,
+				5FCD297120CBD2FC0043C2E1 /* CallOutView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
