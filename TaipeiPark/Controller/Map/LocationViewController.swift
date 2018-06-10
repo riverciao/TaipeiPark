@@ -29,6 +29,16 @@ class LocationViewController: UIViewController {
         }
     }
     var selectedPark: Park?
+    var currentAnnotatoin: CustomPointAnnotation? {
+        willSet {
+            guard let previousAnnotation = currentAnnotatoin else { return }
+            let annotationView = locationView.mapView.view(for: previousAnnotation)
+            guard let callOutViews = annotationView?.subviews else { return }
+            for view in callOutViews {
+                view.removeFromSuperview()
+            }
+        }
+    }
     
     // MARK: Init
     
@@ -53,6 +63,11 @@ class LocationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reloadAnnotations()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        currentAnnotatoin = nil
     }
     
     // MARK: Setup
@@ -246,9 +261,11 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
             let annotation = annotationView.annotation as? CustomPointAnnotation
         else { return }
         setup(callOutView, with: annotation)
+        currentAnnotatoin = annotation
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        currentAnnotatoin = nil
         if let pinCoordinate = view.annotation?.coordinate {
             setRegion(centerCoordinate: pinCoordinate)
         }
@@ -271,10 +288,6 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
 extension LocationViewController: ParkProviderDelegate {
     func didFetch(by provider: ParkProvider) {
         reloadAnnotations()
-        
-        // Map Loading Scale
-        //            let mapContainsPoint = MKMapRectContainsPoint((locationView.mapView.visibleMapRect)!, MKMapPointForCoordinate(park.coordinate))
-        //            let annotations = locationView.mapView.annotations(in: (locationView.mapView.visibleMapRect)!)
     }
     
     func didFail(with error: Error, by provider: ParkProvider) {
