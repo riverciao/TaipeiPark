@@ -122,17 +122,24 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         let callOutView = CallOutView(frame: CGRect(x: 0, y: 0, width: 200, height: 130))
         view.addSubview(callOutView)
         
+        // MARK: Setup CallOutView Layout
         callOutView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: view.calloutOffset.x).isActive = true
         callOutView.bottomAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        callOutView.titleLabel.text = annotation.park.name
-        callOutView.subtitleLabel.text = annotation.park.administrativeArea
+        
+        // MARK: Setup park data
+        let park = annotation.park
+        callOutView.titleLabel.text = park.name
+        callOutView.subtitleLabel.text = park.administrativeArea
         callOutView.isOpened = {
             switch annotation.pinType {
             case .open: return true
             case .close: return false
             }
         }()
-        callOutView.isLiked = false
+        
+//        cell.isLiked = likedParkProvider?.isLikedPark(id: park.id) ?? false
+//        cell.likeButton.addTarget(self, action: #selector(likePark), for: .touchUpInside)
+        callOutView.isLiked = likedParkProvider?.isLikedPark(id: park.id) ?? false
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -173,6 +180,8 @@ extension LocationViewController: ParkProviderDelegate {
     }
 }
 
-extension LikedParkLocalProviderDelegate: LikedParkLocalProviderDelegate {
-    
+extension LocationViewController: LikedParkLocalProviderDelegate {
+    func didFail(with error: Error, by provider: LikedParkProvider) {
+        print(error)
+    }
 }

@@ -71,6 +71,12 @@ class TabBarController: UITabBarController {
             let navigationController = NavigationController(rootViewController: locationViewController)
             navigationController.tabBarItem = TabBarItem(itemType: .map)
 
+            // MARK: LikedParkProvider
+            let likedParkProvider = LikedParkLocalProvider()
+            likedParkProvider.persistenceDelegate = AppDelegate.shared.persistenceManager
+            locationViewController.likedParkProvider = likedParkProvider
+            locationViewController.persistenceDelegate = AppDelegate.shared.persistenceManager
+            
             return navigationController
             
         // MARK: Favorite
