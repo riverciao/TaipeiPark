@@ -68,7 +68,7 @@ class ParkDetailViewController: UIViewController {
         let spotsCollectionViewHeight = SpotsCollectionView.viewHeight(with: view.bounds.width)
         
         // MARK: SpotsCollectionView
-        let collectionViewFrame = CGRect(x: 0, y: view.bounds.height - spotsCollectionViewHeight + tabBarHeight, width: view.bounds.width, height: spotsCollectionViewHeight)
+        let collectionViewFrame = CGRect(x: 0, y: view.bounds.height - spotsCollectionViewHeight, width: view.bounds.width, height: spotsCollectionViewHeight)
         let layout = UICollectionViewFlowLayout()
         self.spotsCollectionView = SpotsCollectionView(frame: collectionViewFrame, collectionViewLayout: layout)
         if let spotsCollectionView = spotsCollectionView {
@@ -78,7 +78,7 @@ class ParkDetailViewController: UIViewController {
         }
         
         // MARK: ParkDetailView
-        let parkDetailViewHeight = view.bounds.height - navigationBarHeight - spotsCollectionViewHeight + tabBarHeight
+        let parkDetailViewHeight = view.bounds.height - navigationBarHeight - spotsCollectionViewHeight
         let parkDetailViewFrame = CGRect(x: 0, y: navigationBarHeight, width: view.bounds.width, height: parkDetailViewHeight)
         self.parkDetailView = ParkDetailView(frame: parkDetailViewFrame)
         if let parkDetailView = parkDetailView {
@@ -147,6 +147,7 @@ extension ParkDetailViewController: UICollectionViewDataSource, UICollectionView
         let spot = provider.spot(at: indexPath)
         let spotDetailViewController = SpotDetailViewController(spot: spot)
         navigationItem.title = ""
+        hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(spotDetailViewController, animated: true)
     }
 }

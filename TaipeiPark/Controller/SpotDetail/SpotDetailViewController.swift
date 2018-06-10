@@ -39,7 +39,7 @@ class SpotDetailViewController: UIViewController {
     // MARK: Setup
     
     private func setup() {
-        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .white
         let navigationBarHeight = navigationController?.navigationBar.frame.height ?? 0
         let spotDetailViewHeight = view.bounds.height - navigationBarHeight

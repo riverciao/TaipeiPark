@@ -201,6 +201,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         parkDetailViewController.currentPark = currentPark
         
         navigationItem.title = ""
+        hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(parkDetailViewController, animated: true)
     }
     
