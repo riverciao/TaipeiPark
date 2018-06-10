@@ -77,11 +77,7 @@ class SpotDetailView: UIView {
     
     private func setUp() {
         self.addSubview(scrollView)
-        scrollView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        
+        scrollView.allConstraints(equalTo: self)        
         scrollView.addSubview(spotImageView)
         spotImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
         spotImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true

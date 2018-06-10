@@ -28,17 +28,23 @@ class SpotDetailViewController: UIViewController {
     
     // MARK: View life cycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
         setup()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: Setup
     
     private func setup() {
+        self.tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .white
         let tabBarHeight = tabBarController?.tabBar.frame.height ?? 0
-        spotDetailView = SpotDetailView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - tabBarHeight))
+        let navigationBarHeight = navigationController?.navigationBar.frame.height ?? 0
+        let spotDetailViewHeight = view.bounds.height - tabBarHeight
+        spotDetailView = SpotDetailView(frame: CGRect(x: 0, y: navigationBarHeight, width: view.frame.width, height: spotDetailViewHeight))
         if let spotDetailView = spotDetailView {
             view.addSubview(spotDetailView)
         }

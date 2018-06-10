@@ -64,10 +64,11 @@ class ParkDetailViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         
         let navigationBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
+        let tabBarHeight = self.tabBarController?.tabBar.bounds.height ?? 0
         let spotsCollectionViewHeight = SpotsCollectionView.viewHeight(with: view.bounds.width)
         
         // MARK: SpotsCollectionView
-        let collectionViewFrame = CGRect(x: 0, y: view.bounds.height - spotsCollectionViewHeight, width: view.bounds.width, height: spotsCollectionViewHeight)
+        let collectionViewFrame = CGRect(x: 0, y: view.bounds.height - spotsCollectionViewHeight + tabBarHeight, width: view.bounds.width, height: spotsCollectionViewHeight)
         let layout = UICollectionViewFlowLayout()
         self.spotsCollectionView = SpotsCollectionView(frame: collectionViewFrame, collectionViewLayout: layout)
         if let spotsCollectionView = spotsCollectionView {
@@ -77,7 +78,7 @@ class ParkDetailViewController: UIViewController {
         }
         
         // MARK: ParkDetailView
-        let parkDetailViewHeight = view.bounds.height - navigationBarHeight - spotsCollectionViewHeight
+        let parkDetailViewHeight = view.bounds.height - navigationBarHeight - spotsCollectionViewHeight + tabBarHeight
         let parkDetailViewFrame = CGRect(x: 0, y: navigationBarHeight, width: view.bounds.width, height: parkDetailViewHeight)
         self.parkDetailView = ParkDetailView(frame: parkDetailViewFrame)
         if let parkDetailView = parkDetailView {
@@ -102,7 +103,10 @@ extension ParkDetailViewController: ParkDetailProviderDelagate {
     }
     
     func didFailToFacility(with error: Error, by provider: ParkDetailProvider) {
-        
+        let alert = UIAlertController(title: "\(error)", message: error.localizedDescription, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func didFetchSpot(by provider: ParkDetailProvider) {
@@ -110,7 +114,10 @@ extension ParkDetailViewController: ParkDetailProviderDelagate {
     }
     
     func didFailToSpot(with error: Error, by provider: ParkDetailProvider) {
-        
+        let alert = UIAlertController(title: "\(error)", message: error.localizedDescription, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
