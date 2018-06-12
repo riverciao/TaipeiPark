@@ -13,7 +13,7 @@ class ParkDetailAPIProvider: ParkDetailProvider {
     // MARK: Property
     
     let client: APIClient
-    var parkDetailDelegate: ParkDetailProviderDelagate?
+    weak var parkDetailDelegate: ParkDetailProviderDelagate?
     var isSpotsFetched: Bool = false
     private var facilities = [Facility]()
     private var spots = [Spot]()

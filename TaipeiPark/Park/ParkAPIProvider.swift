@@ -14,7 +14,7 @@ class ParkAPIProvider: ParkProvider {
     // MARK: Property
     
     let client: APIClient
-    var delegate: ParkProviderDelegate?
+    weak var delegate: ParkProviderDelegate?
     var parks = [Park]()
     private var page: Page = .begin
     private var pageIsRead = [Page: Bool]()
