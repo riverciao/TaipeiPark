@@ -27,7 +27,7 @@ class SpotsCollectionView: UICollectionView {
     }
     
     private func setUp() {
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .spotsCollectionViewBackgroundColor
         self.showsHorizontalScrollIndicator = false
         self.register(UINib(nibName: SpotCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: SpotCollectionViewCell.identifier)
     }

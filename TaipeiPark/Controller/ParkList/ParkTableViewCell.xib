@@ -49,6 +49,13 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RPE-wn-N1R">
+                        <rect key="frame" x="38" y="24" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="I7z-AZ-hdi"/>
+                            <constraint firstAttribute="height" constant="35" id="ayq-8z-wt1"/>
+                        </constraints>
+                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wfR-Pr-1MA">
                         <rect key="frame" x="16" y="16" width="80" height="80"/>
                         <constraints>
@@ -80,6 +87,7 @@
                     <constraint firstItem="vGx-I7-LXP" firstAttribute="trailing" secondItem="oxR-OD-KOR" secondAttribute="trailing" id="2xT-DG-BIc"/>
                     <constraint firstItem="wfR-Pr-1MA" firstAttribute="leading" secondItem="fhY-8F-up1" secondAttribute="leadingMargin" id="4cb-sE-KAc"/>
                     <constraint firstItem="K9c-FI-fFD" firstAttribute="top" secondItem="wfR-Pr-1MA" secondAttribute="top" id="688-s8-4yY"/>
+                    <constraint firstItem="RPE-wn-N1R" firstAttribute="top" secondItem="wfR-Pr-1MA" secondAttribute="top" constant="8" id="9QU-Ma-8Dw"/>
                     <constraint firstItem="9Va-wU-U9s" firstAttribute="top" secondItem="fhY-8F-up1" secondAttribute="bottom" constant="8" id="Fkz-qE-CgS"/>
                     <constraint firstItem="fhY-8F-up1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Fpu-CJ-bX0"/>
                     <constraint firstItem="oxR-OD-KOR" firstAttribute="top" secondItem="K9c-FI-fFD" secondAttribute="top" id="Qa4-6D-ihY"/>
@@ -87,6 +95,7 @@
                     <constraint firstItem="oxR-OD-KOR" firstAttribute="leading" secondItem="K9c-FI-fFD" secondAttribute="trailing" constant="16" id="Ut3-bg-aNj"/>
                     <constraint firstItem="oxR-OD-KOR" firstAttribute="trailing" secondItem="fhY-8F-up1" secondAttribute="trailingMargin" constant="8" id="auJ-1W-Xeq"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9Va-wU-U9s" secondAttribute="trailing" constant="8" id="c8C-y7-Urx"/>
+                    <constraint firstItem="RPE-wn-N1R" firstAttribute="centerX" secondItem="wfR-Pr-1MA" secondAttribute="centerX" id="i2B-ZT-Kad"/>
                     <constraint firstItem="vGx-I7-LXP" firstAttribute="bottom" secondItem="fhY-8F-up1" secondAttribute="bottom" id="jPi-cy-2Gk"/>
                     <constraint firstItem="fhY-8F-up1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="njt-jn-lBM"/>
                     <constraint firstAttribute="trailing" secondItem="fhY-8F-up1" secondAttribute="trailing" constant="8" id="sT2-X8-wZh"/>
@@ -99,6 +108,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="administrativeAreaLabel" destination="URd-bY-OQb" id="chc-3v-IrQ"/>
+                <outlet property="iconImageView" destination="RPE-wn-N1R" id="bQc-Zo-Ctc"/>
                 <outlet property="introductionLabel" destination="9Va-wU-U9s" id="YqO-Y5-6Xm"/>
                 <outlet property="likeButton" destination="oxR-OD-KOR" id="pSJ-Ls-C7p"/>
                 <outlet property="mapButton" destination="vGx-I7-LXP" id="4HQ-Dj-SJM"/>

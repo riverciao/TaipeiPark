@@ -24,6 +24,12 @@ class ParkDetailView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     lazy var parkNameLabel: UILabel = {
        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22)
@@ -104,6 +110,14 @@ class ParkDetailView: UIView {
         parkImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         parkImageView.widthAnchor.constraint(equalToConstant: self.bounds.width * 0.6).isActive = true
         parkImageView.heightAnchor.constraint(equalToConstant: self.bounds.width * 0.6).isActive = true
+        
+        scrollView.insertSubview(iconImageView, belowSubview: parkImageView)
+        iconImageView.centerYAnchor.constraint(equalTo: parkImageView.centerYAnchor).isActive = true
+        iconImageView.centerXAnchor.constraint(equalTo: parkImageView.centerXAnchor).isActive = true
+        iconImageView.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        iconImageView.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        iconImageView.image = #imageLiteral(resourceName: "icon-photo").withRenderingMode(.alwaysTemplate)
+        iconImageView.tintColor = .imagePlaceholderColor
 
         setupLabelsLayout([parkNameLabel,
                            parkTypeLabel,
