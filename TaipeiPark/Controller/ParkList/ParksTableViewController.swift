@@ -178,8 +178,8 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 cell.administrativeAreaLabel.text = park.administrativeArea
                 cell.introductionLabel.text = park.introduction
                 cell.parkImageView.image = nil
-                cell.parkImageView.load(url: park.imageURL)
-//                ImageCacher.loadImage(with: park.imageURL, into: cell.parkImageView)
+//                cell.parkImageView.load(url: park.imageURL)
+                ImageCacher.loadImage(with: park.imageURL, into: cell.parkImageView)
                 cell.mapButton.addTarget(self, action: #selector(goToMap), for: .touchUpInside)
                 
                 // MARK: LikedPark

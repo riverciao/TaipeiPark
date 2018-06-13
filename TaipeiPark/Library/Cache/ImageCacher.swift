@@ -14,9 +14,10 @@ class ImageCacher: LoadImage {
         let memoryCache = MemoryCache()
         let diskCache = DiskCache()
         
-        // If stored in menory
+        // If stored in menory and disk
         let isExistedInMemory = memoryCache.fileExists(for: url)
         let isExistedInDisk = diskCache.fileExists(for: url)
+        
         switch (isExistedInMemory, isExistedInDisk) {
         case (true, _):
             // retrieve from memory
@@ -38,12 +39,12 @@ class ImageCacher: LoadImage {
             guard let imageData = try? Data(contentsOf: url) else { return }
             guard let image = UIImage(data: imageData) else { return }
             memoryCache.store(object: image, for: url) {
-                diskCache.store(object: image, for: url, completion: nil)
-            }
-            memoryCache.retrieve(for: url) { (image: UIImage) in
-                DispatchQueue.main.async {
-                    imageView.image = image
+                memoryCache.retrieve(for: url) { (image: UIImage) in
+                    DispatchQueue.main.async {
+                        imageView.image = image
+                    }
                 }
+                diskCache.store(object: image, for: url, completion: nil)
             }
         }
     }
