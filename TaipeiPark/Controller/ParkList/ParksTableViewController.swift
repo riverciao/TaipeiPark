@@ -32,6 +32,8 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
             }
         }
     }
+    let cache = NSCache<AnyObject, AnyObject>()
+    var downloadedDictionary = [IndexPath: URL]()
     let numberOfFetchingRows = 15
     
     var isAutoFetching = true {
@@ -122,6 +124,21 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         }
     }
     
+    private func downloadImageForCell(at indexPath: IndexPath, with imageURL: URL) {
+        DispatchQueue.global().async { [weak self] in
+            guard let imageData = try? Data(contentsOf: imageURL) else { return }
+            guard let image = UIImage(data: imageData) else { return }
+            self?.cache.setObject(image as AnyObject, forKey: indexPath as AnyObject)
+            self?.downloadedDictionary[indexPath] = imageURL
+            
+            DispatchQueue.main.async {
+                if let cell = self?.tableView.cellForRow(at: indexPath) as? ParkTableViewCell {
+                    cell.parkImageView.image = image
+                }
+            }
+        }
+    }
+    
     @objc func goToMap(_ sender: UIButton) {
         guard
             let tabBarController = tabBarController,
@@ -178,8 +195,13 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 cell.administrativeAreaLabel.text = park.administrativeArea
                 cell.introductionLabel.text = park.introduction
                 cell.parkImageView.image = nil
-//                cell.parkImageView.load(url: park.imageURL)
-                ImageCacher.loadImage(with: park.imageURL, into: cell.parkImageView)
+                if let cachedImage = cache.object(forKey: indexPath as AnyObject) as? UIImage {
+                    cell.parkImageView.image = cachedImage
+                }
+                if downloadedDictionary[indexPath] == nil {
+                    downloadImageForCell(at: indexPath, with: park.imageURL)
+                }
+
                 cell.mapButton.addTarget(self, action: #selector(goToMap), for: .touchUpInside)
                 
                 // MARK: LikedPark
