@@ -135,8 +135,8 @@ public struct Park: Codable {
 // MARK: Image URL
 
 public extension Park {
-    public var imageURL: URL {
-        return URL(string: imageURLString)!
+    public var imageURL: URL? {
+        return URL(string: imageURLString)
     }
 }
 

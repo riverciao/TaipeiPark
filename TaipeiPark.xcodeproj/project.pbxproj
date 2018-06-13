@@ -41,12 +41,6 @@
 		5FCD297220CBD2FC0043C2E1 /* CallOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD297120CBD2FC0043C2E1 /* CallOutView.swift */; };
 		5FCD297420CD28B40043C2E1 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD297320CD28B40043C2E1 /* CustomAnnotationView.swift */; };
 		5FCD297720CF76ED0043C2E1 /* ImageCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD297620CF76ED0043C2E1 /* ImageCacher.swift */; };
-		5FCD297920CF77170043C2E1 /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD297820CF77170043C2E1 /* LoadImage.swift */; };
-		5FCD297B20CF79040043C2E1 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD297A20CF79040043C2E1 /* Cache.swift */; };
-		5FCD297D20CF794E0043C2E1 /* Cachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD297C20CF794E0043C2E1 /* Cachable.swift */; };
-		5FCD297F20CF7C310043C2E1 /* MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD297E20CF7C310043C2E1 /* MemoryCache.swift */; };
-		5FCD298320CF9B940043C2E1 /* UIImage+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD298220CF9B940043C2E1 /* UIImage+Cache.swift */; };
-		5FCD298520CFA0760043C2E1 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD298420CFA0760043C2E1 /* DiskCache.swift */; };
 		5FF5AF3220C63B4F005188BE /* SpotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */; };
 		5FF5AF3420C63D67005188BE /* SpotDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3320C63D67005188BE /* SpotDetailView.swift */; };
 		5FF5AF3620C65FDE005188BE /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5AF3520C65FDE005188BE /* LocationView.swift */; };
@@ -101,12 +95,6 @@
 		5FCD297120CBD2FC0043C2E1 /* CallOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallOutView.swift; sourceTree = "<group>"; };
 		5FCD297320CD28B40043C2E1 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		5FCD297620CF76ED0043C2E1 /* ImageCacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacher.swift; sourceTree = "<group>"; };
-		5FCD297820CF77170043C2E1 /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
-		5FCD297A20CF79040043C2E1 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		5FCD297C20CF794E0043C2E1 /* Cachable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cachable.swift; sourceTree = "<group>"; };
-		5FCD297E20CF7C310043C2E1 /* MemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCache.swift; sourceTree = "<group>"; };
-		5FCD298220CF9B940043C2E1 /* UIImage+Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Cache.swift"; sourceTree = "<group>"; };
-		5FCD298420CFA0760043C2E1 /* DiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
 		5FF5AF3120C63B4F005188BE /* SpotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailViewController.swift; sourceTree = "<group>"; };
 		5FF5AF3320C63D67005188BE /* SpotDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailView.swift; sourceTree = "<group>"; };
 		5FF5AF3520C65FDE005188BE /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
@@ -266,12 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				5FCD297620CF76ED0043C2E1 /* ImageCacher.swift */,
-				5FCD297820CF77170043C2E1 /* LoadImage.swift */,
-				5FCD297A20CF79040043C2E1 /* Cache.swift */,
-				5FCD297C20CF794E0043C2E1 /* Cachable.swift */,
-				5FCD297E20CF7C310043C2E1 /* MemoryCache.swift */,
-				5FCD298420CFA0760043C2E1 /* DiskCache.swift */,
-				5FCD298220CF9B940043C2E1 /* UIImage+Cache.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -399,12 +381,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FCD297920CF77170043C2E1 /* LoadImage.swift in Sources */,
 				5FCD297720CF76ED0043C2E1 /* ImageCacher.swift in Sources */,
 				5F581A4B20CA51F100ECB5E9 /* CustomPointAnnotation.swift in Sources */,
 				5F87D26D20B7BD87003F2876 /* Router.swift in Sources */,
 				5F87D28220BAA64C003F2876 /* ParksTableViewController.swift in Sources */,
-				5FCD298520CFA0760043C2E1 /* DiskCache.swift in Sources */,
 				5FCD297220CBD2FC0043C2E1 /* CallOutView.swift in Sources */,
 				5FF5AF4520C7D3FC005188BE /* LikedParkLocalProvider.swift in Sources */,
 				5FF5AF4D20C7E4F4005188BE /* PersistenceError.swift in Sources */,
@@ -412,7 +392,6 @@
 				5FF5AF3420C63D67005188BE /* SpotDetailView.swift in Sources */,
 				5F17C65220BD2F020090A98C /* LocationViewController.swift in Sources */,
 				5F23F15120BB01E000431F10 /* ParkTableViewCell.swift in Sources */,
-				5FCD297D20CF794E0043C2E1 /* Cachable.swift in Sources */,
 				5F87D27420B80503003F2876 /* Park.swift in Sources */,
 				5FF5AF5320C7ED46005188BE /* LikedPark.swift in Sources */,
 				5F4CD33520BE59FF006E1A88 /* UIImageViewExtensions.swift in Sources */,
@@ -421,7 +400,6 @@
 				5F23F15620BCF23E00431F10 /* Spot.swift in Sources */,
 				5F17C64920BD0D480090A98C /* TabBarItemType.swift in Sources */,
 				5FF5AF3220C63B4F005188BE /* SpotDetailViewController.swift in Sources */,
-				5FCD297B20CF79040043C2E1 /* Cache.swift in Sources */,
 				5F87D27C20B9AC3A003F2876 /* Page.swift in Sources */,
 				5FC1410A20BFDEB300495D66 /* SpotsCollectionView.swift in Sources */,
 				5FF5AF5720C7FC74005188BE /* AppDelegateExtensions.swift in Sources */,
@@ -439,12 +417,10 @@
 				5FF5AF3A20C78BC2005188BE /* ColorTool.swift in Sources */,
 				5F17C64B20BD29740090A98C /* TabBarItem.swift in Sources */,
 				5F87D28020BA960B003F2876 /* ParkAPIProvider.swift in Sources */,
-				5FCD297F20CF7C310043C2E1 /* MemoryCache.swift in Sources */,
 				5FF5AF3D20C7A810005188BE /* NavigationController.swift in Sources */,
 				5F17C64620BCFFDA0090A98C /* ParkDetailAPIProvider.swift in Sources */,
 				5F581A4D20CA9DB100ECB5E9 /* DateExtensions.swift in Sources */,
 				5FF5AF4320C7D073005188BE /* ParkId.swift in Sources */,
-				5FCD298320CF9B940043C2E1 /* UIImage+Cache.swift in Sources */,
 				5FF5AF4B20C7E378005188BE /* PersistenceQueue.swift in Sources */,
 				5F87D27E20BA9424003F2876 /* ParkProvider.swift in Sources */,
 				5FF5AF4920C7E292005188BE /* PersistenceDelegate.swift in Sources */,

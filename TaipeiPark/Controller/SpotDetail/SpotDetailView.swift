@@ -76,6 +76,7 @@ class SpotDetailView: UIView {
     // MARK: Setup
     
     private func setUp() {
+        self.backgroundColor = .backgroundColor
         self.addSubview(scrollView)
         scrollView.allConstraints(equalTo: self)        
         scrollView.addSubview(spotImageView)

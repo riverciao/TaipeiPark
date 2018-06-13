@@ -15,6 +15,7 @@ extension UIColor {
 }
 
 extension UIColor {
+    static let backgroundColor = UIColor.white
     static let barColor =  UIColor(r: 5, g: 15, b: 20)
     static let mapButtonColor = UIColor(r: 40, g: 177, b: 111)
     static let barTintColor = UIColor.white

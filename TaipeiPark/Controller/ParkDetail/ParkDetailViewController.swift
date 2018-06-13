@@ -19,11 +19,11 @@ class ParkDetailViewController: UIViewController {
     let provider: ParkDetailProvider
     
     // ParkDetailView
-    var parkDetailView: ParkDetailView?
+    var parkDetailView: ParkDetailView!
     var currentPark: Park?
     
     // SpotsCollectionView
-    var spotsCollectionView: SpotsCollectionView?
+    var spotsCollectionView: SpotsCollectionView!
     var spotState: State {
         didSet {
             DispatchQueue.main.async {
@@ -38,6 +38,7 @@ class ParkDetailViewController: UIViewController {
         self.provider = provider
         self.spotState = provider.isSpotsFetched ? .ready : .preparing
         super.init(nibName: nil, bundle: nil)
+        addSubView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -60,9 +61,7 @@ class ParkDetailViewController: UIViewController {
     }
     
     // MARK: Setup
-    func setup() {
-        self.tabBarController?.tabBar.isHidden = true
-        
+    private func addSubView() {
         let navigationBarHeight = self.navigationController?.navigationBar.bounds.height ?? 0
         let spotsCollectionViewHeight = SpotsCollectionView.viewHeight(with: view.bounds.width)
         
@@ -83,13 +82,20 @@ class ParkDetailViewController: UIViewController {
         if let parkDetailView = parkDetailView {
             self.view.addSubview(parkDetailView)
         }
+    }
+    
+    private func setup() {
+        self.tabBarController?.tabBar.isHidden = true
+        
         if let park = currentPark {
-            self.parkDetailView?.parkNameLabel.text = park.name
-            self.parkDetailView?.parkTypeLabel.text = park.parkType
-            self.parkDetailView?.areaAddressLabel.text = park.administrativeArea + park.address
-            self.parkDetailView?.openTimeLabel.text = park.openTime
-            self.parkDetailView?.introductionLabel.text = park.introduction
-            self.parkDetailView?.parkImageView.load(url: park.imageURL)
+            parkDetailView.parkNameLabel.text = park.name
+            parkDetailView.parkTypeLabel.text = park.parkType
+            parkDetailView.areaAddressLabel.text = park.administrativeArea + park.address
+            parkDetailView.openTimeLabel.text = park.openTime
+            parkDetailView.introductionLabel.text = park.introduction
+            if let imageURL = park.imageURL {
+                ImageCacher.loadImage(with: imageURL, into: parkDetailView.parkImageView)
+            }
         }
     }
 }
@@ -136,7 +142,7 @@ extension ParkDetailViewController: UICollectionViewDataSource, UICollectionView
             cell.backgroundColor = .clear
             cell.spotName.text = spot.name
             if let imageURL = spot.imageURL {
-                cell.spotImageView.load(url: imageURL)
+                ImageCacher.loadImage(with: imageURL, into: cell.spotImageView)
             }
         }
         return cell
