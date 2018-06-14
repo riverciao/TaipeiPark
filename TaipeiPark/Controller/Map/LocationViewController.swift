@@ -28,8 +28,26 @@ class LocationViewController: UIViewController {
             setRegion(centerCoordinate: coordinate)
         }
     }
-    var selectedPark: Park?
+    var selectedPark: Park? {
+        didSet {
+            // MARK: Open callOutView if park is selected in .list
+            guard
+                let park = self.selectedPark,
+                let annotationView = annotationView(of: park)
+                else { return }
+            
+            annotationView.setSelected(true, animated: false)
+            
+            guard
+                let callOutView = annotationView.callOutView,
+                let annotation = annotationView.annotation as? CustomPointAnnotation
+                else { return }
+            setup(callOutView, with: annotation)
+            currentAnnotatoin = annotation
+        }
+    }
     var currentAnnotatoin: CustomPointAnnotation?
+    var parkIsAdded = [Park: Bool]()
     
     // MARK: Init
     
@@ -59,7 +77,7 @@ class LocationViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        currentAnnotatoin = nil
+        deselectAnnotation()
     }
     
     // MARK: Setup
@@ -94,17 +112,19 @@ class LocationViewController: UIViewController {
         locationView.mapView.setRegion(viewRegion, animated: false)
     }
     
-    private func annotationView(of park: Park, in views: [CustomAnnotationView]) -> CustomAnnotationView? {
-        for view in views {
-            guard let annotation = view.annotation as? CustomPointAnnotation else { break }
+    private func annotationView(of park: Park) -> CustomAnnotationView? {
+        let mapView = locationView.mapView
+        guard let annotations = mapView.annotations as? [CustomPointAnnotation] else { return nil }
+        for annotation in annotations {
             if annotation.park == park {
-                return view
+                guard let annotationView = mapView.view(for: annotation) as?CustomAnnotationView else { return nil }
+                return annotationView
             }
         }
         return nil
     }
     
-    @objc private func deselectAnnotation(_ sender: UITapGestureRecognizer) {
+    @objc private func deselectAnnotation(_ sender: UITapGestureRecognizer? = nil) {
         if let currentAnnotation = currentAnnotatoin {
             let annotationView = locationView.mapView.view(for: currentAnnotation)
             annotationView?.setSelected(false, animated: false)
@@ -113,9 +133,15 @@ class LocationViewController: UIViewController {
     
     private func reloadAnnotations() {
         let mapView = locationView.mapView
-        mapView.removeAnnotations(mapView.annotations)
         
         for park in provider.parks {
+            // Check if park is in visible map rect
+            let visibleRegion = mapView.visibleMapRect
+            let isParkCoordinateVisible = MKMapRectContainsPoint(visibleRegion, MKMapPointForCoordinate(park.coordinate))
+            guard isParkCoordinateVisible,
+                  parkIsAdded[park] == nil
+            else { continue }
+            
             // Check if now is in park open time
             let parkOpenTime = park.openTime ?? "00:00~24:00"
             let now = Date()
@@ -129,6 +155,7 @@ class LocationViewController: UIViewController {
             DispatchQueue.main.async {
                 mapView.addAnnotation(annotation)
             }
+            parkIsAdded[park] = true
         }
     }
     
@@ -236,29 +263,6 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         callOutView.infoWindowButton.addTarget(self, action: #selector(pushToParkDetail), for: .touchUpInside)
     }
     
-    fileprivate func extractedFunc(_ callOutView: CallOutView, _ annotation: CustomPointAnnotation) {
-        setup(callOutView, with: annotation)
-    }
-    
-    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-        
-        // MARK: Open callOutView if park is selected in .list
-        guard
-            let park = self.selectedPark,
-            let annotationViews = views as? [CustomAnnotationView],
-            let annotationView = annotationView(of: park, in: annotationViews)
-        else { return }
-        
-        annotationView.setSelected(true, animated: false)
-        
-        guard
-            let callOutView = annotationView.callOutView,
-            let annotation = annotationView.annotation as? CustomPointAnnotation
-        else { return }
-        extractedFunc(callOutView, annotation)
-        currentAnnotatoin = annotation
-    }
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let pinCoordinate = view.annotation?.coordinate {
             setRegion(centerCoordinate: pinCoordinate)
@@ -273,7 +277,11 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        currentAnnotatoin = nil
+        deselectAnnotation()
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        reloadAnnotations()
     }
 }
 

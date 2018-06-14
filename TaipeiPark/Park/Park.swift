@@ -145,3 +145,9 @@ extension Park: Equatable {
         return lhs.id == rhs.id
     }
 }
+
+extension Park: Hashable {
+    public var hashValue: Int {
+        return id.rawValue.hashValue
+    }
+}
