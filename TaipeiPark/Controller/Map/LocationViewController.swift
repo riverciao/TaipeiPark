@@ -29,15 +29,7 @@ class LocationViewController: UIViewController {
         }
     }
     var selectedPark: Park?
-    var currentAnnotatoin: CustomPointAnnotation? {
-        willSet {
-            guard
-                let previousAnnotation = currentAnnotatoin,
-                let annotationView = locationView.mapView.view(for: previousAnnotation)
-            else { return }
-            removeCallOutView(for: annotationView)
-        }
-    }
+    var currentAnnotatoin: CustomPointAnnotation?
     
     // MARK: Init
     
@@ -45,7 +37,7 @@ class LocationViewController: UIViewController {
         self.provider = provider
         super.init(nibName: nil, bundle: nil)
         provider.delegate = self
-        setUp()
+        addSubView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,6 +48,7 @@ class LocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUp()
         setupLocationManager()
     }
     
@@ -71,14 +64,18 @@ class LocationViewController: UIViewController {
     
     // MARK: Setup
     
-    private func setUp() {
+    private func addSubView() {
         // MARK: LocationView
         let navigationBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
         let tabBarHeight = self.tabBarController?.tabBar.frame.height ?? 0
         locationView = LocationView(frame: CGRect(x: 0, y: navigationBarHeight, width: view.frame.width, height: view.frame.height - tabBarHeight - navigationBarHeight))
         view.addSubview(locationView)
-
         locationView.mapView.delegate = self
+    }
+    
+    private func setUp() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(deselectAnnotation))
+        view.addGestureRecognizer(tap)
     }
     
     private func setupLocationManager() {
@@ -97,13 +94,6 @@ class LocationViewController: UIViewController {
         locationView.mapView.setRegion(viewRegion, animated: false)
     }
     
-    private func removeCallOutView(for annotationView: MKAnnotationView) {
-        let callOutViews = annotationView.subviews
-        for view in callOutViews {
-            view.removeFromSuperview()
-        }
-    }
-    
     private func annotationView(of park: Park, in views: [CustomAnnotationView]) -> CustomAnnotationView? {
         for view in views {
             guard let annotation = view.annotation as? CustomPointAnnotation else { break }
@@ -112,6 +102,13 @@ class LocationViewController: UIViewController {
             }
         }
         return nil
+    }
+    
+    @objc private func deselectAnnotation(_ sender: UITapGestureRecognizer) {
+        if let currentAnnotation = currentAnnotatoin {
+            let annotationView = locationView.mapView.view(for: currentAnnotation)
+            annotationView?.setSelected(false, animated: false)
+        }
     }
     
     private func reloadAnnotations() {
@@ -239,6 +236,10 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         callOutView.infoWindowButton.addTarget(self, action: #selector(pushToParkDetail), for: .touchUpInside)
     }
     
+    fileprivate func extractedFunc(_ callOutView: CallOutView, _ annotation: CustomPointAnnotation) {
+        setup(callOutView, with: annotation)
+    }
+    
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         
         // MARK: Open callOutView if park is selected in .list
@@ -254,7 +255,7 @@ extension LocationViewController: CLLocationManagerDelegate, MKMapViewDelegate {
             let callOutView = annotationView.callOutView,
             let annotation = annotationView.annotation as? CustomPointAnnotation
         else { return }
-        setup(callOutView, with: annotation)
+        extractedFunc(callOutView, annotation)
         currentAnnotatoin = annotation
     }
     

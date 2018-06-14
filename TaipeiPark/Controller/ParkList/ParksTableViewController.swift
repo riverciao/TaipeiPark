@@ -125,7 +125,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     @objc func goToMap(_ sender: UIButton) {
         guard
             let tabBarController = tabBarController,
-            let mapViewController = tabBarController.visibleViewController(of: .map) as? LocationViewController
+            let locationViewController = tabBarController.visibleViewController(of: .map) as? LocationViewController
         else { return }
         
         // find index of park
@@ -136,8 +136,8 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         
         let park = provider.park(at: indexPath)
         tabBarController.selectedIndex = tabBarController.tabBarIndex(of: .map)
-        mapViewController.centerCoordinate = park.coordinate
-        mapViewController.selectedPark = park
+        locationViewController.centerCoordinate = park.coordinate
+        locationViewController.selectedPark = park
     }
     
 
