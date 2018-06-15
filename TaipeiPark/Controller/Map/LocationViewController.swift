@@ -89,6 +89,7 @@ class LocationViewController: UIViewController {
         locationView = LocationView(frame: CGRect(x: 0, y: navigationBarHeight, width: view.frame.width, height: view.frame.height - tabBarHeight - navigationBarHeight))
         view.addSubview(locationView)
         locationView.mapView.delegate = self
+        locationView.allConstraints(equalTo: view)
     }
     
     private func setUp() {

@@ -34,6 +34,7 @@ class LocationView: UIView {
     // MARK: Setup
     
     private func setUp() {
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(mapView)
         mapView.allConstraints(equalTo: self)
     }
