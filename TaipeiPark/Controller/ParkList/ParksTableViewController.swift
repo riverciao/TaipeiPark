@@ -58,12 +58,12 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.register(UINib(nibName: ParkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ParkTableViewCell.identifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setUp()
         
         // MARK: Reload data model
         switch provider {
@@ -75,6 +75,12 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
             }
         default: break
         }
+    }
+    
+    // MARK: SetUp
+    
+    private func setUp() {
+        tableView.showsVerticalScrollIndicator = false
     }
     
     // MARK: Action
@@ -105,7 +111,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                     try context.save()
                 }
                 
-                // MARK: Update UI
+                // Update UI
                 switch self.provider {
                 case is LikedParkLocalProvider:
                     self.provider.fetch()
@@ -179,6 +185,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 cell.introductionLabel.text = park.introduction
                 if let imageURL = park.imageURL {
                     ImageCacher.loadImage(with: imageURL, into: cell.parkImageView)
+                    cell.iconImageView.image = nil
                 }
 
                 cell.mapButton.addTarget(self, action: #selector(goToMap), for: .touchUpInside)

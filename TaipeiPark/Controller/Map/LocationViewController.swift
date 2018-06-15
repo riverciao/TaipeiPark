@@ -30,7 +30,7 @@ class LocationViewController: UIViewController {
     }
     var selectedPark: Park? {
         didSet {
-            // MARK: Open callOutView if park is selected in .list
+            // Open callOutView if park is selected in .list
             guard
                 let park = self.selectedPark,
                 let annotationView = annotationView(of: park)

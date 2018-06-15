@@ -95,6 +95,7 @@ class ParkDetailViewController: UIViewController {
             parkDetailView.introductionLabel.text = park.introduction
             if let imageURL = park.imageURL {
                 ImageCacher.loadImage(with: imageURL, into: parkDetailView.parkImageView)
+                parkDetailView.iconImageView.image = nil
             }
         }
     }
@@ -143,6 +144,7 @@ extension ParkDetailViewController: UICollectionViewDataSource, UICollectionView
             cell.spotName.text = spot.name
             if let imageURL = spot.imageURL {
                 ImageCacher.loadImage(with: imageURL, into: cell.spotImageView)
+                cell.iconImageView.image = nil
             }
         }
         return cell
