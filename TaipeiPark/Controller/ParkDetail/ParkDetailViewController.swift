@@ -93,6 +93,7 @@ class ParkDetailViewController: UIViewController {
             parkDetailView.areaAddressLabel.text = park.administrativeArea + park.address
             parkDetailView.openTimeLabel.text = park.openTime
             parkDetailView.introductionLabel.text = park.introduction
+            parkDetailView.introductionLabel.setParagraphStyle(lineSpacing: 2, paragraphSpacingBefore: 5, characterSpacing: 1.1)
             if let imageURL = park.imageURL {
                 ImageCacher.loadImage(with: imageURL, into: parkDetailView.parkImageView)
                 parkDetailView.iconImageView.image = nil

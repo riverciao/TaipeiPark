@@ -58,5 +58,6 @@ class SpotDetailViewController: UIViewController {
         spotDetailView.spotNameLabel.text = currentSpot.name
         spotDetailView.openTimeLabel.text = currentSpot.openTime
         spotDetailView.introductionLabel.text = currentSpot.introduction
+        spotDetailView.introductionLabel.setParagraphStyle(lineSpacing: 2, paragraphSpacingBefore: 5, characterSpacing: 1.1)
     }
 }
