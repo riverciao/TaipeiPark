@@ -81,6 +81,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     // MARK: SetUp
     
     private func setUp() {
+        hidesBottomBarWhenPushed = false
         tableView.showsVerticalScrollIndicator = false
     }
     
@@ -122,7 +123,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 }
             }
         } catch {
-            presentAlertController(title: "\(error)", message: error.localizedDescription)
+            presentAlertController(with: error)
         }
     }
     
@@ -144,8 +145,8 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         locationViewController.selectedPark = park
     }
     
-    private func presentAlertController(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    private func presentAlertController(with error: Error) {
+        let alert = UIAlertController(title: "\(error.localizedDescription)", message: "", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(ok)
         self.present(alert, animated: true, completion: nil)
@@ -231,15 +232,14 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         case .ready:
             let currentPark = self.provider.park(at: indexPath)
             
+            hidesBottomBarWhenPushed = true
+            navigationItem.title = ""
             let client = APIClient()
             let provider = ParkDetailAPIProvider(client: client)
             let parkDetailViewController = ParkDetailViewController(provider: provider)
             provider.fetchFacility(by: currentPark.name)
             provider.fetchSpot(by: currentPark.name)
             parkDetailViewController.currentPark = currentPark
-            
-            navigationItem.title = ""
-            hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(parkDetailViewController, animated: true)
         }
     }
@@ -259,7 +259,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
 
 extension ParksTableViewController: LikedParkLocalProviderDelegate {
     func didFail(with error: Error, by provider: LikedParkProvider) {
-        presentAlertController(title: "\(error)", message: error.localizedDescription)
+        presentAlertController(with: error)
     }
 }
 

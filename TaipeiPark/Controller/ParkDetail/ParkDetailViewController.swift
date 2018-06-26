@@ -155,7 +155,6 @@ extension ParkDetailViewController: UICollectionViewDataSource, UICollectionView
         let spot = provider.spot(at: indexPath)
         let spotDetailViewController = SpotDetailViewController(spot: spot)
         navigationItem.title = ""
-        hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(spotDetailViewController, animated: true)
     }
 }
