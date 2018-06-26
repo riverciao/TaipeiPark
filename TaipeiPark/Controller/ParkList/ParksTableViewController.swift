@@ -13,7 +13,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     // MARK: State
     
     enum State {
-        case preparing, ready
+        case preparing, ready, fail(error: Error)
     }
     
     // MARK: Property
@@ -59,6 +59,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: ParkTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ParkTableViewCell.identifier)
+        tableView.register(UINib(nibName: FailTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FailTableViewCell.identifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,10 +122,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 }
             }
         } catch {
-            let alert = UIAlertController(title: "\(error)", message: error.localizedDescription, preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alert.addAction(ok)
-            self.present(alert, animated: true, completion: nil)
+            presentAlertController(title: "\(error)", message: error.localizedDescription)
         }
     }
     
@@ -146,6 +144,16 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
         locationViewController.selectedPark = park
     }
     
+    private func presentAlertController(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func refetch() {
+        provider.fetch()
+    }
 
     // MARK: - Table view data source
 
@@ -167,16 +175,22 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
             } else {
                 return provider.numberOfParks
             }
+        case .fail:
+            return 1
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ParkTableViewCell.identifier, for: indexPath) as! ParkTableViewCell
-        cell.selectionStyle = .none
         switch state {
         case .preparing:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ParkTableViewCell.identifier, for: indexPath) as! ParkTableViewCell
+            cell.selectionStyle = .none
             cell.preparingUI()
+            return cell
+            
         case .ready:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ParkTableViewCell.identifier, for: indexPath) as! ParkTableViewCell
+            cell.selectionStyle = .none
             let isFetched = provider.numberOfParks > indexPath.row
             if isFetched {
                 cell.contentView.backgroundColor = .clear
@@ -196,14 +210,23 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 cell.likeButton.addTarget(self, action: #selector(likePark), for: .touchUpInside)
             }
             cell.readyUI()
+            return cell
+            
+        case .fail(let error):
+            let failCell = tableView.dequeueReusableCell(withIdentifier: FailTableViewCell.identifier) as! FailTableViewCell
+            failCell.errorMessageLabel.text = error.localizedDescription
+            failCell.retryButton.addTarget(self, action: #selector(refetch), for: .touchUpInside)
+            tableView.separatorStyle = .none
+            failCell.selectionStyle = .none
+            return failCell
         }
-        return cell
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch state {
-        case .preparing:
+        case .preparing, .fail:
             break
         case .ready:
             let currentPark = self.provider.park(at: indexPath)
@@ -228,10 +251,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     }
     
     func didFail(with error: Error, by provider: ParkProvider) {
-        let alert = UIAlertController(title: "\(error)", message: error.localizedDescription, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(ok)
-        self.present(alert, animated: true, completion: nil)
+        state = .fail(error: error)
     }
 }
 
@@ -239,17 +259,14 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
 
 extension ParksTableViewController: LikedParkLocalProviderDelegate {
     func didFail(with error: Error, by provider: LikedParkProvider) {
-        let alert = UIAlertController(title: "\(error)", message: error.localizedDescription, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(ok)
-        self.present(alert, animated: true, completion: nil)
+        presentAlertController(title: "\(error)", message: error.localizedDescription)
     }
 }
 
 extension ParksTableViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         switch state {
-        case .preparing:
+        case .preparing, .fail:
             break
         case .ready:
             if !provider.hasMoreParks { return }

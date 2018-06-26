@@ -13,6 +13,8 @@
 		5F17C64D20BD2AFD0090A98C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C64C20BD2AFD0090A98C /* TabBarController.swift */; };
 		5F17C65220BD2F020090A98C /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C65120BD2F020090A98C /* LocationViewController.swift */; };
 		5F17C65720BD527B0090A98C /* ParkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F17C65520BD527B0090A98C /* ParkDetailViewController.swift */; };
+		5F1B3B4920E215AD007C1D7A /* FailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1B3B4720E215AD007C1D7A /* FailTableViewCell.swift */; };
+		5F1B3B4A20E215AD007C1D7A /* FailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F1B3B4820E215AD007C1D7A /* FailTableViewCell.xib */; };
 		5F23F15120BB01E000431F10 /* ParkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */; };
 		5F23F15220BB01E000431F10 /* ParkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */; };
 		5F23F15420BC034D00431F10 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23F15320BC034D00431F10 /* Facility.swift */; };
@@ -66,6 +68,8 @@
 		5F17C64C20BD2AFD0090A98C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5F17C65120BD2F020090A98C /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		5F17C65520BD527B0090A98C /* ParkDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkDetailViewController.swift; sourceTree = "<group>"; };
+		5F1B3B4720E215AD007C1D7A /* FailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailTableViewCell.swift; sourceTree = "<group>"; };
+		5F1B3B4820E215AD007C1D7A /* FailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FailTableViewCell.xib; sourceTree = "<group>"; };
 		5F23F14F20BB01E000431F10 /* ParkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkTableViewCell.swift; sourceTree = "<group>"; };
 		5F23F15020BB01E000431F10 /* ParkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkTableViewCell.xib; sourceTree = "<group>"; };
 		5F23F15320BC034D00431F10 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
@@ -165,6 +169,15 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		5F1B3B4620E21576007C1D7A /* FailHelper */ = {
+			isa = PBXGroup;
+			children = (
+				5F1B3B4720E215AD007C1D7A /* FailTableViewCell.swift */,
+				5F1B3B4820E215AD007C1D7A /* FailTableViewCell.xib */,
+			);
+			path = FailHelper;
+			sourceTree = "<group>";
+		};
 		5F581A4720CA2BDB00ECB5E9 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +212,7 @@
 				5F87D27220B804DB003F2876 /* Park */,
 				5FF5AF3F20C7C73E005188BE /* Like */,
 				5F581A4720CA2BDB00ECB5E9 /* Map */,
+				5F1B3B4620E21576007C1D7A /* FailHelper */,
 				5F87D26E20B7C0EA003F2876 /* Library */,
 				5F87D26B20B7BD6E003F2876 /* API */,
 				5FF5AF3B20C7A7EA005188BE /* Navigation */,
@@ -374,6 +388,7 @@
 				5FC1410820BFAFF300495D66 /* SpotCollectionViewCell.xib in Resources */,
 				5F87D26120B7AC09003F2876 /* Assets.xcassets in Resources */,
 				5F23F15220BB01E000431F10 /* ParkTableViewCell.xib in Resources */,
+				5F1B3B4A20E215AD007C1D7A /* FailTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +424,7 @@
 				5FF5AF5520C7F995005188BE /* PersistenceManager.swift in Sources */,
 				5FC1410720BFAFF300495D66 /* SpotCollectionViewCell.swift in Sources */,
 				5F5BB74320D36F0200A62B10 /* UILabelExtensions.swift in Sources */,
+				5F1B3B4920E215AD007C1D7A /* FailTableViewCell.swift in Sources */,
 				5F17C64D20BD2AFD0090A98C /* TabBarController.swift in Sources */,
 				5F87D27A20B9AB5C003F2876 /* ParkAPIClient.swift in Sources */,
 				5FCD297420CD28B40043C2E1 /* CustomAnnotationView.swift in Sources */,

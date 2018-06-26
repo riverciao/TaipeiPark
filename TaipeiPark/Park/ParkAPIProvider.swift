@@ -48,6 +48,7 @@ class ParkAPIProvider: ParkProvider {
             self.delegate?.didFetch(by: self)
         }) { (error) in
             self.delegate?.didFail(with: error, by: self)
+            self.pageIsRead[self.page] = false
         }
     }
     
