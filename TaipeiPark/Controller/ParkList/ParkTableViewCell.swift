@@ -18,6 +18,8 @@ class ParkTableViewCell: UITableViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var mapButton: UIButton!
+    @IBOutlet weak var namePlaceholder: UIStackView!
+    @IBOutlet weak var introductionPlaceholder: UIStackView!
     
     var isLiked = false {
         didSet {
@@ -45,5 +47,20 @@ class ParkTableViewCell: UITableViewCell {
             #imageLiteral(resourceName: "icon-star").withRenderingMode(.alwaysTemplate),
             for: .normal
         )
+    }
+    
+    public func preparingUI() {
+        mapButton.backgroundColor = UIColor(r: 204, g: 204, b: 204)
+        namePlaceholder.isHidden = false
+        introductionPlaceholder.isHidden = false
+        nameLabel.text = ""
+        administrativeAreaLabel.text = ""
+        introductionLabel.text = ""
+    }
+    
+    public func readyUI() {
+        mapButton.backgroundColor = UIColor(r: 40, g: 177, b: 111)
+        namePlaceholder.isHidden = true
+        introductionPlaceholder.isHidden = true
     }
 }

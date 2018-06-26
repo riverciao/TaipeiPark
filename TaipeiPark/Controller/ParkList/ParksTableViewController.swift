@@ -172,9 +172,10 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ParkTableViewCell.identifier, for: indexPath) as! ParkTableViewCell
+        cell.selectionStyle = .none
         switch state {
         case .preparing:
-            cell.contentView.backgroundColor = .gray
+            cell.preparingUI()
         case .ready:
             let isFetched = provider.numberOfParks > indexPath.row
             if isFetched {
@@ -194,24 +195,30 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 cell.isLiked = likedParkProvider?.isLikedPark(id: park.id) ?? false
                 cell.likeButton.addTarget(self, action: #selector(likePark), for: .touchUpInside)
             }
+            cell.readyUI()
         }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let currentPark = self.provider.park(at: indexPath)
-        
-        let client = APIClient()
-        let provider = ParkDetailAPIProvider(client: client)
-        let parkDetailViewController = ParkDetailViewController(provider: provider)
-        provider.fetchFacility(by: currentPark.name)
-        provider.fetchSpot(by: currentPark.name)
-        parkDetailViewController.currentPark = currentPark
-        
-        navigationItem.title = ""
-        hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(parkDetailViewController, animated: true)
+        switch state {
+        case .preparing:
+            break
+        case .ready:
+            let currentPark = self.provider.park(at: indexPath)
+            
+            let client = APIClient()
+            let provider = ParkDetailAPIProvider(client: client)
+            let parkDetailViewController = ParkDetailViewController(provider: provider)
+            provider.fetchFacility(by: currentPark.name)
+            provider.fetchSpot(by: currentPark.name)
+            parkDetailViewController.currentPark = currentPark
+            
+            navigationItem.title = ""
+            hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(parkDetailViewController, animated: true)
+        }
     }
     
     // MARK: ParkProviderDelegate
