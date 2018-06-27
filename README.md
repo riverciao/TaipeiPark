@@ -18,10 +18,7 @@
 
 
 ## ScreenShot
-<img src="https://github.com/riverciao/FollowMe/blob/feature/UI/Screenshot/1.PNG" width="200">  <img src="https://github.com/riverciao/FollowMe/blob/feature/UI/Screenshot/2.PNG" width="200">  <img src="https://github.com/riverciao/FollowMe/blob/feature/UI/Screenshot/3.PNG" width="200">
-
-
-<img src="https://github.com/riverciao/FollowMe/blob/feature/UI/Screenshot/4.PNG" width="200">  <img src="https://github.com/riverciao/FollowMe/blob/feature/UI/Screenshot/5.PNG" width="200">  <img src="https://github.com/riverciao/FollowMe/blob/feature/UI/Screenshot/6.PNG" width="200">
+<img src="https://github.com/riverciao/TaipeiPark/blob/master/ScreenShot/Simulator%20Screen%20Shot%20-%20iPhone%205s%20-%202018-06-27%20at%2011.45.08.png" width="200">  <img src="https://github.com/riverciao/TaipeiPark/blob/master/ScreenShot/Simulator%20Screen%20Shot%20-%20iPhone%205s%20-%202018-06-27%20at%2011.45.39.png" width="200">  <img src="https://github.com/riverciao/TaipeiPark/blob/master/ScreenShot/Simulator%20Screen%20Shot%20-%20iPhone%205s%20-%202018-06-27%20at%2011.48.55.png" width="200">
 
 
 ## Requirement
