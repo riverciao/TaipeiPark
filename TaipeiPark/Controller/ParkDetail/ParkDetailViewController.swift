@@ -143,6 +143,7 @@ extension ParkDetailViewController: UICollectionViewDataSource, UICollectionView
             let spot = provider.spot(at: indexPath)
             cell.backgroundColor = .clear
             cell.spotName.text = spot.name
+            cell.spotImageView.image = nil
             if let imageURL = spot.imageURL {
                 ImageCacher.loadImage(with: imageURL, into: cell.spotImageView)
                 cell.iconImageView.image = nil

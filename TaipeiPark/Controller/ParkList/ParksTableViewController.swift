@@ -199,6 +199,7 @@ class ParksTableViewController: UITableViewController, ParkProviderDelegate {
                 cell.nameLabel.text = park.name
                 cell.administrativeAreaLabel.text = park.administrativeArea
                 cell.introductionLabel.text = park.introduction
+                cell.parkImageView.image = nil
                 if let imageURL = park.imageURL {
                     ImageCacher.loadImage(with: imageURL, into: cell.parkImageView)
                     cell.iconImageView.image = nil

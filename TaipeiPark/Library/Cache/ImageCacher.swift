@@ -9,14 +9,15 @@
 import UIKit
 
 struct ImageCacher {
-    
-    static private let cache = NSCache<AnyObject, AnyObject>()
+
+    static private var imageCache = [URL: Data]()
     
     static func loadImage(with url: URL, into imageView: UIImageView) {
         
         // if already have image in cache, set image into imageView
-        if let cachedImage = ImageCacher.cache.object(forKey: url as AnyObject) as? UIImage {
-            imageView.image = cachedImage
+        if let imageData = imageCache[url] {
+            guard let image = UIImage(data: imageData) else { return }
+            imageView.image = image
         } else {
             
             // if do not have image in cache, make image request and save it in cache
@@ -27,10 +28,12 @@ struct ImageCacher {
                     switch response.result {
                     case .success(let imageData):
                         guard let image = UIImage(data: imageData) else { return }
-                        ImageCacher.cache.setObject(image as AnyObject, forKey: url as AnyObject)
                         DispatchQueue.main.async {
-                            imageView.image = image
+                            UIView.transition(with: imageView, duration: 0.5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
+                                imageView.image = image
+                            }, completion: nil)
                         }
+                        imageCache[url] = imageData
                     case .failure:
                         break
                     }
