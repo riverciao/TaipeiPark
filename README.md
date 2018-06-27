@@ -6,7 +6,7 @@
 ## Feature
 * 瀏覽台北公園，收藏喜愛的公園，並可於地圖瀏覽
 * 客製化 Map Pin 與 Callout View，營業時間內/ 外顯示不同的 Map Pin
-* 以原生 SDK 實作 Image Cach 
+* 實作 Image Cach 
 * 以 Data Provider Model 管理公園資料分頁載入，可設定每頁資料筆數
 * 實作 Codable Park Model，Encode/ Decode 公園資料
 
