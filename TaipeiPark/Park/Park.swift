@@ -50,7 +50,7 @@ public struct Park: Codable {
     public let coordinate: CLLocationCoordinate2D
     public let administrativeArea: String
     public let address: String
-    public let parkType: String
+    public let parkType: String 
     
     // MARK: Init
     public init(_ likedPark: LikedPark) throws {
